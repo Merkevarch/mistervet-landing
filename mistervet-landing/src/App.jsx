@@ -1,4 +1,5 @@
 import React from 'react';
+import logoDibujo from './assets/logo-dibujo.png';
 
 export default function App() {
   return (
@@ -6,11 +7,10 @@ export default function App() {
       {/* NAVBAR */}
       <nav className="bg-white border-b border-slate-100 sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
         {/* ESPACIO PARA TU LOGO REAL */}
-        <div className="flex items-center gap-2">
-          {/* Cuando tengas el archivo del logo, descomenta la línea de abajo o asegúrate de que exista en assets */}
-          {/* <img src="/src/assets/logo.png" alt="MisterVet Logo" className="h-8 w-auto" /> */}
-          <span className="text-3xl md:text-4xl font-brand tracking-wide text-mv-darkblue">MisterVet</span>
-        </div>
+<div className="flex items-center gap-3">
+    <img src={logoDibujo} alt="MisterVet Logo" className="h-10 w-auto object-contain" />
+    <span className="text-3xl md:text-4xl font-brand tracking-wide text-mv-darkblue">MisterVet</span>
+  </div>
         
         <div className="hidden md:flex gap-8 text-base font-medium text-slate-600">
           <a href="#mascotas" className="hover:text-mv-orange transition-colors">Mascotas</a>
@@ -23,9 +23,9 @@ export default function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <header className="max-w-7xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <h1 className="text-5xl md:text-6xl font-thin text-mv-darkblue leading-tight tracking-tight">
+      <header className="max-w-7xl mx-auto px-6 py-5 md:py-8 grid md:grid-cols-2 gap-6 items-center">
+        <div className="space-y-4">
+          <h1 className="text-5xl md:text-5xl font-thin text-mv-darkblue leading-tight tracking-tight">
             Medicina veterinaria integral y <span className="font-normal text-mv-blue">tecnología de vanguardia.</span>
           </h1>
           <p className="text-slate-600 max-w-lg text-lg leading-relaxed">
@@ -51,15 +51,15 @@ export default function App() {
       <section className="bg-white border-t border-b border-slate-100 py-24">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
           <div id="mascotas" className="space-y-5">
-            <div className="text-xs font-bold text-mv-orange uppercase tracking-widest">Servicios Clínicos</div>
-            <h2 className="text-3xl font-light text-mv-darkblue">Cuidado para Mascotas</h2>
+            <div className="text-s font-bold text-mv-orange uppercase tracking-widest">Servicios Clínicos</div>
+            <h2 className="text-4xl font-light text-mv-darkblue">Cuidado para Mascotas</h2>
             <p className="text-slate-600 text-base leading-relaxed">
               Atención médica integral a domicilio para perros y gatos. Evita el estrés del traslado con consultas preventivas, planes vacunales, diagnósticos y tratamientos oportunos directamente en la comodidad de su hogar.
             </p>
           </div>
           <div id="produccion" className="space-y-5 md:border-l md:border-slate-100 md:pl-16">
-            <div className="text-xs font-bold text-mv-amber uppercase tracking-widest">Consultoría de Campo</div>
-            <h2 className="text-3xl font-light text-mv-darkblue">Producción y Ganadería</h2>
+            <div className="text-s font-bold text-mv-amber uppercase tracking-widest">Consultoría de Campo</div>
+            <h2 className="text-4xl font-light text-mv-darkblue">Producción y Ganadería</h2>
             <p className="text-slate-600 text-base leading-relaxed">
               Asesoría corporativa y clínica especializada para explotaciones de bovinos, porcinos y ovinos. Nos enfocamos en la optimización de hatos, control sanitario estricto y mejora de índices productivos.
             </p>
