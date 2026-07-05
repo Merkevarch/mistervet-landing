@@ -1,10 +1,35 @@
 @import "tailwindcss";
 
 @theme {
+  /* Registro de Colores Oficiales MisterVet */
+  --color-mv-darkblue: #163E8D;  /* Azul oscuro profundo del perro */
+  --color-mv-blue: #2E86DE;      /* Azul brillante tecnológico */
+  --color-mv-orange: #F15A24;    /* Naranja vibrante del gato */
+  --color-mv-amber: #FBB03B;     /* Amarillo cálido de acento */
+
+  /* Registro de Fuentes */
   --font-brand: "Bacallisties", sans-serif;
   --font-thin: "Roboto-Thin", sans-serif;
 }
 
+/* Tarea 2: Ajuste de legibilidad global y preparación de logo */
+@layer base {
+  html {
+    /* Aumentamos el tamaño base para que el texto no se sienta pequeño */
+    font-size: 18px; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Clase de utilidad para el contenedor del logo */
+  .logo-container img {
+    height: 3rem; /* Altura predeterminada para el logo */
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+/* Mantenimiento de @font-face para que las fuentes carguen */
 @font-face {
   font-family: 'Bacallisties';
   src: url('./assets/fonts/Bacalisties.txt.ttf') format('truetype');
@@ -19,31 +44,4 @@
   font-weight: 100;
   font-style: normal;
   font-display: swap;
-}
-
-
-/* 1. Registro de fuentes locales */
-@font-face {
-  font-family: 'Bacallisties';
-  src: url('./assets/fonts/Bacallisties.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto-Thin';
-  src: url('./assets/fonts/Roboto-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* 2. Configuración del tema para Tailwind v4 */
-@theme {
-  --font-brand: "Bacallisties", sans-serif;
-  
-  /* Nota: Usamos 'thin-family' para evitar conflicto con la clase 'font-thin' 
-     de Tailwind que ya controla el grosor (weight) */
-  --font-thin-family: "Roboto-Thin", sans-serif;
 }
