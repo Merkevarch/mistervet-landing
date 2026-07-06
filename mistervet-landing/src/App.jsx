@@ -103,13 +103,24 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h1 className="text-4xl lg:text-5xl font-display text-mv-darkblue leading-tight mb-4">
-                Medicina Veterinaria <span className="text-mv-blue">Integral</span> y Tecnología
+              {/* Badge superior */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-mv-blue/10 rounded-full mb-5">
+                <span className="w-2 h-2 bg-mv-blue rounded-full animate-pulse"></span>
+                <span className="text-xs font-medium text-mv-blue">Software SaaS para clínicas veterinarias</span>
+              </div>
+
+              <h1 className="text-4xl lg:text-5xl font-display text-mv-darkblue leading-tight mb-5">
+                Gestiona tu clínica veterinaria con <span className="text-mv-blue">tecnología inteligente</span>
               </h1>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Cuidado profesional para tus mascotas y producción animal. Ahora con <strong>MisterVet Pro</strong>, el software de gestión completo para clínicas veterinarias.
+              <p className="text-lg text-slate-600 mb-4 leading-relaxed">
+                MisterVet Pro es el software todo-en-uno que simplifica la administración de tu clínica. Pacientes, consultas, cirugías, laboratorio, facturación e inventario — todo desde un solo lugar.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <p className="text-sm text-slate-500 mb-8 leading-relaxed">
+                Diseñado por veterinarios para veterinarios. Sin instalaciones, sin contratos, accesible desde cualquier dispositivo.
+              </p>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-4 mb-8">
                 <a
                   href={SETUP_URL}
                   className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
@@ -122,8 +133,24 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="px-6 py-3 border-2 border-mv-darkblue text-mv-darkblue font-semibold rounded-xl hover:bg-mv-darkblue hover:text-white transition-all"
                 >
-                  WhatsApp Directo
+                  Hablar por WhatsApp
                 </a>
+              </div>
+
+              {/* Badges de confianza */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-500">
+                <span className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                  Plan gratis para siempre
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                  Sin tarjeta de crédito
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                  Soporte en español
+                </span>
               </div>
             </div>
             <div className="flex justify-center">
