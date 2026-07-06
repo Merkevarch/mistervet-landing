@@ -103,20 +103,17 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              {/* Badge superior */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-mv-orange/10 rounded-full mb-5">
-                <span className="w-2 h-2 bg-mv-orange rounded-full animate-pulse"></span>
-                <span className="text-xs font-medium text-mv-orange">Sincelejo - Montería</span>
-              </div>
-
               <h1 className="text-4xl lg:text-5xl font-display text-mv-darkblue leading-tight mb-5">
-                Cuidado profesional para tus <span className="text-mv-blue">mascotas</span> y <span className="text-mv-amber">producción animal</span>
+                Cuidado y <span className="text-mv-blue">bienestar</span> para tu mascota
               </h1>
-              <p className="text-lg text-slate-600 mb-4 leading-relaxed">
-                Medicina veterinaria integral con servicio a domicilio, atención clínica, cirugías, laboratorio y consultoría para fincas y sistemas de producción pecuaria.
+              <p className="text-base text-slate-600 mb-4 leading-relaxed">
+                En <strong>MisterVet</strong> creemos que la confianza se construye con conocimiento, compromiso y una atención cercana. Ofrecemos medicina veterinaria profesional para mascotas y producción animal, respaldada por un médico veterinario titulado y un enfoque integral orientado a la prevención, el diagnóstico y el tratamiento.
               </p>
-              <p className="text-sm text-slate-500 mb-8 leading-relaxed">
-                Atendemos en Sincelejo, Montería y zonas aledañas. Agenda tu cita y recibe atención profesional donde nos necesites.
+              <p className="text-base text-slate-600 mb-4 leading-relaxed">
+                Cada paciente recibe una atención personalizada, acompañada de comunicación constante y decisiones clínicas fundamentadas, porque entendemos que detrás de cada animal hay una familia, un proyecto o un patrimonio que merece el mayor cuidado.
+              </p>
+              <p className="text-base font-medium text-mv-darkblue mb-8 leading-relaxed">
+                Con la tranquilidad de saber que tus animales están en manos profesionales.
               </p>
 
               {/* CTAs */}
@@ -135,22 +132,6 @@ export default function App() {
                 >
                   Contactar por Correo
                 </a>
-              </div>
-
-              {/* Badges de confianza */}
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-500">
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                  Servicio a domicilio
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                  Experiencia comprobada
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                  Atención personalizada
-                </span>
               </div>
             </div>
             <div className="flex justify-center">
@@ -292,7 +273,7 @@ export default function App() {
                     contacto@mistervet.co
                   </a>
                 </li>
-                <li className="text-slate-500">Sincelejo - Montería, Colombia</li>
+                <li className="text-slate-500">Colombia</li>
               </ul>
             </div>
           </div>
