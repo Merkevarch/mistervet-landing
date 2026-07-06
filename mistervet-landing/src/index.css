@@ -9,27 +9,24 @@
 
   /* Registro de Fuentes */
   --font-brand: "Bacallisties", sans-serif;
-  --font-thin: "Roboto-Thin", sans-serif;
+  --font-display: "Roboto-Thin", sans-serif;
 }
 
-/* Tarea 2: Ajuste de legibilidad global y preparación de logo */
 @layer base {
   html {
-    /* Aumentamos el tamaño base para que el texto no se sienta pequeño */
-    font-size: 18px; 
+    font-size: 18px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
-  
-  /* Clase de utilidad para el contenedor del logo */
+
   .logo-container img {
-    height: 3rem; /* Altura predeterminada para el logo */
+    height: 3rem;
     width: auto;
     object-fit: contain;
   }
 }
 
-/* Mantenimiento de @font-face para que las fuentes carguen */
 @font-face {
   font-family: 'Bacallisties';
   src: url('./assets/fonts/Bacalisties.txt.ttf') format('truetype');
