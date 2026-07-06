@@ -99,7 +99,7 @@ export default function App() {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section className="bg-gradient-to-b from-slate-50 to-white py-16 lg:py-24">
+      <section className="bg-gradient-to-b from-slate-50 to-white py-10 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -112,12 +112,12 @@ export default function App() {
               <p className="text-base text-slate-600 mb-4 leading-relaxed">
                 Cada paciente recibe una atención personalizada, acompañada de comunicación constante y decisiones clínicas fundamentadas, porque entendemos que detrás de cada animal hay una familia, un proyecto o un patrimonio que merece el mayor cuidado.
               </p>
-              <p className="text-base font-medium text-mv-darkblue mb-8 leading-relaxed">
+              <p className="text-base font-medium text-mv-darkblue mb-6 leading-relaxed">
                 Con la tranquilidad de saber que tus animales están en manos profesionales.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4 mb-8">
+              <div className="flex flex-wrap gap-4 mb-2">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -142,9 +142,9 @@ export default function App() {
       </section>
 
       {/* ===== SERVICIOS ===== */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-white py-10 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-display text-mv-darkblue mb-2">Servicios a Domicilio</h2>
             <p className="text-slate-500">Atención profesional donde nos necesites</p>
           </div>
@@ -164,7 +164,7 @@ export default function App() {
       </section>
 
       {/* ===== MASCOTAS / PRODUCCIÓN ===== */}
-      <section className="bg-white py-16 lg:py-24 pt-0">
+      <section className="bg-white py-10 lg:py-16 pt-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
             <div id="mascotas">
@@ -198,7 +198,7 @@ export default function App() {
       </section>
 
       {/* ===== MISTERVET PRO (SaaS) ===== */}
-      <section id="software" className="bg-mv-darkblue text-white py-16 lg:py-24">
+      <section id="software" className="bg-mv-darkblue text-white py-10 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -209,7 +209,7 @@ export default function App() {
               <p className="text-slate-300 leading-relaxed mb-6">
                 El software de gestión veterinaria más completo de Colombia. Administra pacientes, consultas, cirugías, hospitalización, laboratorio, POS, inventario y más — todo en un solo lugar.
               </p>
-              <ul className="space-y-2 text-sm text-slate-300 mb-8">
+              <ul className="space-y-2 text-sm text-slate-300 mb-6">
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Gestión completa de pacientes y propietarios</li>
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Punto de venta (POS) con facturación</li>
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Historia clínica digital y recetas</li>
@@ -236,7 +236,7 @@ export default function App() {
       {/* ===== FOOTER ===== */}
       <footer className="bg-slate-900 text-slate-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-6">
             {/* Contacto */}
             <div>
               <div className="flex items-center gap-2 mb-4">
