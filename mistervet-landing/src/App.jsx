@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import logoDibujo from './assets/logo-dibujo.png';
 import perroImg from './assets/perro.png';
+import mockupSoftware from './assets/mockup-software.png';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
 const APP_URL = 'https://app.mistervet.co';
@@ -222,12 +223,12 @@ export default function App() {
                 Registrar mi Veterinaria
               </a>
             </div>
-            <div className="bg-white/5 rounded-2xl border border-white/10 p-8 min-h-[300px] flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl mb-4">🐾</div>
-                <p className="text-slate-400 text-sm">Captura de pantalla del software</p>
-                <p className="text-slate-500 text-xs mt-1">(Próximamente)</p>
-              </div>
+            <div className="bg-white/5 rounded-2xl border border-white/10 p-4 overflow-hidden">
+              <img
+                src={mockupSoftware}
+                alt="MisterVet Pro - Captura del software"
+                className="w-full rounded-lg shadow-2xl"
+              />
             </div>
           </div>
         </div>
