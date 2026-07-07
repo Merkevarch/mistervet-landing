@@ -3,7 +3,7 @@ title: "Vacunación en perros: Guía completa para dueños"
 date: "2026-07-07"
 category: "Mascotas"
 author: "MisterVet"
-excerpt: "Conoce cuándo y qué vacunas necesita tu perro en cada etapa de su vida para mantenerlo protegido contra enfermedades graves."
+excerpt: "El esquema de vacunación canino no es único: depende del perfil del paciente (perro de casa, de finca, de zona con roedores, de guarderías, de caza). Conoce las vacunas core y no core, el esquema base de cachorro y la importancia de la valoración veterinaria individual."
 ---
 
 # Vacunación en perros: Guía completa
@@ -18,20 +18,91 @@ Además, la vacunación no solo protege a tu perro, sino que también ayuda a cr
 
 ## Esquema de vacunación recomendado
 
-### Cachorros (6 a 16 semanas)
+No existe un esquema único para todos los perros. El plan de vacunación debe construirse según el perfil del paciente: edad, estado de salud, estilo de vida, exposición a otros animales y características epidemiológicas de la zona donde vive o se desplaza. A continuación presentamos el esquema base de cachorro y luego las recomendaciones según el tipo de paciente, pero la decisión final sobre qué vacunas aplicar y en qué orden siempre debe tomarla un médico veterinario tras evaluar al animal en consulta.
 
-| Edad | Vacuna | Enfermedad que previene |
-|------|--------|------------------------|
-| 6-8 semanas | Primera dosis múltiple | Moquillo, Parvovirus, Hepatitis |
+### Vacunas esenciales (core) — para todos los perros
+
+Estas vacunas se aplican a todos los perros sin excepción, independientemente de su estilo de vida, porque protegen contra enfermedades altamente contagiosas, potencialmente mortales o de denuncia obligatoria.
+
+- **Vacuna múltiple (DHPP o DHPPI)**: Moquillo, Parvovirus, Hepatitis infecciosa canina, Parainfluenza
+- **Rabia**: Obligatoria por ley en Colombia, también protege la salud pública
+
+### Vacunas según riesgo (no core) — según el perfil del paciente
+
+Estas vacunas no todos los perros las necesitan. Se indican según el riesgo real de exposición evaluado por el médico veterinario:
+
+- **Leptospirosis**: Para perros con exposición a orina de otros mamíferos, aguas estancadas, zonas rurales o presencia de roedores
+- **Tos de las perreras (Bordetella + Parainfluenza)**: Para perros que conviven con otros caninos en guarderías, pensiones, criaderos, exposiciones caninas o que asisten a parques muy concurridos
+- **Lyme (Borreliosis)**: Para perros en zonas con alta carga de garrapatas Ixodes, especialmente si viven o transitan por zonas boscosas
+- **Giardia**: Solo en casos puntuales según criterio veterinario
+
+### Esquema base para cachorros (independiente del perfil)
+
+El esquema de cachorro sí tiene una estructura relativamente estándar porque busca establecer la inmunidad primaria. Las dosis se aplican entre las 6 y las 16 semanas para superar la inmunidad maternal y asegurar una respuesta inmunológica propia robusta.
+
+| Edad | Vacuna | Observación |
+|------|--------|-------------|
+| 6-8 semanas | Primera dosis múltiple | Inicio del esquema |
 | 10-12 semanas | Segunda dosis múltiple | Refuerzo |
-| 14-16 semanas | Tercera dosis + Rabia | Refuerzo + Rabia |
-| 6 meses | Refuerzo anual | Todas las anteriores |
+| 14-16 semanas | Tercera dosis múltiple + Rabia | Refuerzo final + rabia |
+| 6 meses o 1 año | Refuerzo anual | Consolidación de la inmunidad |
 
-### Perros adultos (anual)
+A este esquema base se le suman, según el perfil del cachorro, las vacunas no core que correspondan (por ejemplo, leptospirosis en cachorros de finca desde las 8-9 semanas).
 
-- **Vacuna múltiple anual**: Moquillo, Parvovirus, Hepatitis, Leptospirosis
-- **Rabia**: Obligatoria por ley en Colombia
-- **Tos de las perreras** (Bordetella): Recomendada si tu perro convive con otros
+### Perfiles de paciente y sus vacunas recomendadas
+
+Cada perfil describe el estilo de vida y los riesgos asociados, y enumera las vacunas que típicamente se adicionan al esquema base. La decisión final siempre se toma en consulta.
+
+**Perro de apartamento que no sale**
+Perro que vive exclusivamente en interior, no tiene contacto con otros caninos fuera del núcleo familiar y solo sale brevemente para sus necesidades.
+
+- Vacunas core (DHPP anual + Rabia)
+- Riesgo bajo de vacunas no core
+- Tos de las perreras solo si convive con perros que sí salen o si asiste a pensiones ocasionalmente
+
+**Perro urbano que pasea en parques**
+Perro que pasea diariamente por parques, vías públicas o zonas comunes donde otros perros han orinado o defecado.
+
+- Vacunas core
+- **Leptospirosis recomendada**: exposición a orina de otros perros y roedores urbanos
+- **Tos de las perreras recomendada** si el parque es muy concurrido o asiste a grupos de socialización
+
+**Perro de finca o zona rural**
+Perro que vive o pasa temporadas en fincas, campos o zonas rurales, con exposición a ganado, caballos, fauna silvestre, fuentes de agua naturales y suelos húmedos.
+
+- Vacunas core
+- **Leptospirosis esencial**: alta exposición a orina de bovinos, equinos, roedores y aguas estancadas
+- Considerar refuerzos semestrales de leptospirosis en zonas de alta prevalencia
+- Rabia con estricto cumplimiento del calendario anual por riesgo de contacto con vampiros o fauna silvestre
+
+**Perro en zona con roedores**
+Perro que vive o transita por zonas con presencia de roedores (bodegas, zonas rurales, casas con patios grandes, zonas urbanas con plagas).
+
+- Vacunas core
+- **Leptospirosis prioritaria**: los roedores son el principal reservorio y eliminan la bacteria por orina de forma continua
+- Evaluar con el veterinario la necesidad de refuerzos semestrales
+
+**Perro que asiste a guarderías, pensiones o exposiciones**
+Perro con contacto estrecho y prolongado con muchos otros caninos en espacios cerrados o concurridos.
+
+- Vacunas core
+- **Tos de las perreras (Bordetella + Parainfluenza) esencial**: el riesgo de brote respiratorio es muy alto en estos entornos
+- **Parainfluenza** incluida en la vacuna múltiple o como refuerzo
+- Algunas guarderías exigen vacunación contra Bordetella actualizada como requisito de ingreso
+
+**Perro de caza o trabajo en campo**
+Perro que trabaja en actividades de caza, pastoreo o búsqueda en zonas boscosas o de monte.
+
+- Vacunas core
+- **Leptospirosis esencial**
+- **Lyme**: evaluar según la región si hay presencia de garrapatas Ixodes
+- Control antiparasitario externo (garrapatas) como complemento
+
+### Importancia de la valoración veterinaria individual
+
+Los perfiles anteriores son orientativos y no sustituyen la consulta. Un perro de finca que además viaja a la ciudad, un perro geriátrico con enfermedad renal, una perra gestante o un cachorro con antecedentes de parasitismo requieren ajustes específicos al esquema. Adicionalmente, la epidemiología varía entre regiones de Colombia: la leptospirosis es mucho más prevalente en zonas cálidas y húmedas del país, mientras que el riesgo de rabia silvestre se concentra en ciertas zonas rurales.
+
+Por eso el médico veterinario debe conocer al paciente, su entorno y la zona antes de definir el esquema definitivo. Una vacuna mal indicada no solo es inútil: puede generar gastos innecesarios, reacciones adversas o una falsa sensación de protección.
 
 ## Enfermedades que previenen las vacunas
 
