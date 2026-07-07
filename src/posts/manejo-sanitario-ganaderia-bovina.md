@@ -62,23 +62,73 @@ La bioseguridad es el conjunto de prácticas que previenen la entrada y propagac
 
 ## Registros sanitarios
 
-Llevar buenos registros es esencial para:
+Llevar buenos registros es la base de cualquier plan sanitario exitoso. Sin información no hay decisión: los datos permiten evaluar la eficacia de las intervenciones, detectar problemas a tiempo, cumplir con los requisitos de comercialización y trazabilidad del ICA, justificar el gasto en insumos veterinarios y construir el historial que va a sostener cualquier auditoría de Buenas Prácticas Pecuarias. Un registro mal llevado o incompleto es tan inútil como no tenerlo.
 
-- Evaluar la eficacia del plan sanitario
-- Detectar problemas a tiempo
-- Cumplir con requisitos de comercialización
-- Tomar decisiones basadas en datos
+La regla práctica es registrar todo evento sanitario el mismo día en que ocurre, idealmente con fecha, identificación del animal, producto aplicado, lote, dosis, vía y responsable. Con el tiempo, este hábito construye un historial que vale oro a la hora de investigar un aborto, un brote respiratorio o una caída en la producción.
 
 ### ¿Qué registrar?
 
+Para que la información sea útil y consultable, conviene organizar los registros en cinco bloques temáticos. Cada bloque agrupa datos relacionados entre sí, con su frecuencia de actualización y su nivel de prioridad para el seguimiento sanitario del hato.
+
+#### 1. Identificación del animal
+
+Datos permanentes que permiten individualizar a cada bovino del hato. Sin identificación clara no hay trazabilidad posible.
+
 | Dato | Frecuencia | Importancia |
 |------|------------|-------------|
-| Vacunaciones | Por evento | Alta |
-| Desparasitaciones | Por evento | Alta |
-| Abortos | Por evento | Crítica |
-| Mortalidad | Por evento | Crítica |
-| Diagnósticos | Por evento | Alta |
-| Tratamientos | Por evento | Media |
+| Número de identificación (arete, hierro, chip) | Único, al nacimiento o ingreso | Crítica |
+| Sexo, raza y fecha de nacimiento | Único, al ingreso | Alta |
+| Procedencia (nacido en finca o comprado) | Único, al ingreso | Alta |
+| Grupo productivo (cría, levante, ceba, vaca) | Actualización al cambiar etapa | Media |
+
+#### 2. Eventos sanitarios
+
+Todo evento de salud o enfermedad debe quedar registrado con fecha, animal, diagnóstico, producto, dosis, vía y responsable. Es la base del historial clínico del hato.
+
+| Dato | Frecuencia | Importancia |
+|------|------------|-------------|
+| Vacunaciones (producto, lote, dosis) | Por evento | Crítica |
+| Desparasitaciones (producto, lote, peso) | Por evento | Alta |
+| Diagnósticos y signos clínicos | Por evento | Alta |
+| Tratamientos médicos (producto, dosis, duración) | Por evento | Alta |
+| Resultados de laboratorio (coprológicos, serologías, etc.) | Por evento | Alta |
+| Reacciones adversas a medicamentos | Por evento | Crítica |
+
+#### 3. Eventos críticos
+
+Eventos puntuales que pueden indicar un problema mayor en el hato y deben investigarse de inmediato. Su registro permite calcular tasas reales de mortalidad y morbilidad, no solo impresiones subjetivas.
+
+| Dato | Frecuencia | Importancia |
+|------|------------|-------------|
+| Abortos (con edad gestacional y posible causa) | Por evento | Crítica |
+| Mortalidad (con causa probable o diagnosticada) | Por evento | Crítica |
+| Retención de placenta | Por evento | Alta |
+| Muerte súbita | Por evento | Crítica |
+| Brote de enfermedad en grupo | Por evento | Crítica |
+
+#### 4. Manejo reproductivo
+
+Indicadores clave de la eficiencia del hato. Sin estos datos no se pueden calcular intervalos parto-concepción, tasa de preñez ni tasa de aborto, que son los KPIs que el comprador o el banco van a preguntarte.
+
+| Dato | Frecuencia | Importancia |
+|------|------------|-------------|
+| Servicios (monta natural o inseminación, toro/semental) | Por evento | Alta |
+| Diagnósticos de gestación | Por evento | Alta |
+| Partos (fecha, sexo, peso del ternero, complicaciones) | Por evento | Alta |
+| Días abiertos e intervalo entre partos | Cálculo por hembra | Alta |
+| Descartes reproductivos (con causa) | Por evento | Media |
+
+#### 5. Producción y movimientos
+
+Datos que conectan el componente sanitario con el productivo y comercial. Permiten ver si el plan sanitario se traduce en resultados económicos.
+
+| Dato | Frecuencia | Importancia |
+|------|------------|-------------|
+| Pesos (nacimiento, destete, año) | Por etapa | Alta |
+| Producción de leche (litros/vaca/día) | Diario o semanal | Alta |
+| Compras, ventas y traslados (con guías ICA) | Por evento | Crítica |
+| Consumo de alimento y suplementos | Mensual | Media |
+| Consumo de insumos veterinarios (lote y vencimiento) | Por compra y uso | Alta |
 
 ---
 
