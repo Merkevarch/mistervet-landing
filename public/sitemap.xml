@@ -7,21 +7,27 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mistervet.co/#mascotas</loc>
+    <loc>https://www.mistervet.co/#/mascotas</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mistervet.co/#produccion</loc>
+    <loc>https://www.mistervet.co/#/produccion</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mistervet.co/#software</loc>
+    <loc>https://www.mistervet.co/#/software</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mistervet.co/#/blog</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

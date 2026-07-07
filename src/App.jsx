@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoDibujo from './assets/logo-dibujo.png';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import perroImg from './assets/perro.jpg';
 import mockupSoftware from './assets/mockup-software.png';
 
@@ -31,16 +31,6 @@ const Icon = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
     </svg>
   ),
-  menu: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-    </svg>
-  ),
-  close: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-    </svg>
-  ),
 };
 
 const services = [
@@ -51,56 +41,9 @@ const services = [
 ];
 
 export default function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
-      {/* ===== NAVBAR ===== */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <a href="#" className="flex items-center gap-2 logo-container">
-              <img src={logoDibujo} alt="MisterVet" className="h-10 w-auto" />
-              <span className="text-2xl text-mv-darkblue font-brand">MisterVet</span>
-            </a>
-
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-6">
-              <a href="#mascotas" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">Mascotas</a>
-              <a href="#produccion" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">Producción y Ganadería</a>
-              <a href="#software" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">MisterVet Pro</a>
-              <Link to="/blog" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">Blog</Link>
-              <a
-                href={APP_URL}
-                className="px-4 py-2 text-sm font-medium text-mv-darkblue border border-mv-darkblue rounded-lg hover:bg-mv-darkblue hover:text-white transition-colors"
-              >
-                Acceder al Sistema
-              </a>
-            </div>
-
-            {/* Mobile hamburger */}
-            <button
-              className="md:hidden text-slate-600"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Menú"
-            >
-              {mobileMenuOpen ? Icon.close : Icon.menu}
-            </button>
-          </div>
-
-          {/* Mobile menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-200 space-y-3">
-              <a href="#mascotas" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">Mascotas</a>
-              <a href="#produccion" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">Producción y Ganadería</a>
-              <a href="#software" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">MisterVet Pro</a>
-              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">Blog</Link>
-              <a href={APP_URL} className="block px-4 py-2 text-sm font-medium text-center text-white bg-mv-darkblue rounded-lg">Acceder al Sistema</a>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Navbar />
 
       {/* ===== HERO ===== */}
       <section className="bg-gradient-to-b from-slate-50 to-white py-10 lg:py-16">
@@ -167,7 +110,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===== MASCOTAS / PRODUCCIÓN ===== */}
+      {/* ===== MASCOTAS / PRODUCCIÓN (resumen en home, con link a páginas dedicadas) ===== */}
       <section className="bg-white py-10 lg:py-16 pt-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
@@ -183,6 +126,12 @@ export default function App() {
                 <li className="flex items-center gap-2"><span className="text-mv-orange">●</span> Cirugías y hospitalización</li>
                 <li className="flex items-center gap-2"><span className="text-mv-orange">●</span> Laboratorio y exámenes diagnósticos</li>
               </ul>
+              <Link
+                to="/mascotas"
+                className="inline-block mt-4 text-sm font-medium text-mv-blue hover:underline"
+              >
+                Ver todos los servicios para mascotas →
+              </Link>
             </div>
             <div id="produccion" className="md:border-l md:pl-16">
               <span className="text-sm font-bold text-mv-amber uppercase tracking-wide">Consultoría de Campo</span>
@@ -196,6 +145,12 @@ export default function App() {
                 <li className="flex items-center gap-2"><span className="text-mv-amber">●</span> Consultoría reproductiva</li>
                 <li className="flex items-center gap-2"><span className="text-mv-amber">●</span> Visitas técnicas programadas</li>
               </ul>
+              <Link
+                to="/produccion"
+                className="inline-block mt-4 text-sm font-medium text-mv-amber hover:underline"
+              >
+                Conoce el servicio de producción →
+              </Link>
             </div>
           </div>
         </div>
@@ -219,12 +174,20 @@ export default function App() {
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Historia clínica digital y recetas</li>
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Planes desde gratis hasta $90.000/mes</li>
               </ul>
-              <a
-                href={SETUP_URL}
-                className="inline-block px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
-              >
-                Registrar mi Veterinaria
-              </a>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={SETUP_URL}
+                  className="inline-block px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
+                >
+                  Registrar mi Veterinaria
+                </a>
+                <Link
+                  to="/software"
+                  className="inline-block px-6 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-mv-darkblue transition-all"
+                >
+                  Conocer más
+                </Link>
+              </div>
             </div>
             <div className="bg-white/5 rounded-2xl border border-white/10 p-4 overflow-hidden">
               <img
@@ -237,60 +200,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="bg-slate-900 text-slate-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-6">
-            {/* Contacto */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <img src={logoDibujo} alt="MisterVet" className="h-8 w-auto" />
-                <span className="text-xl text-white font-brand">MisterVet</span>
-              </div>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                Medicina veterinaria integral y tecnología para clínicas veterinarias en Colombia.
-              </p>
-            </div>
-
-            {/* Links */}
-            <div>
-              <h4 className="text-white font-medium text-sm mb-4">Enlaces</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href={APP_URL} className="hover:text-white transition-colors">Acceder al Sistema</a></li>
-                <li><a href={SETUP_URL} className="hover:text-white transition-colors">Registrar mi Veterinaria</a></li>
-                <li><a href="#mascotas" className="hover:text-white transition-colors">Servicios para Mascotas</a></li>
-                <li><a href="#software" className="hover:text-white transition-colors">MisterVet Pro</a></li>
-              </ul>
-            </div>
-
-            {/* Contacto directo */}
-            <div>
-              <h4 className="text-white font-medium text-sm mb-4">Contacto</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                    WhatsApp: +57 301 765 3440
-                  </a>
-                </li>
-                <li>
-                  <a href={CONTACT_EMAIL} className="hover:text-white transition-colors">
-                    contacto@mistervet.co
-                  </a>
-                </li>
-                <li className="text-slate-500">Colombia</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-slate-500">© {new Date().getFullYear()} MisterVet. Todos los derechos reservados.</p>
-            <div className="flex gap-4 text-xs">
-              <a href={APP_URL + '/terminos'} className="hover:text-white transition-colors">Términos de Servicio</a>
-              <a href={APP_URL + '/privacidad'} className="hover:text-white transition-colors">Política de Privacidad</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
