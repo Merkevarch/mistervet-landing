@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import logoDibujo from './assets/logo-dibujo.png';
-import perroImg from './assets/perro.png';
+import perroImg from './assets/perro.jpg';
 import mockupSoftware from './assets/mockup-software.png';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
