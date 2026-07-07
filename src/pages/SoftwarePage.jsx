@@ -58,53 +58,42 @@ const features = [
 
 const plans = [
   {
-    name: 'Starter',
-    price: 'Gratis',
-    period: 'para siempre',
+    name: 'Trial',
+    price: '$0',
+    period: '/ mes',
     desc: 'Para veterinarias que están iniciando y quieren digitalizar su operación sin costo.',
     features: [
-      'Hasta 200 pacientes',
-      '1 usuario profesional',
-      'Historia clínica digital',
-      'Citas y agenda básica',
-      'Recetas y documentos',
-      'Soporte por correo',
+      '30 mascotas',
+      '2 usuarios',
+      'Ventas ilimitadas',
+      'Sin expiración',
     ],
     cta: 'Comenzar Gratis',
     highlight: false,
   },
   {
-    name: 'Professional',
-    price: '$45.000',
+    name: 'Pro',
+    price: '$50.000',
     period: '/ mes',
-    desc: 'Para veterinarias en crecimiento que necesitan POS, inventario y reportes avanzados.',
+    desc: 'Para veterinarias en crecimiento que necesitan usuarios ilimitados y soporte prioritario.',
     features: [
-      'Pacientes ilimitados',
-      'Hasta 5 usuarios',
-      'Todo lo del plan Starter',
-      'Punto de venta (POS)',
-      'Inventario y proveedores',
-      'Cirugías y hospitalización',
-      'Laboratorio clínico',
-      'Reportes y dashboard',
+      '200 mascotas',
+      'Usuarios ilimitados',
+      'Ventas ilimitadas',
       'Soporte prioritario',
     ],
-    cta: 'Probar 14 días gratis',
+    cta: 'Elegir Plan Pro',
     highlight: true,
   },
   {
     name: 'Enterprise',
     price: '$90.000',
     period: '/ mes',
-    desc: 'Para clínicas con múltiples sedes o equipos grandes que requieren funciones avanzadas.',
+    desc: 'Para clínicas con altos volúmenes o equipos grandes que requieren atención dedicada.',
     features: [
-      'Pacientes ilimitados',
+      'Mascotas ilimitadas',
       'Usuarios ilimitados',
-      'Todo lo del plan Professional',
-      'Múltiples sedes',
-      'Roles y permisos avanzados',
-      'API e integraciones',
-      'Capacitación personalizada',
+      'Ventas ilimitadas',
       'Soporte 24/7',
     ],
     cta: 'Contactar Ventas',
@@ -175,24 +164,24 @@ export default function SoftwarePage() {
     offers: [
       {
         '@type': 'Offer',
-        name: 'Starter',
+        name: 'Trial',
         price: '0',
         priceCurrency: 'COP',
-        description: 'Plan gratuito para veterinarias que están iniciando.',
+        description: 'Plan gratuito: 30 mascotas, 2 usuarios, ventas ilimitadas, sin expiración.',
       },
       {
         '@type': 'Offer',
-        name: 'Professional',
-        price: '45000',
+        name: 'Pro',
+        price: '50000',
         priceCurrency: 'COP',
-        description: 'Para veterinarias en crecimiento con POS, inventario y reportes avanzados.',
+        description: '200 mascotas, usuarios ilimitados, ventas ilimitadas, soporte prioritario.',
       },
       {
         '@type': 'Offer',
         name: 'Enterprise',
         price: '90000',
         priceCurrency: 'COP',
-        description: 'Para clínicas con múltiples sedes o equipos grandes.',
+        description: 'Mascotas ilimitadas, usuarios ilimitados, ventas ilimitadas, soporte 24/7.',
       },
     ],
     aggregateRating: {
@@ -216,7 +205,7 @@ export default function SoftwarePage() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
         title="MisterVet Pro | Software de Gestión Veterinaria SaaS"
-        description="Software de gestión veterinaria multi-tenant para clínicas en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario, recetas, citas y reportes. Planes desde gratis hasta $90.000/mes."
+        description="Software de gestión veterinaria multi-tenant para clínicas en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario, recetas, citas y reportes. Planes Trial $0, Pro $50.000/mes y Enterprise $90.000/mes."
         path="/software"
         type="website"
         keywords={['software veterinaria', 'sistema gestión veterinaria', 'software veterinario Colombia', 'historia clínica digital veterinaria', 'POS veterinario', 'SaaS veterinaria', 'programa para veterinaria', 'software multi-tenant veterinaria']}
