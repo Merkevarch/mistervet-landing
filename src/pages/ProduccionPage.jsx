@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEO, { buildBreadcrumbSchema } from '../components/SEO';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
 const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
@@ -82,8 +83,42 @@ const benefits = [
 ];
 
 export default function ProduccionPage() {
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Consultoría veterinaria para producción animal y ganadería',
+    provider: {
+      '@type': 'VeterinaryBusiness',
+      name: 'MisterVet',
+      telephone: '+573017653440',
+      email: 'contacto@mistervet.co',
+      url: 'https://www.mistervet.co',
+      areaServed: 'Colombia',
+    },
+    areaServed: 'Colombia',
+    description: 'Asesoría técnica veterinaria para fincas y sistemas de producción pecuaria: manejo sanitario en bovinos y porcinos, consultoría reproductiva, planes de vacunación y desparasitación, visitas técnicas programadas y análisis de registros productivos.',
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'COP',
+    },
+  };
+
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Inicio', path: '/' },
+    { name: 'Producción y Ganadería', path: '/produccion' },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <SEO
+        title="Producción y Ganadería | Consultoría Veterinaria Pecuaria"
+        description="Asesoría técnica veterinaria para fincas y sistemas de producción pecuaria en Colombia: manejo sanitario en bovinos y porcinos, consultoría reproductiva, planes de vacunación, visitas técnicas y análisis de registros productivos."
+        path="/produccion"
+        type="website"
+        keywords={['consultoría veterinaria', 'ganadería Colombia', 'producción bovina', 'manejo sanitario bovinos', 'consultoría pecuaria', 'veterinario fincas', 'reproducción bovina', 'planes de vacunación ganadería', 'porcicultura']}
+        jsonLd={[serviceSchema, breadcrumb]}
+      />
       <Navbar />
 
       {/* ===== HERO ===== */}

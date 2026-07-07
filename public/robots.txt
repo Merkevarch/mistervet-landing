@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://www.mistervet.co/sitemap.xml
+
+# Block nothing - all pages are public

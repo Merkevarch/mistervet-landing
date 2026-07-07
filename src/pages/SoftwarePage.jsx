@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEO, { buildBreadcrumbSchema } from '../components/SEO';
 import mockupSoftware from '../assets/mockup-software.png';
 
 const APP_URL = 'https://app.mistervet.co';
@@ -163,8 +164,64 @@ const FeatureIcon = ({ name }) => {
 };
 
 export default function SoftwarePage() {
+  const softwareSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MisterVet Pro',
+    applicationCategory: 'VeterinaryManagementApplication',
+    operatingSystem: 'Web',
+    description: 'Software de gestión veterinaria SaaS multi-tenant para clínicas veterinarias en Colombia. Administra pacientes, consultas, cirugías, hospitalización, laboratorio, POS, inventario y reportes en un solo lugar.',
+    url: 'https://www.mistervet.co/software',
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Starter',
+        price: '0',
+        priceCurrency: 'COP',
+        description: 'Plan gratuito para veterinarias que están iniciando.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Professional',
+        price: '45000',
+        priceCurrency: 'COP',
+        description: 'Para veterinarias en crecimiento con POS, inventario y reportes avanzados.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Enterprise',
+        price: '90000',
+        priceCurrency: 'COP',
+        description: 'Para clínicas con múltiples sedes o equipos grandes.',
+      },
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '1',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MisterVet',
+      url: 'https://www.mistervet.co',
+    },
+  };
+
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Inicio', path: '/' },
+    { name: 'MisterVet Pro', path: '/software' },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <SEO
+        title="MisterVet Pro | Software de Gestión Veterinaria SaaS"
+        description="Software de gestión veterinaria multi-tenant para clínicas en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario, recetas, citas y reportes. Planes desde gratis hasta $90.000/mes."
+        path="/software"
+        type="website"
+        keywords={['software veterinaria', 'sistema gestión veterinaria', 'software veterinario Colombia', 'historia clínica digital veterinaria', 'POS veterinario', 'SaaS veterinaria', 'programa para veterinaria', 'software multi-tenant veterinaria']}
+        jsonLd={[softwareSchema, breadcrumb]}
+      />
       <Navbar />
 
       {/* ===== HERO ===== */}

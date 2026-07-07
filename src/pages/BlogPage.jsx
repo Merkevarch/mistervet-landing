@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEO, { buildBreadcrumbSchema } from '../components/SEO';
 import { getAllPosts } from '../blog/postsLoader';
 
 const categoryColors = {
@@ -12,8 +13,47 @@ const categoryColors = {
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Blog MisterVet',
+    description: 'Consejos y guías sobre medicina veterinaria, mascotas y producción animal.',
+    url: 'https://www.mistervet.co/blog',
+    publisher: {
+      '@type': 'Organization',
+      name: 'MisterVet',
+      url: 'https://www.mistervet.co',
+    },
+    blogPost: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: {
+        '@type': 'Organization',
+        name: post.author,
+      },
+      url: `https://www.mistervet.co/blog/${post.slug}`,
+      description: post.excerpt,
+      articleSection: post.category,
+    })),
+  };
+
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Inicio', path: '/' },
+    { name: 'Blog', path: '/blog' },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <SEO
+        title="Blog Veterinario | MisterVet"
+        description="Consejos y guías sobre medicina veterinaria, mascotas y producción animal en Colombia. Vacunación, desparasitación, manejo sanitario en ganadería y más, escritos por médicos veterinarios."
+        path="/blog"
+        type="website"
+        keywords={['blog veterinaria', 'consejos veterinarios', 'medicina veterinaria', 'cuidado mascotas', 'ganadería bovina', 'vacunación perros', 'desparasitación gatos']}
+        jsonLd={[blogSchema, breadcrumb]}
+      />
       <Navbar />
 
       {/* ===== BLOG HEADER ===== */}

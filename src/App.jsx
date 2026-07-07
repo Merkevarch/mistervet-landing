@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SEO, { organizationSchema, websiteSchema } from './components/SEO';
 import perroImg from './assets/perro.jpg';
 import mockupSoftware from './assets/mockup-software.png';
 
@@ -43,6 +44,14 @@ const services = [
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <SEO
+        title="MisterVet | Medicina Veterinaria Integral para Mascotas y Producción Animal"
+        titleTemplate={false}
+        description="Medicina veterinaria integral en Colombia: atención a mascotas (consulta, vacunación, cirugías, laboratorio) y consultoría pecuaria para fincas y ganadería. Servicio a domicilio con médico veterinario titulado."
+        path="/"
+        keywords={['veterinaria', 'veterinario', 'medicina veterinaria', 'consulta veterinaria', 'cirugía veterinaria', 'mascotas', 'ganadería', 'producción animal', 'MisterVet', 'Colombia', 'veterinaria a domicilio']}
+        jsonLd={[organizationSchema, websiteSchema]}
+      />
       <Navbar />
 
       {/* ===== HERO ===== */}

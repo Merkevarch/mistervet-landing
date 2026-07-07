@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEO, { buildBreadcrumbSchema } from '../components/SEO';
 import perroImg from '../assets/perro.jpg';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
@@ -83,8 +84,55 @@ const faqs = [
 ];
 
 export default function MascotasPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Servicios veterinarios para mascotas',
+    provider: {
+      '@type': 'VeterinaryBusiness',
+      name: 'MisterVet',
+      telephone: '+573017653440',
+      email: 'contacto@mistervet.co',
+      url: 'https://www.mistervet.co',
+      areaServed: 'Colombia',
+    },
+    areaServed: 'Colombia',
+    description: 'Atención médica veterinaria completa para perros, gatos y otras mascotas: consulta general y especializada, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología veterinaria y certificados de viaje.',
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'COP',
+    },
+  };
+
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Inicio', path: '/' },
+    { name: 'Mascotas', path: '/mascotas' },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <SEO
+        title="Servicios Veterinarios para Mascotas"
+        description="Atención médica veterinaria completa para perros, gatos y otras mascotas en Colombia: consulta general, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología y certificados de viaje. Servicio a domicilio."
+        path="/mascotas"
+        type="website"
+        keywords={['veterinaria para mascotas', 'veterinario mascotas Colombia', 'consulta veterinaria', 'vacunación perros gatos', 'cirugía veterinaria', 'odontología veterinaria', 'certificados de viaje mascotas', 'laboratorio veterinario']}
+        jsonLd={[serviceSchema, faqSchema, breadcrumb]}
+      />
       <Navbar />
 
       {/* ===== HERO ===== */}

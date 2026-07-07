@@ -2,9 +2,11 @@ import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEO, { buildBreadcrumbSchema } from '../components/SEO';
 import { getPostBySlug } from '../blog/postsLoader';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
+const SITE_URL = 'https://www.mistervet.co';
 
 const categoryColors = {
   Mascotas: 'bg-mv-blue/10 text-mv-blue',
@@ -27,8 +29,55 @@ export default function BlogPost() {
     );
   }
 
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Organization',
+      name: post.author,
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MisterVet',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/og-image.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': postUrl,
+    },
+    articleSection: post.category,
+    inLanguage: 'es-CO',
+    url: postUrl,
+    image: `${SITE_URL}/og-image.png`,
+  };
+
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Inicio', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <SEO
+        title={post.title}
+        titleTemplate={true}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        keywords={[post.category, 'medicina veterinaria', 'MisterVet', post.title.toLowerCase().split(':')[0]]}
+        jsonLd={[articleSchema, breadcrumb]}
+      />
       <Navbar />
 
       {/* ===== ARTÍCULO ===== */}
