@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logoDibujo from './assets/logo-dibujo.png';
 import perroImg from './assets/perro.jpg';
 import mockupSoftware from './assets/mockup-software.png';
@@ -69,6 +70,7 @@ export default function App() {
               <a href="#mascotas" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">Mascotas</a>
               <a href="#produccion" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">Producción y Ganadería</a>
               <a href="#software" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">MisterVet Pro</a>
+              <Link to="/blog" className="text-sm text-slate-600 hover:text-mv-darkblue transition-colors">Blog</Link>
               <a
                 href={APP_URL}
                 className="px-4 py-2 text-sm font-medium text-mv-darkblue border border-mv-darkblue rounded-lg hover:bg-mv-darkblue hover:text-white transition-colors"
@@ -93,6 +95,7 @@ export default function App() {
               <a href="#mascotas" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">Mascotas</a>
               <a href="#produccion" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">Producción y Ganadería</a>
               <a href="#software" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">MisterVet Pro</a>
+              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-slate-600 hover:text-mv-darkblue">Blog</Link>
               <a href={APP_URL} className="block px-4 py-2 text-sm font-medium text-center text-white bg-mv-darkblue rounded-lg">Acceder al Sistema</a>
             </div>
           )}
