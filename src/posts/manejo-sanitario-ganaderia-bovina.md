@@ -68,67 +68,11 @@ La regla práctica es registrar todo evento sanitario el mismo día en que ocurr
 
 ### ¿Qué registrar?
 
-Para que la información sea útil y consultable, conviene organizar los registros en cinco bloques temáticos. Cada bloque agrupa datos relacionados entre sí, con su frecuencia de actualización y su nivel de prioridad para el seguimiento sanitario del hato.
+Para que la información sea útil y consultable, conviene organizar los registros en cinco bloques temáticos. Cada bloque agrupa datos relacionados entre sí, con su frecuencia de actualización y su nivel de prioridad para el seguimiento sanitario del hato. El siguiente resumen visual muestra los cinco bloques con los datos esenciales que no pueden faltar en tu libreta sanitaria.
 
-#### 1. Identificación del animal
+![Infografía ¿Qué registrar? — Cinco bloques temáticos para el registro sanitario del hato bovino: 1) Identificación del animal, 2) Eventos sanitarios, 3) Eventos críticos, 4) Manejo reproductivo, 5) Producción y movimientos. Cada bloque incluye dato, frecuencia e importancia.](/blog/infografia-que-registrar.png)
 
-Datos permanentes que permiten individualizar a cada bovino del hato. Sin identificación clara no hay trazabilidad posible.
-
-| Dato | Frecuencia | Importancia |
-|------|------------|-------------|
-| Número de identificación (arete, hierro, chip) | Único, al nacimiento o ingreso | Crítica |
-| Sexo, raza y fecha de nacimiento | Único, al ingreso | Alta |
-| Procedencia (nacido en finca o comprado) | Único, al ingreso | Alta |
-| Grupo productivo (cría, levante, ceba, vaca) | Actualización al cambiar etapa | Media |
-
-#### 2. Eventos sanitarios
-
-Todo evento de salud o enfermedad debe quedar registrado con fecha, animal, diagnóstico, producto, dosis, vía y responsable. Es la base del historial clínico del hato.
-
-| Dato | Frecuencia | Importancia |
-|------|------------|-------------|
-| Vacunaciones (producto, lote, dosis) | Por evento | Crítica |
-| Desparasitaciones (producto, lote, peso) | Por evento | Alta |
-| Diagnósticos y signos clínicos | Por evento | Alta |
-| Tratamientos médicos (producto, dosis, duración) | Por evento | Alta |
-| Resultados de laboratorio (coprológicos, serologías, etc.) | Por evento | Alta |
-| Reacciones adversas a medicamentos | Por evento | Crítica |
-
-#### 3. Eventos críticos
-
-Eventos puntuales que pueden indicar un problema mayor en el hato y deben investigarse de inmediato. Su registro permite calcular tasas reales de mortalidad y morbilidad, no solo impresiones subjetivas.
-
-| Dato | Frecuencia | Importancia |
-|------|------------|-------------|
-| Abortos (con edad gestacional y posible causa) | Por evento | Crítica |
-| Mortalidad (con causa probable o diagnosticada) | Por evento | Crítica |
-| Retención de placenta | Por evento | Alta |
-| Muerte súbita | Por evento | Crítica |
-| Brote de enfermedad en grupo | Por evento | Crítica |
-
-#### 4. Manejo reproductivo
-
-Indicadores clave de la eficiencia del hato. Sin estos datos no se pueden calcular intervalos parto-concepción, tasa de preñez ni tasa de aborto, que son los KPIs que el comprador o el banco van a preguntarte.
-
-| Dato | Frecuencia | Importancia |
-|------|------------|-------------|
-| Servicios (monta natural o inseminación, toro/semental) | Por evento | Alta |
-| Diagnósticos de gestación | Por evento | Alta |
-| Partos (fecha, sexo, peso del ternero, complicaciones) | Por evento | Alta |
-| Días abiertos e intervalo entre partos | Cálculo por hembra | Alta |
-| Descartes reproductivos (con causa) | Por evento | Media |
-
-#### 5. Producción y movimientos
-
-Datos que conectan el componente sanitario con el productivo y comercial. Permiten ver si el plan sanitario se traduce en resultados económicos.
-
-| Dato | Frecuencia | Importancia |
-|------|------------|-------------|
-| Pesos (nacimiento, destete, año) | Por etapa | Alta |
-| Producción de leche (litros/vaca/día) | Diario o semanal | Alta |
-| Compras, ventas y traslados (con guías ICA) | Por evento | Crítica |
-| Consumo de alimento y suplementos | Mensual | Media |
-| Consumo de insumos veterinarios (lote y vencimiento) | Por compra y uso | Alta |
+*Infografía: los cinco bloques de registros sanitarios en ganadería bovina, con frecuencia y nivel de importancia de cada dato.*
 
 ---
 
