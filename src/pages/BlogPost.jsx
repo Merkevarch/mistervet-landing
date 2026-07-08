@@ -1,6 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO, { buildBreadcrumbSchema } from '../components/SEO';
@@ -117,12 +116,8 @@ export default function BlogPost() {
             [&_td]:border [&_td]:border-slate-200 [&_td]:px-3 [&_td]:py-2 [&_td]:text-sm
             [&_hr]:border-slate-200 [&_hr]:my-6
             [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono
-            [&_img]:w-full [&_img]:rounded-xl [&_img]:shadow-sm [&_img]:border [&_img]:border-slate-100 [&_img]:my-2
-            [&_figure]:my-6 [&_figure]:text-center
-            [&_figcaption]:text-xs [&_figcaption]:text-slate-500 [&_figcaption]:italic [&_figcaption]:mt-2
-            [&_em]:text-slate-600
           ">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
+            <ReactMarkdown>{post.content}</ReactMarkdown>
           </div>
         </div>
 
