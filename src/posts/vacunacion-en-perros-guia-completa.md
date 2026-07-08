@@ -49,6 +49,11 @@ El esquema de cachorro sí tiene una estructura relativamente estándar porque b
 
 A este esquema base se le suman, según el perfil del cachorro, las vacunas no core que correspondan (por ejemplo, leptospirosis en cachorros de finca desde las 8-9 semanas).
 
+<figure>
+  <img src="/blog/infografia-vacunacion-cachorros.png" alt="Infografía del esquema de vacunación para cachorros: 4 pasos desde las 6 semanas hasta el refuerzo anual, con vacunas core (DHPP y Rabia) y recordatorio de consulta veterinaria." />
+  <figcaption>Esquema base de vacunación para cachorros. Las vacunas no core se adicionan según el perfil del paciente.</figcaption>
+</figure>
+
 ### Perfiles de paciente y sus vacunas recomendadas
 
 Cada perfil describe el estilo de vida y los riesgos asociados, y enumera las vacunas que típicamente se adicionan al esquema base. La decisión final siempre se toma en consulta.
