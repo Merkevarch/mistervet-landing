@@ -26,10 +26,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
+
+      - name: Prerender static HTML (for SEO)
+        run: node scripts/prerender.js
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
