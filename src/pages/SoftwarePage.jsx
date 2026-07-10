@@ -184,11 +184,6 @@ export default function SoftwarePage() {
         description: 'Mascotas ilimitadas, usuarios ilimitados, ventas ilimitadas, soporte 24/7.',
       },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '1',
-    },
     publisher: {
       '@type': 'Organization',
       name: 'MisterVet',
