@@ -1,1 +1,17 @@
+# Serve prerendered HTML for specific routes (no trailing slash redirect)
+/veterinaria-en-sincelejo    /veterinaria-en-sincelejo/index.html   200
+/veterinaria-en-monteria     /veterinaria-en-monteria/index.html     200
+/veterinaria-en-costa-caribe /veterinaria-en-costa-caribe/index.html 200
+/ganaderia-en-sincelejo      /ganaderia-en-sincelejo/index.html      200
+/ganaderia-en-monteria       /ganaderia-en-monteria/index.html       200
+/ganaderia-en-costa-caribe   /ganaderia-en-costa-caribe/index.html   200
+/mascotas                    /mascotas/index.html                    200
+/produccion                  /produccion/index.html                  200
+/software                    /software/index.html                    200
+/blog                        /blog/index.html                        200
+/blog/vacunacion-en-perros-guia-completa       /blog/vacunacion-en-perros-guia-completa/index.html       200
+/blog/desparasitacion-en-gatos                  /blog/desparasitacion-en-gatos/index.html                  200
+/blog/manejo-sanitario-ganaderia-bovina         /blog/manejo-sanitario-ganaderia-bovina/index.html         200
+
+# SPA fallback for any other route
 /*    /index.html   200
