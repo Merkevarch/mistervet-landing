@@ -34,7 +34,7 @@ const ROUTES = [
   '/ganaderia-en-costa-caribe',
 ];
 
-const DIST_DIR = path.resolve(__dirname, '..', 'mistervet-landing', 'dist');
+const DIST_DIR = path.resolve(__dirname, '..', 'dist');
 const PORT = 4199;
 
 const MIME_TYPES = {

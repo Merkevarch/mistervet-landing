@@ -35,7 +35,7 @@ jobs:
           NODE_ENV: production
 
       - name: Prerender static HTML (for SEO)
-        run: node scripts/prerender.js
+        run: node scripts/prerender.cjs
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
