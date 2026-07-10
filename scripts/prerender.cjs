@@ -174,14 +174,19 @@ async function main() {
       // Get the rendered HTML
       const html = await page.content();
 
-      // Save as static HTML
+      // Save as static HTML file (not directory/index.html)
+      // Using <route>.html avoids Cloudflare's automatic 308 trailing-slash redirect
       let outPath;
       if (route === '/') {
         outPath = path.join(DIST_DIR, 'index.html');
       } else {
-        const routeDir = path.join(DIST_DIR, route);
-        fs.mkdirSync(routeDir, { recursive: true });
-        outPath = path.join(routeDir, 'index.html');
+        // For nested routes like /blog/:slug, create the directory structure
+        const routePath = route.replace(/^\//, '');
+        if (routePath.includes('/')) {
+          const dir = path.dirname(routePath);
+          fs.mkdirSync(path.join(DIST_DIR, dir), { recursive: true });
+        }
+        outPath = path.join(DIST_DIR, routePath + '.html');
       }
       fs.writeFileSync(outPath, html);
 
