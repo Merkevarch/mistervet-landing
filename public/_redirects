@@ -1,3 +1,8 @@
+# Redirects 301 for removed city-specific pages (consolidated into regional pages)
+/veterinaria-en-sincelejo      /veterinaria-en-costa-caribe    301
+/veterinaria-en-monteria       /veterinaria-en-costa-caribe    301
+/ganaderia-en-sincelejo        /ganaderia-en-costa-caribe      301
+/ganaderia-en-monteria         /ganaderia-en-costa-caribe      301
+
 # SPA fallback - Cloudflare Pages serves .html files automatically for /route
-# No explicit redirects needed - static files are served before this rule
 /*    /index.html   200

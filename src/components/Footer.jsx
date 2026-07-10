@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-400 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-6">
+        <div className="grid md:grid-cols-3 gap-8 mb-6">
           {/* NAP */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -49,28 +49,18 @@ export default function Footer() {
               <li><Link to="/produccion" className="hover:text-white transition-colors">Producción y Ganadería</Link></li>
               <li><Link to="/software" className="hover:text-white transition-colors">MisterVet Pro (Software)</Link></li>
               <li><Link to="/blog" className="hover:text-white transition-colors">Blog Veterinario</Link></li>
-            </ul>
-          </div>
-
-          {/* Cobertura veterinaria */}
-          <div>
-            <h4 className="text-white font-medium text-sm mb-4">Cobertura · Mascotas</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/veterinaria-en-sincelejo" className="hover:text-white transition-colors">Veterinaria en Sincelejo</Link></li>
-              <li><Link to="/veterinaria-en-monteria" className="hover:text-white transition-colors">Veterinaria en Montería</Link></li>
-              <li><Link to="/veterinaria-en-costa-caribe" className="hover:text-white transition-colors">Veterinaria en Costa Caribe</Link></li>
-            </ul>
-          </div>
-
-          {/* Cobertura ganadería */}
-          <div>
-            <h4 className="text-white font-medium text-sm mb-4">Cobertura · Ganadería</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/ganaderia-en-sincelejo" className="hover:text-white transition-colors">Ganadería en Sincelejo</Link></li>
-              <li><Link to="/ganaderia-en-monteria" className="hover:text-white transition-colors">Ganadería en Montería</Link></li>
-              <li><Link to="/ganaderia-en-costa-caribe" className="hover:text-white transition-colors">Ganadería en Costa Caribe</Link></li>
               <li><a href={APP_URL} className="hover:text-white transition-colors">Acceder al Sistema</a></li>
               <li><a href={SETUP_URL} className="hover:text-white transition-colors">Registrar mi Veterinaria</a></li>
+            </ul>
+          </div>
+
+          {/* Cobertura */}
+          <div>
+            <h4 className="text-white font-medium text-sm mb-4">Cobertura</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/cobertura" className="hover:text-white transition-colors">Ver cobertura regional</Link></li>
+              <li><Link to="/veterinaria-en-costa-caribe" className="hover:text-white transition-colors">Veterinaria en Costa Caribe</Link></li>
+              <li><Link to="/ganaderia-en-costa-caribe" className="hover:text-white transition-colors">Ganadería en Costa Caribe</Link></li>
             </ul>
           </div>
         </div>

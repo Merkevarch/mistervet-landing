@@ -26,11 +26,8 @@ const ROUTES = [
   '/blog/vacunacion-en-perros-guia-completa',
   '/blog/desparasitacion-en-gatos',
   '/blog/manejo-sanitario-ganaderia-bovina',
-  '/veterinaria-en-sincelejo',
-  '/veterinaria-en-monteria',
+  '/cobertura',
   '/veterinaria-en-costa-caribe',
-  '/ganaderia-en-sincelejo',
-  '/ganaderia-en-monteria',
   '/ganaderia-en-costa-caribe',
 ];
 
