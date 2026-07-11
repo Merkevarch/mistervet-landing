@@ -5,6 +5,7 @@ import SEO, { organizationSchema, buildBreadcrumbSchema } from '../components/SE
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
 const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
+const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
 
 const coverageCards = [
   {
@@ -176,6 +177,35 @@ export default function CoberturaPage() {
               Conocer todos los servicios
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ===== RESEÑAS GOOGLE ===== */}
+      <section className="bg-white py-12 lg:py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex justify-center mb-4">
+            <div className="flex items-center gap-1 text-3xl">
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+            </div>
+          </div>
+          <h2 className="text-2xl lg:text-3xl font-display text-mv-darkblue mb-3">¿Ya nos conoces?</h2>
+          <p className="text-slate-600 mb-6 leading-relaxed">
+            Tu opinión ayuda a otras familias de la Costa Caribe a encontrar atención veterinaria confiable. Si MisterVet ya atendió a tu mascota o visitó tu finca, déjanos una reseña en Google — nos toma 2 minutos escribirla y a nosotros nos ayudas muchísimo a crecer.
+          </p>
+          <a
+            href={GBP_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-6 py-3 bg-mv-darkblue text-white font-semibold rounded-xl shadow-lg shadow-mv-darkblue/30 hover:bg-mv-darkblue/90 transition-all hover:scale-105"
+          >
+            <span className="text-mv-amber text-xl">★</span>
+            <span>Dejar reseña en Google</span>
+            <span className="text-sm opacity-75">→</span>
+          </a>
         </div>
       </section>
 

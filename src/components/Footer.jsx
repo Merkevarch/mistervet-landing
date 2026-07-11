@@ -6,6 +6,7 @@ const APP_URL = 'https://app.mistervet.co';
 const SETUP_URL = 'https://app.mistervet.co/setup';
 const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
 const PHONE_DISPLAY = '+57 301 765 3440';
+const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
 
 export default function Footer() {
   return (
@@ -39,6 +40,16 @@ export default function Footer() {
                 <span className="text-slate-500">Servicio a domicilio · Costa Caribe, Colombia</span>
               </li>
             </ul>
+            {/* CTA Reseña Google */}
+            <a
+              href={GBP_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-white transition-colors"
+            >
+              <span className="text-mv-amber">⭐</span>
+              <span>Deja tu reseña en Google</span>
+            </a>
           </div>
 
           {/* Servicios */}

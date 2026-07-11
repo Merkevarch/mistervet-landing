@@ -6,6 +6,7 @@ import perroImg from '../assets/perro.jpg';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
 const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
+const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
 
 const services = [
   {
@@ -276,6 +277,34 @@ export default function MascotasPage() {
               Ver Producción y Ganadería
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ===== RESEÑA GOOGLE ===== */}
+      <section className="bg-white py-12">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex justify-center mb-3">
+            <div className="flex items-center gap-1 text-2xl">
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+              <span className="text-mv-amber">★</span>
+            </div>
+          </div>
+          <h2 className="text-xl font-display text-mv-darkblue mb-2">¿Ya atendimos a tu mascota?</h2>
+          <p className="text-sm text-slate-600 mb-5">
+            Tu reseña en Google ayuda a otras familias a encontrar atención veterinaria confiable. Toma solo 2 minutos.
+          </p>
+          <a
+            href={GBP_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-mv-darkblue text-mv-darkblue font-semibold rounded-xl hover:bg-mv-darkblue hover:text-white transition-all"
+          >
+            <span className="text-mv-amber">★</span>
+            Dejar reseña en Google
+          </a>
         </div>
       </section>
 
