@@ -6,8 +6,6 @@ author: "MisterVet"
 excerpt: "Principios del manejo sanitario en sistemas de producción bovina para maximizar la productividad y el bienestar animal."
 ---
 
-# Manejo sanitario en ganadería bovina
-
 El manejo sanitario es uno de los pilares fundamentales de la producción pecuaria sostenible. Un plan sanitario bien estructurado no solo previene enfermedades, sino que también mejora los indicadores productivos y reproductivos del hato.
 
 ## Principios del manejo sanitario

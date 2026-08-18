@@ -48,7 +48,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Blog Veterinario | MisterVet"
+        title="Blog Veterinario"
         description="Consejos y guías sobre medicina veterinaria, mascotas y producción animal en Colombia. Vacunación, desparasitación, manejo sanitario en ganadería y más, escritos por médicos veterinarios."
         path="/blog"
         type="website"

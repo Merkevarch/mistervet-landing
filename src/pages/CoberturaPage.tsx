@@ -27,7 +27,7 @@ export default function CoberturaPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Cobertura | Veterinaria en Sincelejo y Montería · Ganadería en Costa Caribe"
+        title="Cobertura · Sincelejo, Montería y Costa Caribe"
         description="Cobertura de MisterVet: atención veterinaria a domicilio para mascotas en Sincelejo y Montería con alrededores, y consultoría pecuaria para fincas en los 7 departamentos de la Costa Caribe colombiana."
         path="/cobertura"
         type="website"

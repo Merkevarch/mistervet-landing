@@ -6,8 +6,6 @@ author: "MisterVet"
 excerpt: "Guía completa sobre desparasitación interna y externa en gatos: tipos de parásitos, frecuencias recomendadas, señales de alerta y por qué el producto debe recetarlo un veterinario."
 ---
 
-# Desparasitación en gatos
-
 La desparasitación es parte fundamental del cuidado preventivo en gatos. Los parásitos internos y externos no solo afectan la salud de tu felino, sino que algunos pueden transmitirse a los humanos.
 
 ## Tipos de parásitos en gatos

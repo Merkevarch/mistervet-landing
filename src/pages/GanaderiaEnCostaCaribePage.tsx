@@ -66,7 +66,7 @@ export default function GanaderiaEnCostaCaribePage() {
       city="Costa Caribe"
       region="Caribe Colombiano"
       type="ganaderia"
-      title="Consultoría Pecuaria y Ganadería en la Costa Caribe | MisterVet"
+      title="Consultoría Pecuaria y Ganadería en la Costa Caribe"
       description="Consultoría veterinaria para fincas y hatos bovinos en la Costa Caribe colombiana: Sucre, Córdoba, Bolívar, Magdalena, Cesar, Atlántico y La Guajira. Manejo sanitario, vacunación ICA, consultoría reproductiva y visitas técnicas."
       path="/ganaderia-en-costa-caribe"
       intro="MisterVet ofrece asesoría técnica veterinaria para fincas y sistemas de producción pecuaria en toda la Costa Caribe colombiana, cubriendo los siete departamentos de la región: Sucre, Córdoba, Bolívar, Magdalena, Cesar, Atlántico y La Guajira. La ganadería del Caribe colombiano enfrenta desafíos sanitarios particulares por el clima tropical, la epidemiología regional y la diversidad de sistemas productivos, desde hatos doble propósito en sabanas hasta sistemas intensivos en el valle del Sinú. Nuestro equipo conoce estos retos y diseña planes sanitarios adaptados a cada realidad."

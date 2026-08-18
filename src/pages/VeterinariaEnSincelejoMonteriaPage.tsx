@@ -135,7 +135,7 @@ export default function VeterinariaEnSincelejoMonteriaPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Veterinaria a Domicilio en Sincelejo y Montería | MisterVet"
+        title="Veterinaria a Domicilio en Sincelejo y Montería"
         description="Servicio veterinario a domicilio en Sincelejo (Sucre) y Montería (Córdoba) con alrededores. Consultas, vacunación, cirugías, urgencias y desparasitación tropical. Médico veterinario titulado."
         path="/veterinaria-en-sincelejo-y-monteria"
         type="website"

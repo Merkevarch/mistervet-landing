@@ -6,8 +6,6 @@ author: "MisterVet"
 excerpt: "El esquema de vacunación canino no es único: depende del perfil del paciente (perro de casa, de finca, de zona con roedores, de guarderías, de caza). Conoce las vacunas core y no core, el esquema base de cachorro y la importancia de la valoración veterinaria individual."
 ---
 
-# Vacunación en perros: Guía completa
-
 La vacunación es una de las herramientas más importantes en medicina veterinaria preventiva. Un esquema de vacunación adecuado protege a tu perro contra enfermedades potencialmente mortales y contribuye a la salud pública.
 
 ## ¿Por qué es importante vacunar a tu perro?

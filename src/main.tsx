@@ -46,6 +46,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/veterinaria-en-sincelejo-y-monteria" element={<VeterinariaEnSincelejoMonteriaPage />} />
             <Route path="/ganaderia-en-costa-caribe" element={<GanaderiaEnCostaCaribePage />} />
 
+            <Route path="/404" element={<NotFoundPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

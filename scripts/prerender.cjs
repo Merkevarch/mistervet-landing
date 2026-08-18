@@ -29,6 +29,9 @@ const ROUTES = [
   '/cobertura',
   '/veterinaria-en-sincelejo-y-monteria',
   '/ganaderia-en-costa-caribe',
+  // 404 page — Cloudflare Pages sirve 404.html con status 404 automáticamente
+  // cuando una ruta no existe. Esto hace que Google no indexe URLs inválidas.
+  '/404',
 ];
 
 const DIST_DIR = path.resolve(__dirname, '..', 'dist');
@@ -114,11 +117,10 @@ async function main() {
 
       await page.goto(url, { waitUntil: 'networkidle', timeout: 15000 });
 
-      // Wait for Helmet to inject JSON-LD and meta description
+      // Wait for Helmet to inject meta description (JSON-LD es opcional en 404)
       await page.waitForFunction(() => {
-        const jsonLd = document.querySelectorAll('script[type="application/ld+json"]').length;
         const metaDesc = document.querySelector('meta[name="description"]');
-        return jsonLd > 0 && metaDesc;
+        return metaDesc;
       }, { timeout: 10000 });
 
       // Wait for title to stabilize (check twice with 500ms gap)

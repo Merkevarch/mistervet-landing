@@ -3,5 +3,8 @@
 /veterinaria-en-sincelejo                 /veterinaria-en-sincelejo-y-monteria    301
 /veterinaria-en-monteria                  /veterinaria-en-sincelejo-y-monteria    301
 
-# SPA fallback - Cloudflare Pages serves .html files automatically for /route
-/*    /index.html   200
+# Nota: No usamos SPA fallback (/* /index.html 200) porque eso devolvería
+# status 200 para URLs inexistentes, lo cual es malo para SEO.
+# En su lugar, todas las rutas válidas tienen HTML prerenderizado
+# (vía scripts/prerender.cjs) y Cloudflare Pages sirve 404.html
+# con status 404 automáticamente para cualquier ruta no encontrada.
