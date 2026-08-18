@@ -1,0 +1,94 @@
+# ============================================================
+# Decap CMS Configuration
+# ============================================================
+# Este archivo define cómo Decap CMS se conecta a GitHub y qué
+# colecciones (artículos) puede gestionar desde /admin.
+#
+# Antes de que funcione en producción necesitas:
+# 1. Desplegar el Cloudflare Worker OAuth (ver docs/ADMIN_SETUP.md)
+# 2. Crear una GitHub OAuth App con callback URL al Worker
+# 3. Reemplazar <OAUTH_WORKER_URL> abajo con la URL del Worker
+# ============================================================
+
+backend:
+  name: github
+  repo: Merkevarch/mistervet-landing
+  branch: master
+  auth_type: implicit
+  # URL del Cloudflare Worker que actúa como OAuth proxy a GitHub.
+  # Debe terminar sin slash final. Ej: https://mistervet-cms-oauth.tu-subdominio.workers.dev
+  app_id: <OAUTH_WORKER_URL>
+
+# Carpeta pública donde se sirven los assets estáticos.
+# Las imágenes que subas desde el editor se guardarán en /public/blog/
+media_folder: "public/blog"
+public_folder: "/blog"
+
+# Configuración del sitio visible en el panel
+site_url: https://www.mistervet.co
+display_url: https://www.mistervet.co
+logo_url: https://www.mistervet.co/favicon.svg
+
+# Colecciones — una por cada "tipo" de contenido gestionable
+collections:
+  - name: "posts"
+    label: "Artículos del Blog"
+    label_singular: "Artículo"
+    description: "Artículos publicados en el blog de MisterVet. Se guardan como archivos .md en src/posts/."
+    folder: "src/posts"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} ({{category}}) — {{date}}"
+    summary_fields:
+      - title
+      - category
+      - date
+    sortable_fields:
+      fields:
+        - title
+        - date
+      default:
+        field: date
+        direction: descending
+
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+        hint: "Título principal del artículo. Se mostrará como H1 en la página."
+
+      - label: "Fecha de publicación"
+        name: "date"
+        widget: "datetime"
+        hint: "Fecha y hora de publicación. Afecta el orden del listado del blog."
+
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Mascotas", value: "Mascotas" }
+          - { label: "Ganadería", value: "Ganadería" }
+          - { label: "General", value: "General" }
+        hint: "Categoría principal del artículo. Determina el color de la etiqueta en el blog."
+
+      - label: "Autor"
+        name: "author"
+        widget: "string"
+        default: "MisterVet"
+        hint: "Nombre del autor. Por defecto 'MisterVet'."
+
+      - label: "Resumen (excerpt)"
+        name: "excerpt"
+        widget: "text"
+        hint: "Resumen corto del artículo (1-3 frases). Se usa en el listado del blog y como meta description para SEO."
+
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
+        hint: "Contenido completo del artículo en Markdown. NO incluyas un # H1 al inicio (el sistema lo añade automáticamente desde el título)."
+        modes:
+          - rich_text
+          - raw

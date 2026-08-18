@@ -1,7 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 
 # Sitemaps
 Sitemap: https://www.mistervet.co/sitemap.xml
 
-# Block nothing - all pages are public
+# /admin es el panel de gestión del blog (Decap CMS), no debe indexarse.
+# Ya tiene meta robots noindex, nofollow en el HTML como doble seguridad.

@@ -1,0 +1,15 @@
+{
+  "name": "mistervet-cms-oauth",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OAuth proxy Worker for Decap CMS — exchanges GitHub OAuth code for access_token without exposing CLIENT_SECRET in the browser.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}
