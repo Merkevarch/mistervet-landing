@@ -15,9 +15,10 @@ backend:
   repo: Merkevarch/mistervet-landing
   branch: master
   auth_type: implicit
-  # URL del Cloudflare Worker que actúa como OAuth proxy a GitHub.
-  # Debe terminar sin slash final. Ej: https://mistervet-cms-oauth.tu-subdominio.workers.dev
-  app_id: https://mistervet-cms-oauth.rubenfchavez.workers.dev
+  # Cloudflare Worker que actúa como OAuth proxy a GitHub.
+  # Debe terminar sin slash final. El Worker expone /auth (inicia flujo)
+  # y /callback (GitHub redirige aquí con ?code=xxx).
+  auth_endpoint: https://mistervet-cms-oauth.rubenfchavez.workers.dev/auth
 
 # Carpeta pública donde se sirven los assets estáticos.
 # Las imágenes que subas desde el editor se guardarán en /public/blog/
