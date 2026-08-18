@@ -1,13 +1,36 @@
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
+import { WHATSAPP_URL, CONTACT_EMAIL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
 
-const WHATSAPP_URL = 'https://wa.me/573017653440';
-const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
-const PHONE_DISPLAY = '+57 301 765 3440';
-const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
+type CityPageType = 'veterinaria' | 'ganaderia';
+
+export interface CityService {
+  title: string;
+  desc: string;
+}
+
+export interface CityFaq {
+  q: string;
+  a: string;
+}
+
+export interface CityPageProps {
+  city: string;
+  region: string;
+  type: CityPageType;
+  title: string;
+  description: string;
+  path: string;
+  intro: string;
+  services: CityService[];
+  areas?: string[];
+  faqs?: CityFaq[];
+  keywords?: string[];
+}
 
 /**
  * Página de aterrizaje local reutilizable.
@@ -37,7 +60,7 @@ export default function CityPage({
   areas,
   faqs,
   keywords,
-}) {
+}: CityPageProps): ReactNode {
   const isVeterinaria = type === 'veterinaria';
   const accentText = isVeterinaria ? 'text-mv-orange' : 'text-mv-amber';
   const badgeBg = isVeterinaria ? 'bg-mv-orange/10' : 'bg-mv-amber/10';
@@ -89,7 +112,7 @@ export default function CityPage({
     { name: city, path },
   ]);
 
-  const jsonLd = [localBusinessSchema, breadcrumb];
+  const jsonLd: Record<string, unknown>[] = [localBusinessSchema, breadcrumb];
   if (faqSchema) jsonLd.push(faqSchema);
 
   return (

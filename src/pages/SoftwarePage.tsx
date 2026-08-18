@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 import mockupSoftware from '../assets/mockup-software.webp';
+import { APP_URL, SETUP_URL, WHATSAPP_URL } from '../config';
 
-const APP_URL = 'https://app.mistervet.co';
-const SETUP_URL = 'https://app.mistervet.co/setup';
-const WHATSAPP_URL = 'https://wa.me/573017653440';
+interface Feature {
+  title: string;
+  desc: string;
+  icon: FeatureIconName;
+}
 
-const features = [
+const features: Feature[] = [
   {
     title: 'Gestión de Pacientes y Propietarios',
     desc: 'Ficha digital completa con historial clínico, vacunas, alergias, peso, fotos y datos de contacto del propietario. Búsqueda rápida por nombre, documento o número de chip. Cada paciente queda vinculado a su propietario y al establecimiento veterinario.',
@@ -102,8 +106,10 @@ const plans = [
   },
 ];
 
-const FeatureIcon = ({ name }) => {
-  const icons = {
+type FeatureIconName = 'patients' | 'history' | 'surgery' | 'lab' | 'pos' | 'inventory' | 'prescription' | 'calendar' | 'dashboard';
+
+const FeatureIcon = ({ name }: { name: FeatureIconName }) => {
+  const icons: Record<FeatureIconName, ReactNode> = {
     patients: (
       <svg className="w-7 h-7 text-mv-amber" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />

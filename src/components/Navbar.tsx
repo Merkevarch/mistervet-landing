@@ -3,7 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import logoDibujo from '../assets/logo-dibujo.webp';
 import { APP_URL } from '../config';
 
-const navLinks = [
+interface NavLink {
+  to: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
   { to: '/mascotas', label: 'Mascotas' },
   { to: '/produccion', label: 'Producción y Ganadería' },
   { to: '/software', label: 'MisterVet Pro' },
@@ -14,7 +19,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path: string): boolean => location.pathname === path;
 
   return (
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">

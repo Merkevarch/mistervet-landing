@@ -9,7 +9,7 @@ import { getPostBySlug } from '../blog/postsLoader';
 const WHATSAPP_URL = 'https://wa.me/573017653440';
 const SITE_URL = 'https://www.mistervet.co';
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   Mascotas: 'bg-mv-blue/10 text-mv-blue',
   Ganadería: 'bg-mv-amber/10 text-mv-amber',
   General: 'bg-slate-100 text-slate-600',

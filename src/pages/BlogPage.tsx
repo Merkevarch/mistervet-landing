@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 import { getAllPosts } from '../blog/postsLoader';
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   Mascotas: 'bg-mv-blue/10 text-mv-blue',
   Ganadería: 'bg-mv-amber/10 text-mv-amber',
   General: 'bg-slate-100 text-slate-600',

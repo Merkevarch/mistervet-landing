@@ -18,7 +18,19 @@ import {
   BUSINESS_HOURS,
 } from './config';
 
-export const organizationSchema = {
+// Tipos auxiliares para JSON-LD
+type JsonLdSchema = {
+  '@context': string;
+  '@type': string;
+  [key: string]: unknown;
+};
+
+export interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
+export const organizationSchema: JsonLdSchema = {
   '@context': 'https://schema.org',
   '@type': 'VeterinaryBusiness',
   name: SITE_NAME,
@@ -42,7 +54,7 @@ export const organizationSchema = {
   sameAs: [WHATSAPP_URL],
 };
 
-export const websiteSchema = {
+export const websiteSchema: JsonLdSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: SITE_NAME,
@@ -51,7 +63,7 @@ export const websiteSchema = {
   inLanguage: SITE_LOCALE.replace('_', '-'),
 };
 
-export const buildBreadcrumbSchema = (items) => ({
+export const buildBreadcrumbSchema = (items: BreadcrumbItem[]): JsonLdSchema => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: items.map((item, idx) => ({

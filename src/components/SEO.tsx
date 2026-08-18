@@ -3,6 +3,18 @@ import { SITE_URL, SITE_NAME, SITE_LOCALE } from '../config';
 
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
+export interface SEOProps {
+  title: string;
+  titleTemplate?: boolean;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: string;
+  keywords?: string[];
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[] | null;
+}
+
 /**
  * Componente SEO reutilizable.
  *
@@ -29,15 +41,19 @@ export default function SEO({
   keywords = [],
   noindex = false,
   jsonLd = null,
-}) {
+}: SEOProps) {
   const fullTitle = titleTemplate ? `${title} | ${SITE_NAME}` : title;
   const canonical = `${SITE_URL}${path === '/' ? '/' : path}`;
   const ogImage = image
     ? (image.startsWith('http') ? image : `${SITE_URL}${image}`)
     : DEFAULT_IMAGE;
-  const robots = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+  const robots = noindex
+    ? 'noindex, nofollow'
+    : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
-  const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const jsonLdArray: Record<string, unknown>[] = jsonLd
+    ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd])
+    : [];
 
   return (
     <Helmet>

@@ -12,32 +12,45 @@
 //
 // Supports: quoted strings ("..." or '...'), plain scalars, numbers, booleans.
 
-// Importar todos los archivos .md de la carpeta posts
-const postFiles = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default', eager: true });
+// Importar todos los archivos .md de la carpeta posts como strings raw
+const postFiles = import.meta.glob('../posts/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
 
-function parseValue(value) {
+export interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  category: string;
+  author: string;
+  excerpt: string;
+  content: string;
+}
+
+interface Frontmatter {
+  data: Record<string, unknown>;
+  content: string;
+}
+
+function parseValue(value: string): unknown {
   const trimmed = value.trim();
-  // Empty
   if (trimmed === '') return '';
-  // Quoted strings
   if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
       (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
     return trimmed.slice(1, -1);
   }
-  // Booleans
   if (trimmed === 'true') return true;
   if (trimmed === 'false') return false;
   if (trimmed === 'null') return null;
-  // Numbers
   if (/^-?\d+$/.test(trimmed)) return parseInt(trimmed, 10);
   if (/^-?\d+\.\d+$/.test(trimmed)) return parseFloat(trimmed);
-  // Plain string
   return trimmed;
 }
 
-function parseFrontmatter(rawContent) {
+function parseFrontmatter(rawContent: string): Frontmatter {
   const lines = rawContent.split(/\r?\n/);
-  // Frontmatter must start with --- on first non-empty line
   let startIdx = -1;
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].trim() === '') continue;
@@ -51,7 +64,6 @@ function parseFrontmatter(rawContent) {
     return { data: {}, content: rawContent };
   }
 
-  // Find closing ---
   let endIdx = -1;
   for (let i = startIdx + 1; i < lines.length; i++) {
     if (lines[i].trim() === '---') {
@@ -65,10 +77,9 @@ function parseFrontmatter(rawContent) {
   }
 
   const frontmatterLines = lines.slice(startIdx + 1, endIdx);
-  const data = {};
+  const data: Record<string, unknown> = {};
 
   for (const line of frontmatterLines) {
-    // Skip empty lines and comments
     if (line.trim() === '' || line.trim().startsWith('#')) continue;
 
     const colonIdx = line.indexOf(':');
@@ -84,20 +95,20 @@ function parseFrontmatter(rawContent) {
   return { data, content };
 }
 
-export function getAllPosts() {
-  const posts = [];
+export function getAllPosts(): Post[] {
+  const posts: Post[] = [];
 
   for (const [path, rawContent] of Object.entries(postFiles)) {
     const { data, content: body } = parseFrontmatter(rawContent);
-    const slug = path.split('/').pop().replace('.md', '');
+    const slug = path.split('/').pop()!.replace('.md', '');
 
     posts.push({
       slug,
-      title: data.title || 'Sin título',
-      date: data.date || new Date().toISOString(),
-      category: data.category || 'General',
-      author: data.author || 'MisterVet',
-      excerpt: data.excerpt || '',
+      title: (data.title as string) || 'Sin título',
+      date: (data.date as string) || new Date().toISOString(),
+      category: (data.category as string) || 'General',
+      author: (data.author as string) || 'MisterVet',
+      excerpt: (data.excerpt as string) || '',
       content: body,
     });
   }
@@ -108,7 +119,7 @@ export function getAllPosts() {
   return posts;
 }
 
-export function getPostBySlug(slug) {
+export function getPostBySlug(slug: string): Post | null {
   const posts = getAllPosts();
   return posts.find((p) => p.slug === slug) || null;
 }

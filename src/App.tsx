@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
@@ -31,14 +32,20 @@ const Icon = {
   ),
 };
 
-const services = [
+interface Service {
+  icon: ReactNode;
+  title: string;
+  desc: string;
+}
+
+const services: Service[] = [
   { icon: Icon.home, title: 'Consulta y Vacunación', desc: 'Atención médica integral y planes de vacunación para todas las especies.' },
   { icon: Icon.flask, title: 'Exámenes de Laboratorio', desc: 'Análisis clínicos completos con resultados rápidos y confiables.' },
   { icon: Icon.scissors, title: 'Cirugías', desc: 'Procedimientos quirúrgicos con tecnología de punta y protocolos seguros.' },
   { icon: Icon.plane, title: 'Certificados de Viaje', desc: 'Documentación sanitaria y certificados para viajes nacionales e internacionales.' },
 ];
 
-export default function App() {
+export default function App(): ReactNode {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO

@@ -34,8 +34,16 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Generate dynamic sitemap
+        run: node scripts/generate-sitemap.cjs
+
       - name: Prerender static HTML (for SEO)
         run: node scripts/prerender.cjs
+
+      - name: Inject Cloudflare Web Analytics beacon
+        env:
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+        run: node scripts/inject-analytics.cjs
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

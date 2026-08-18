@@ -24,27 +24,43 @@ export const SITE_URL = 'https://www.mistervet.co';
 export const SITE_NAME = 'MisterVet';
 export const SITE_LOCALE = 'es_CO';
 
-// ─── Google Business Profile ─────────────────────────────────────────────
+// ─── Google Business Profile ────────────────────────────────────────────
 export const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
 
 // ─── Cobertura ──────────────────────────────────────────────────────────
-export const PETS_COVERAGE = {
+export interface CoverageConfig {
+  cities: string[];
+  departments: string[];
+  surroundings: Record<string, string[]>;
+}
+
+export const PETS_COVERAGE: CoverageConfig = {
   cities: ['Sincelejo', 'Montería'],
   departments: ['Sucre', 'Córdoba'],
-  // Municipios cercanos atendidos
   surroundings: {
     Sucre: ['Corozal', 'Sampués', 'San Marcos', 'San Juan de Betulia', 'San Pedro'],
     Córdoba: ['Cereté', 'San Pelayo', 'Lorica', 'Ciénaga de Oro', 'Planeta Rica'],
   },
 };
 
-export const LIVESTOCK_COVERAGE = {
+export interface LivestockCoverageConfig {
+  region: string;
+  departments: string[];
+}
+
+export const LIVESTOCK_COVERAGE: LivestockCoverageConfig = {
   region: 'Costa Caribe',
   departments: ['Sucre', 'Córdoba', 'Bolívar', 'Magdalena', 'Cesar', 'Atlántico', 'La Guajira'],
 };
 
 // ─── Horario ─────────────────────────────────────────────────────────────
-export const BUSINESS_HOURS = {
+export interface BusinessHoursConfig {
+  days: string[];
+  opens: string;
+  closes: string;
+}
+
+export const BUSINESS_HOURS: BusinessHoursConfig = {
   days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
   opens: '08:00',
   closes: '18:00',
