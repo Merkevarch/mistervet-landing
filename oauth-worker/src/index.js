@@ -2,37 +2,56 @@
  * Cloudflare Worker — OAuth proxy para Decap CMS.
  *
  * Permite que Decap CMS autentique usuarios con GitHub sin exponer el
- * CLIENT_SECRET en el navegador. El flujo es:
+ * CLIENT_SECRET en el navegador.
  *
- *   1. Decap CMS abre https://github.com/login/oauth/authorize?client_id=...
- *      con redirect_uri = <este worker>/callback
- *   2. GitHub redirige al usuario a <este worker>/callback?code=xxx
- *   3. Este Worker intercambia el `code` por un `access_token` llamando
- *      a https://github.com/login/oauth/access_token con el CLIENT_SECRET
- *   4. El Worker responde con una página HTML que hace postMessage al
- *      opener (Decap CMS), pasándole el access_token.
+ * IMPORTANTE: Decap CMS espera que la página de callback envíe un
+ * postMessage con un STRING en formato específico:
+ *
+ *   'authorization:github:success:{"token":"ACCESS_TOKEN","provider":"github"}'
+ *
+ * o para errores:
+ *
+ *   'authorization:github:failure:ERROR_MESSAGE'
+ *
+ * Si se envía un objeto, Decap CMS lo ignora y el popup queda colgado
+ * con el spinner "Autenticando…" indefinidamente.
  *
  * Variables de entorno (definir con `wrangler secret put`):
  *   - GITHUB_CLIENT_ID     — Client ID de la OAuth App en GitHub
  *   - GITHUB_CLIENT_SECRET — Client Secret de la OAuth App en GitHub
- *
- * Deploy:
- *   cd oauth-worker
- *   wrangler secret put GITHUB_CLIENT_ID
- *   wrangler secret put GITHUB_CLIENT_SECRET
- *   wrangler deploy
- *
- * Ver docs/ADMIN_SETUP.md para la guía paso a paso completa.
  */
 
 function buildHtmlResponse(status, payload, allowedOrigins) {
-  const isSuccess = status === 'success';
-  const data = isSuccess
-    ? JSON.stringify(payload)
-    : JSON.stringify({ error: payload });
+  // Construir el mensaje en el formato que Decap CMS espera:
+  // 'authorization:github:success:{"token":"...","provider":"github"}'
+  // o 'authorization:github:failure:<error_message>'
+  let messageStr;
+  let displayMessage;
 
-  // Lista de orígenes permitidos como array literal para el script
+  if (status === 'success' && payload.access_token) {
+    const decapPayload = {
+      token: payload.access_token,
+      provider: 'github',
+    };
+    messageStr = 'authorization:github:success:' + JSON.stringify(decapPayload);
+    displayMessage = 'Autenticación exitosa';
+  } else if (status === 'success') {
+    // GitHub respondió pero sin access_token — algo raro
+    messageStr = 'authorization:github:failure:No se recibió access_token de GitHub';
+    displayMessage = 'Error: GitHub no devolvió un token válido';
+    status = 'error';
+  } else {
+    // Error explícito
+    const errorMsg = typeof payload === 'string' ? payload : JSON.stringify(payload);
+    messageStr = 'authorization:github:failure:' + errorMsg;
+    displayMessage = 'Error de autenticación: ' + errorMsg;
+  }
+
   const originsJsArray = JSON.stringify(allowedOrigins);
+  // Escapar el mensaje string para embeber en JS de forma segura
+  const messageStrEscaped = JSON.stringify(messageStr);
+
+  const isSuccess = status !== 'error';
 
   return new Response(
     `<!doctype html>
@@ -42,59 +61,72 @@ function buildHtmlResponse(status, payload, allowedOrigins) {
     <title>Autenticando con GitHub…</title>
     <style>
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #475569; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-      .card { text-align: center; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 400px; }
+      .card { text-align: center; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 420px; }
       .spinner { width: 32px; height: 32px; border: 3px solid #e2e8f0; border-top-color: #163E8D; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
       @keyframes spin { to { transform: rotate(360deg); } }
-      .error { color: #dc2626; }
-      .ok { color: #16a34a; }
+      .error { color: #dc2626; margin-top: 8px; font-size: 14px; word-break: break-word; }
+      .ok { color: #16a34a; margin-top: 8px; }
     </style>
   </head>
   <body>
     <div class="card">
       <div class="spinner" id="spinner"></div>
-      <p id="message">${isSuccess ? 'Autenticando…' : 'Error de autenticación'}</p>
-      <p class="error" id="error"></p>
-      <p class="ok" id="ok" style="display:none;">✓ Listo, puedes cerrar esta ventana.</p>
+      <p id="message">${isSuccess ? 'Autenticando…' : 'Error'}</p>
+      <p class="${isSuccess ? 'ok' : 'error'}" id="detail" style="display:none;"></p>
+      <p style="margin-top:16px;font-size:12px;color:#94a3b8;" id="hint"></p>
     </div>
     <script>
       (function() {
-        const data = ${data};
-        const allowedOrigins = ${originsJsArray};
-        const status = '${status}';
+        // Mensaje que Decap CMS espera (string con formato específico)
+        var message = ${messageStrEscaped};
+        var allowedOrigins = ${originsJsArray};
 
-        function showError(msg) {
+        function showResult(success, detail, hint) {
           document.getElementById('spinner').style.display = 'none';
-          document.getElementById('message').textContent = 'Error';
-          document.getElementById('error').textContent = msg;
-        }
-
-        function showSuccess() {
-          document.getElementById('spinner').style.display = 'none';
-          document.getElementById('message').textContent = 'Autenticación exitosa';
-          document.getElementById('ok').style.display = 'block';
+          document.getElementById('message').textContent = success ? 'Autenticación exitosa' : 'Error de autenticación';
+          var detailEl = document.getElementById('detail');
+          detailEl.textContent = detail || '';
+          detailEl.style.display = detail ? 'block' : 'none';
+          if (hint) {
+            document.getElementById('hint').textContent = hint;
+          }
         }
 
         if (window.opener) {
-          // Decap CMS abre esta ventana via window.open()
-          // Intentamos postMessage al origen del opener si está permitido
-          const openerOrigin = window.opener.location.origin;
-          if (!allowedOrigins.includes(openerOrigin)) {
-            showError('Origen no permitido: ' + openerOrigin);
+          // Decap CMS abrió esta ventana via window.open()
+          // Validamos que el opener sea de un origen permitido
+          var openerOrigin;
+          try {
+            openerOrigin = window.opener.location.origin;
+          } catch (e) {
+            // Cross-origin: no podemos leer location.origin del opener
+            // Esto NO debería pasar en nuestro flujo, pero por si acaso
+            openerOrigin = null;
+          }
+
+          if (!openerOrigin || !allowedOrigins.includes(openerOrigin)) {
+            // Si no podemos leer el origin (cross-origin) o no está permitido,
+            // intentamos postMessage a '*' (menos seguro pero necesario en algunos casos)
+            // Mejor: intentamos con el primer origen permitido (producción)
+            window.opener.postMessage(message, allowedOrigins[0]);
+            showResult(true, 'Autenticación exitosa. Cerrando ventana…', '');
+            setTimeout(function() { window.close(); }, 1500);
             return;
           }
-          window.opener.postMessage(
-            { status: status, data: data, provider: 'github' },
-            openerOrigin
-          );
-          if (status === 'success') {
-            showSuccess();
-            setTimeout(() => window.close(), 1500);
+
+          // Origen válido — enviar el mensaje al origin exacto del opener
+          window.opener.postMessage(message, openerOrigin);
+
+          if (${isSuccess ? 'true' : 'false'}) {
+            showResult(true, 'Autenticación exitosa. Cerrando ventana…', '');
+            setTimeout(function() { window.close(); }, 1500);
           } else {
-            showError(typeof data === 'object' ? (data.error || 'Error desconocido') : data);
+            var errorMsg = ${JSON.stringify(displayMessage)};
+            showResult(false, errorMsg, 'Cierra esta ventana e intenta de nuevo desde /admin');
           }
         } else {
-          // Acceso directo a la URL del callback (sin opener)
-          showError('Esta URL solo es válida durante el flujo de autenticación del panel /admin.');
+          // Acceso directo a /callback sin opener
+          showResult(false, 'Esta URL solo es válida durante el flujo de autenticación del panel /admin.', 'Abre https://www.mistervet.co/admin para iniciar sesión.');
         }
       })();
     </script>
@@ -109,8 +141,6 @@ function buildHtmlResponse(status, payload, allowedOrigins) {
   );
 }
 
-// Devuelve los orígenes permitidos para postMessage.
-// Por seguridad, restringimos solo al dominio de producción y localhost.
 function getAllowedOrigins(env) {
   const origins = [
     'https://www.mistervet.co',
@@ -118,7 +148,6 @@ function getAllowedOrigins(env) {
     'http://localhost:5173',
     'http://localhost:4173',
   ];
-  // Permitir override vía variable de entorno para previews / staging
   if (env.CMS_ORIGIN) {
     if (Array.isArray(env.CMS_ORIGIN)) {
       origins.push(...env.CMS_ORIGIN);
@@ -177,7 +206,6 @@ export default {
     }
 
     // ─── Ruta: /auth  (redirige al usuario a GitHub OAuth) ───────────
-    // Útil para testing manual — abre /auth en el navegador.
     if (url.pathname === '/auth') {
       const params = new URLSearchParams({
         client_id: env.GITHUB_CLIENT_ID,
@@ -207,7 +235,6 @@ export default {
       );
     }
 
-    // ─── 404 para cualquier otra ruta ────────────────────────────────
     return new Response('Not Found', { status: 404 });
   },
 };
