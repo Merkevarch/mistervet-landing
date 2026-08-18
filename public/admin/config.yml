@@ -22,7 +22,7 @@ backend:
   # Client ID de la GitHub OAuth App (público, va en el navegador).
   # ⚠️ REEMPLAZAR con tu Client ID real (lo encuentras en
   # https://github.com/settings/developers → tu OAuth App)
-  app_id: GITHUB_OAUTH_CLIENT_ID
+  app_id: Ov23liiyJzmHVadIq5bb
 
 # Carpeta pública donde se sirven los assets estáticos.
 # Las imágenes que subas desde el editor se guardarán en /public/blog/
