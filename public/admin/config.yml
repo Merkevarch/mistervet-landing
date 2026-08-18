@@ -47,12 +47,8 @@ collections:
       - category
       - date
     sortable_fields:
-      fields:
-        - title
-        - date
-      default:
-        field: date
-        direction: descending
+      - title
+      - date
 
     fields:
       - label: "Título"
