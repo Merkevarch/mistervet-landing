@@ -1,8 +1,7 @@
-# Redirects 301 for removed city-specific pages (consolidated into regional pages)
-/veterinaria-en-sincelejo      /veterinaria-en-costa-caribe    301
-/veterinaria-en-monteria       /veterinaria-en-costa-caribe    301
-/ganaderia-en-sincelejo        /ganaderia-en-costa-caribe      301
-/ganaderia-en-monteria         /ganaderia-en-costa-caribe      301
+# Redirects 301 for consolidated URLs (combined into single Sincelejo + Montería page)
+/veterinaria-en-costa-caribe              /veterinaria-en-sincelejo-y-monteria    301
+/veterinaria-en-sincelejo                 /veterinaria-en-sincelejo-y-monteria    301
+/veterinaria-en-monteria                  /veterinaria-en-sincelejo-y-monteria    301
 
 # SPA fallback - Cloudflare Pages serves .html files automatically for /route
 /*    /index.html   200

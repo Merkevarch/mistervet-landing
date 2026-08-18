@@ -7,30 +7,7 @@ const WHATSAPP_URL = 'https://wa.me/573017653440';
 const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
 const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
 
-const coverageCards = [
-  {
-    type: 'Veterinaria a Domicilio',
-    title: 'Veterinaria en la Costa Caribe',
-    desc: 'Atención veterinaria profesional a domicilio para mascotas en toda la región Caribe colombiana. Cobertura en Sincelejo, Montería, Cartagena, Barranquilla, Santa Marta, Valledupar y Riohacha, con planes de vacunación adaptados a la epidemiología tropical de la región.',
-    icon: '🐾',
-    link: '/veterinaria-en-costa-caribe',
-    accent: 'mv-orange',
-    bg: 'bg-mv-orange/10',
-    cta: 'Ver servicios veterinarios',
-  },
-  {
-    type: 'Consultoría Pecuaria',
-    title: 'Ganadería en la Costa Caribe',
-    desc: 'Asesoría técnica veterinaria para fincas y hatos bovinos, porcinos y de otras especies pecuarias en los siete departamentos de la región Caribe. Manejo sanitario, vacunación ICA, consultoría reproductiva y análisis de registros productivos adaptados a la realidad tropical del Caribe colombiano.',
-    icon: '🐂',
-    link: '/ganaderia-en-costa-caribe',
-    accent: 'mv-amber',
-    bg: 'bg-mv-amber/10',
-    cta: 'Ver servicios pecuarios',
-  },
-];
-
-const departments = [
+const livestockDepartments = [
   { name: 'Sucre', cities: 'Sincelejo, Corozal, San Marcos, Sampués' },
   { name: 'Córdoba', cities: 'Montería, Cereté, Lorica, Montelíbano, Sahagún' },
   { name: 'Bolívar', cities: 'Cartagena, Magangué, Carmen de Bolívar' },
@@ -49,11 +26,11 @@ export default function CoberturaPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Cobertura | Servicio Veterinario en la Costa Caribe Colombiana"
-        description="Cobertura de MisterVet en la Costa Caribe colombiana: veterinaria a domicilio para mascotas y consultoría pecuaria para fincas en Sucre, Córdoba, Bolívar, Magdalena, Cesar, Atlántico y La Guajira."
+        title="Cobertura | Veterinaria en Sincelejo y Montería · Ganadería en Costa Caribe"
+        description="Cobertura de MisterVet: atención veterinaria a domicilio para mascotas en Sincelejo y Montería con alrededores, y consultoría pecuaria para fincas en los 7 departamentos de la Costa Caribe colombiana."
         path="/cobertura"
         type="website"
-        keywords={['cobertura veterinaria', 'veterinaria Costa Caribe', 'ganadería Costa Caribe', 'veterinaria Colombia', 'consultoría pecuaria Caribe']}
+        keywords={['cobertura veterinaria', 'veterinaria Sincelejo', 'veterinaria Montería', 'ganadería Costa Caribe', 'consultoría pecuaria Caribe', 'veterinaria Colombia']}
         jsonLd={[organizationSchema, breadcrumb]}
       />
       <Navbar />
@@ -62,16 +39,13 @@ export default function CoberturaPage() {
       <section className="bg-gradient-to-b from-slate-50 to-white py-12 lg:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block px-3 py-1 bg-mv-blue/10 text-mv-blue rounded-full text-xs font-bold uppercase tracking-wide mb-4">
-            Cobertura Regional
+            Cobertura
           </span>
           <h1 className="text-4xl lg:text-5xl font-display text-mv-darkblue leading-tight mb-5">
-            Servicios veterinarios en la <span className="text-mv-blue">Costa Caribe</span> colombiana
+            Dónde <span className="text-mv-blue">atendemos</span>
           </h1>
           <p className="text-base text-slate-600 mb-4 leading-relaxed">
-            MisterVet ofrece atención veterinaria a domicilio para mascotas y consultoría pecuaria para fincas en los siete departamentos de la región Caribe colombiana. Nuestro enfoque combina rigor clínico con conocimiento profundo de la epidemiología tropical del Caribe, adaptando los planes preventivos a las enfermedades más prevalentes en cada zona.
-          </p>
-          <p className="text-base text-slate-600 mb-6 leading-relaxed">
-            Desde Sincelejo y Montería hasta Cartagena, Barranquilla, Santa Marta, Valledupar y Riohacha, nuestro médico veterinario titulado se desplaza con todo el equipo necesario para brindar atención profesional donde nos necesites.
+            En MisterVet tenemos dos líneas de servicio con coberturas diferentes. La atención veterinaria para mascotas se ofrece a domicilio en Sincelejo y Montería con sus alrededores, mientras que la consultoría pecuaria para fincas cubre toda la región Caribe colombiana. Conoce el detalle de cada una y verifica si llegamos a tu ubicación.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
@@ -92,55 +66,65 @@ export default function CoberturaPage() {
         </div>
       </section>
 
-      {/* ===== SERVICIOS COBERTURA ===== */}
+      {/* ===== MASCOTAS — cobertura limitada ===== */}
       <section className="bg-white py-12 lg:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-display text-mv-darkblue mb-2">Nuestros servicios en la región</h2>
-            <p className="text-slate-500">Elige el servicio que necesitas y conoce los detalles de cobertura</p>
+            <span className="inline-block px-3 py-1 bg-mv-orange/10 text-mv-orange rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+              🐾 Mascotas
+            </span>
+            <h2 className="text-3xl font-display text-mv-darkblue mb-2">Veterinaria a domicilio</h2>
+            <p className="text-slate-500">Cobertura en Sincelejo y Montería con sus alrededores</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {coverageCards.map((card, i) => (
-              <div
-                key={i}
-                className="bg-slate-50 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-              >
-                <div className={`w-14 h-14 ${card.bg} rounded-2xl flex items-center justify-center text-3xl mb-4`}>
-                  {card.icon}
-                </div>
-                <span className={`text-xs font-bold ${card.accent === 'mv-orange' ? 'text-mv-orange' : 'text-mv-amber'} uppercase tracking-wide mb-2`}>
-                  {card.type}
-                </span>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">{card.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-1">{card.desc}</p>
-                <Link
-                  to={card.link}
-                  className={`inline-block text-sm font-medium ${card.accent === 'mv-orange' ? 'text-mv-orange' : 'text-mv-amber'} hover:underline`}
-                >
-                  {card.cta} →
-                </Link>
+
+          <Link
+            to="/veterinaria-en-sincelejo-y-monteria"
+            className="block bg-slate-50 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 mb-8"
+          >
+            <div className="flex items-start gap-3 mb-3">
+              <div className="w-10 h-10 bg-mv-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-mv-orange font-bold text-sm">📍</span>
               </div>
-            ))}
+              <div>
+                <h3 className="font-bold text-slate-800 text-base">Sincelejo y Montería con alrededores</h3>
+                <p className="text-xs text-slate-500 mt-1">Alrededores cubiertos:</p>
+                <p className="text-xs text-slate-600 mt-0.5">Sucre: Corozal, Sampués, San Marcos, San Juan de Betulia, San Pedro</p>
+                <p className="text-xs text-slate-600 mt-0.5">Córdoba: Cereté, San Pelayo, Lorica, Ciénaga de Oro, Planeta Rica</p>
+              </div>
+            </div>
+            <span className="text-sm font-medium text-mv-orange">
+              Ver servicio veterinario en Sincelejo y Montería →
+            </span>
+          </Link>
+
+          <div className="bg-mv-orange/5 border border-mv-orange/20 rounded-2xl p-5 text-center">
+            <p className="text-sm text-slate-600 leading-relaxed">
+              ¿Estás en otro municipio de Sucre o Córdoba? Escríbenos por WhatsApp: en algunos casos podemos coordinar visitas puntuales o referirte a un colega de confianza en tu zona.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ===== DEPARTAMENTOS ===== */}
+      {/* ===== GANADERÍA — cobertura regional ===== */}
       <section className="bg-slate-50 py-12 lg:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-display text-mv-darkblue mb-2">Departamentos cubiertos</h2>
-            <p className="text-slate-500">Atendemos en los siete departamentos de la región Caribe colombiana</p>
+            <span className="inline-block px-3 py-1 bg-mv-amber/10 text-mv-amber rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+              🐂 Ganadería y Producción
+            </span>
+            <h2 className="text-3xl font-display text-mv-darkblue mb-2">Consultoría pecuaria regional</h2>
+            <p className="text-slate-500">Cobertura en los 7 departamentos de la Costa Caribe colombiana</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {departments.map((d, i) => (
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {livestockDepartments.map((d, i) => (
               <div
                 key={i}
                 className="bg-white rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-all"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-mv-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-mv-blue font-bold text-sm">{String(i + 1).padStart(2, '0')}</span>
+                  <div className="w-10 h-10 bg-mv-amber/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-mv-amber font-bold text-sm">{String(i + 1).padStart(2, '0')}</span>
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-800 text-sm">{d.name}</h3>
@@ -150,17 +134,23 @@ export default function CoberturaPage() {
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-slate-500 mt-8">
-            ¿No ves tu municipio en la lista? Escríbenos por WhatsApp, es posible que podamos atenderte o coordinar una visita técnica.
-          </p>
+
+          <div className="text-center">
+            <Link
+              to="/ganaderia-en-costa-caribe"
+              className="inline-block px-6 py-3 border-2 border-mv-amber text-mv-amber font-semibold rounded-xl hover:bg-mv-amber hover:text-white transition-all"
+            >
+              Ver detalle de cobertura pecuaria →
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ===== CTA ===== */}
       <section className="bg-mv-darkblue text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-display mb-3">¿Estás en la Costa Caribe y necesitas un veterinario?</h2>
-          <p className="text-slate-300 mb-6">Contáctanos y coordinamos la visita a tu ubicación</p>
+          <h2 className="text-2xl lg:text-3xl font-display mb-3">¿Quieres confirmar si llegamos a tu ubicación?</h2>
+          <p className="text-slate-300 mb-6">Escríbenos por WhatsApp con tu municipio y el servicio que necesitas</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href={WHATSAPP_URL}
@@ -194,7 +184,7 @@ export default function CoberturaPage() {
           </div>
           <h2 className="text-2xl lg:text-3xl font-display text-mv-darkblue mb-3">¿Ya nos conoces?</h2>
           <p className="text-slate-600 mb-6 leading-relaxed">
-            Tu opinión ayuda a otras familias de la Costa Caribe a encontrar atención veterinaria confiable. Si MisterVet ya atendió a tu mascota o visitó tu finca, déjanos una reseña en Google — nos toma 2 minutos escribirla y a nosotros nos ayudas muchísimo a crecer.
+            Tu opinión ayuda a otras familias y productores de la región a encontrar atención veterinaria confiable. Si MisterVet ya atendió a tu mascota o visitó tu finca, déjanos una reseña en Google — toma solo 2 minutos y nos ayudas muchísimo a crecer.
           </p>
           <a
             href={GBP_REVIEW_URL}

@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: '¿Ofrecen servicio a domicilio?',
-    a: 'Sí, contamos con atención a domicilio programada para consultas, vacunación y procedimientos que no requieran infraestructura de clínica. La disponibilidad depende de la zona y se agenda con anticipación. Para cirugías y hospitalización el paciente debe trasladarse a la sede.',
+    a: 'Sí, contamos con atención a domicilio programada para consultas, vacunación y procedimientos que no requieran infraestructura de clínica. Actualmente cubrimos Sincelejo y Montería con sus alrededores (Corozal, Sampués, San Marcos, San Juan de Betulia, San Pedro en Sucre; Cereté, San Pelayo, Lorica, Ciénaga de Oro y Planeta Rica en Córdoba). La disponibilidad se agenda con anticipación. Para cirugías y hospitalización el paciente debe trasladarse a la sede.',
   },
   {
     q: '¿Cómo manejan las urgencias?',
@@ -108,10 +108,20 @@ export default function MascotasPage() {
       telephone: '+573017653440',
       email: 'contacto@mistervet.co',
       url: 'https://www.mistervet.co',
-      areaServed: 'Colombia',
+      areaServed: [
+        { '@type': 'City', name: 'Sincelejo' },
+        { '@type': 'AdministrativeArea', name: 'Sucre' },
+        { '@type': 'City', name: 'Montería' },
+        { '@type': 'AdministrativeArea', name: 'Córdoba' },
+      ],
     },
-    areaServed: 'Colombia',
-    description: 'Atención médica veterinaria completa para perros, gatos y otras mascotas: consulta general y especializada, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología veterinaria y certificados de viaje.',
+    areaServed: [
+      { '@type': 'City', name: 'Sincelejo' },
+      { '@type': 'AdministrativeArea', name: 'Sucre' },
+      { '@type': 'City', name: 'Montería' },
+      { '@type': 'AdministrativeArea', name: 'Córdoba' },
+    ],
+    description: 'Atención médica veterinaria completa para perros, gatos y otras mascotas en Sincelejo y Montería con alrededores: consulta general y especializada, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología veterinaria y certificados de viaje. Servicio a domicilio.',
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
@@ -128,10 +138,10 @@ export default function MascotasPage() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
         title="Servicios Veterinarios para Mascotas"
-        description="Atención médica veterinaria completa para perros, gatos y otras mascotas en Colombia: consulta general, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología y certificados de viaje. Servicio a domicilio."
+        description="Atención médica veterinaria completa para perros, gatos y otras mascotas en Sincelejo y Montería con alrededores: consulta general, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología y certificados de viaje. Servicio a domicilio."
         path="/mascotas"
         type="website"
-        keywords={['veterinaria para mascotas', 'veterinario mascotas Colombia', 'consulta veterinaria', 'vacunación perros gatos', 'cirugía veterinaria', 'odontología veterinaria', 'certificados de viaje mascotas', 'laboratorio veterinario']}
+        keywords={['veterinaria para mascotas', 'veterinario mascotas Colombia', 'veterinaria Sincelejo', 'veterinaria Montería', 'consulta veterinaria', 'vacunación perros gatos', 'cirugía veterinaria', 'odontología veterinaria', 'certificados de viaje mascotas', 'laboratorio veterinario']}
         jsonLd={[serviceSchema, faqSchema, breadcrumb]}
       />
       <Navbar />
@@ -235,6 +245,45 @@ export default function MascotasPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ===== COBERTURA ===== */}
+      <section className="bg-slate-50 py-12 lg:py-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <span className="inline-block px-3 py-1 bg-mv-orange/10 text-mv-orange rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+              🐾 Cobertura
+            </span>
+            <h2 className="text-3xl font-display text-mv-darkblue mb-2">Dónde atendemos mascotas</h2>
+            <p className="text-slate-500">Servicio veterinario a domicilio en Sincelejo y Montería con sus alrededores</p>
+          </div>
+          <Link
+            to="/veterinaria-en-sincelejo-y-monteria"
+            className="block max-w-3xl mx-auto bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 bg-mv-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-mv-orange font-bold text-lg">📍</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-slate-800 text-lg mb-1">Sincelejo y Montería con alrededores</h3>
+                <p className="text-xs text-slate-500 mb-2">Cobertura actual para mascotas:</p>
+                <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-600">
+                  <div>
+                    <strong className="text-slate-700">Sucre:</strong> Sincelejo, Corozal, Sampués, San Marcos, San Juan de Betulia, San Pedro
+                  </div>
+                  <div>
+                    <strong className="text-slate-700">Córdoba:</strong> Montería, Cereté, San Pelayo, Lorica, Ciénaga de Oro, Planeta Rica
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span className="text-sm font-medium text-mv-orange">Ver detalle del servicio veterinario →</span>
+          </Link>
+          <p className="text-center text-sm text-slate-500 mt-6">
+            ¿Estás en otro municipio? <Link to="/cobertura" className="text-mv-blue hover:underline">Ver cobertura completa</Link> o escríbenos por WhatsApp.
+          </p>
         </div>
       </section>
 

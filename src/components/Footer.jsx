@@ -35,9 +35,12 @@ export default function Footer() {
                   contacto@mistervet.co
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-mv-amber">📍</span>
-                <span className="text-slate-500">Servicio a domicilio · Costa Caribe, Colombia</span>
+              <li className="flex items-start gap-2">
+                <span className="text-mv-amber mt-0.5">📍</span>
+                <span className="text-slate-500 text-sm leading-relaxed">
+                  🐾 <strong className="text-slate-400">Mascotas:</strong> Sincelejo y Montería con alrededores<br/>
+                  🐂 <strong className="text-slate-400">Ganadería:</strong> Costa Caribe, Colombia
+                </span>
               </li>
             </ul>
             {/* CTA Reseña Google */}
@@ -69,8 +72,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-medium text-sm mb-4">Cobertura</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/cobertura" className="hover:text-white transition-colors">Ver cobertura regional</Link></li>
-              <li><Link to="/veterinaria-en-costa-caribe" className="hover:text-white transition-colors">Veterinaria en Costa Caribe</Link></li>
+              <li><Link to="/cobertura" className="hover:text-white transition-colors">Ver cobertura completa</Link></li>
+              <li><span className="text-slate-500 text-xs uppercase tracking-wide">🐾 Mascotas:</span></li>
+              <li><Link to="/veterinaria-en-sincelejo-y-monteria" className="hover:text-white transition-colors">Veterinaria en Sincelejo y Montería</Link></li>
+              <li><span className="text-slate-500 text-xs uppercase tracking-wide mt-2 inline-block">🐂 Ganadería:</span></li>
               <li><Link to="/ganaderia-en-costa-caribe" className="hover:text-white transition-colors">Ganadería en Costa Caribe</Link></li>
             </ul>
           </div>

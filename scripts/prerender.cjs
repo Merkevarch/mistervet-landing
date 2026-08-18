@@ -27,7 +27,7 @@ const ROUTES = [
   '/blog/desparasitacion-en-gatos',
   '/blog/manejo-sanitario-ganaderia-bovina',
   '/cobertura',
-  '/veterinaria-en-costa-caribe',
+  '/veterinaria-en-sincelejo-y-monteria',
   '/ganaderia-en-costa-caribe',
 ];
 

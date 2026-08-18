@@ -9,7 +9,7 @@ import BlogPost from './pages/BlogPost.jsx'
 import MascotasPage from './pages/MascotasPage.jsx'
 import ProduccionPage from './pages/ProduccionPage.jsx'
 import SoftwarePage from './pages/SoftwarePage.jsx'
-import VeterinariaEnCostaCaribePage from './pages/VeterinariaEnCostaCaribePage.jsx'
+import VeterinariaEnSincelejoMonteriaPage from './pages/VeterinariaEnSincelejoMonteriaPage.jsx'
 import GanaderiaEnCostaCaribePage from './pages/GanaderiaEnCostaCaribePage.jsx'
 import CoberturaPage from './pages/CoberturaPage.jsx'
 
@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')).render(
 
           {/* Cobertura regional */}
           <Route path="/cobertura" element={<CoberturaPage />} />
-          <Route path="/veterinaria-en-costa-caribe" element={<VeterinariaEnCostaCaribePage />} />
+          <Route path="/veterinaria-en-sincelejo-y-monteria" element={<VeterinariaEnSincelejoMonteriaPage />} />
           <Route path="/ganaderia-en-costa-caribe" element={<GanaderiaEnCostaCaribePage />} />
 
           <Route path="*" element={<App />} />
