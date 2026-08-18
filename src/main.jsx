@@ -12,6 +12,7 @@ import SoftwarePage from './pages/SoftwarePage.jsx'
 import VeterinariaEnSincelejoMonteriaPage from './pages/VeterinariaEnSincelejoMonteriaPage.jsx'
 import GanaderiaEnCostaCaribePage from './pages/GanaderiaEnCostaCaribePage.jsx'
 import CoberturaPage from './pages/CoberturaPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -30,7 +31,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/veterinaria-en-sincelejo-y-monteria" element={<VeterinariaEnSincelejoMonteriaPage />} />
           <Route path="/ganaderia-en-costa-caribe" element={<GanaderiaEnCostaCaribePage />} />
 
-          <Route path="*" element={<App />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import SEO, { organizationSchema, websiteSchema } from './components/SEO';
+import SEO from './components/SEO';
+import { organizationSchema, websiteSchema } from './schemas';
 import perroImg from './assets/perro.jpg';
-import mockupSoftware from './assets/mockup-software.png';
-
-const WHATSAPP_URL = 'https://wa.me/573017653440';
-const APP_URL = 'https://app.mistervet.co';
-const SETUP_URL = 'https://app.mistervet.co/setup';
-const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
+import mockupSoftware from './assets/mockup-software.webp';
+import { WHATSAPP_URL, SETUP_URL, CONTACT_EMAIL } from './config';
 
 // Iconos SVG correctos (Heroicons)
 const Icon = {
@@ -91,7 +88,7 @@ export default function App() {
               </div>
             </div>
             <div className="flex justify-center">
-              <img src={perroImg} alt="Mascota" className="max-h-[400px] lg:max-h-[500px] object-contain object-bottom" />
+              <img src={perroImg} alt="Mascota" className="max-h-[400px] lg:max-h-[500px] object-contain object-bottom" loading="eager" fetchPriority="high" />
             </div>
           </div>
         </div>
@@ -203,6 +200,8 @@ export default function App() {
                 src={mockupSoftware}
                 alt="MisterVet Pro - Captura del software"
                 className="w-full rounded-lg shadow-2xl"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

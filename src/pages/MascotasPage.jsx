@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import SEO, { buildBreadcrumbSchema } from '../components/SEO';
+import SEO from '../components/SEO';
+import { buildBreadcrumbSchema } from '../schemas';
 import perroImg from '../assets/perro.jpg';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
@@ -179,7 +180,7 @@ export default function MascotasPage() {
               </div>
             </div>
             <div className="flex justify-center">
-              <img src={perroImg} alt="Mascota" className="max-h-[400px] lg:max-h-[500px] object-contain object-bottom" />
+              <img src={perroImg} alt="Mascota" className="max-h-[400px] lg:max-h-[500px] object-contain object-bottom" loading="eager" fetchPriority="high" />
             </div>
           </div>
         </div>

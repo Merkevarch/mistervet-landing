@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import { SITE_URL, SITE_NAME, SITE_LOCALE } from '../config';
 
-const SITE_URL = 'https://www.mistervet.co';
-const SITE_NAME = 'MisterVet';
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 /**
@@ -17,6 +16,8 @@ const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
  *  - keywords: array de palabras clave
  *  - noindex: si es true, agrega noindex
  *  - jsonLd: objeto o array de objetos JSON-LD para structured data
+ *
+ * Para schemas JSON-LD (Organization, Breadcrumb, etc.) importarlos desde '../schemas'.
  */
 export default function SEO({
   title,
@@ -54,7 +55,7 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content={SITE_NAME} />
-      <meta property="og:locale" content="es_CO" />
+      <meta property="og:locale" content={SITE_LOCALE} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -72,49 +73,3 @@ export default function SEO({
     </Helmet>
   );
 }
-
-// Helpers para schemas JSON-LD comunes
-
-export const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'VeterinaryBusiness',
-  name: 'MisterVet',
-  description: 'Medicina veterinaria integral para mascotas y producción animal en Colombia.',
-  url: SITE_URL,
-  telephone: '+573017653440',
-  email: 'contacto@mistervet.co',
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'CO',
-  },
-  areaServed: 'Colombia',
-  medicalSpecialty: ['VeterinaryMedicine', 'VeterinarySurgery'],
-  priceRange: '$$',
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    opens: '08:00',
-    closes: '18:00',
-  },
-  sameAs: ['https://wa.me/573017653440'],
-};
-
-export const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'MisterVet',
-  url: SITE_URL,
-  description: 'Medicina veterinaria integral para mascotas y producción animal.',
-  inLanguage: 'es-CO',
-};
-
-export const buildBreadcrumbSchema = (items) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: items.map((item, idx) => ({
-    '@type': 'ListItem',
-    position: idx + 1,
-    name: item.name,
-    item: `${SITE_URL}${item.path}`,
-  })),
-});

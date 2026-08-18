@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logoDibujo from '../assets/logo-dibujo.png';
-
-const APP_URL = 'https://app.mistervet.co';
+import logoDibujo from '../assets/logo-dibujo.webp';
+import { APP_URL } from '../config';
 
 const navLinks = [
   { to: '/mascotas', label: 'Mascotas' },

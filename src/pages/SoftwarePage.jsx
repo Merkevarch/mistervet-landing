@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import SEO, { buildBreadcrumbSchema } from '../components/SEO';
-import mockupSoftware from '../assets/mockup-software.png';
+import SEO from '../components/SEO';
+import { buildBreadcrumbSchema } from '../schemas';
+import mockupSoftware from '../assets/mockup-software.webp';
 
 const APP_URL = 'https://app.mistervet.co';
 const SETUP_URL = 'https://app.mistervet.co/setup';
@@ -245,6 +246,8 @@ export default function SoftwarePage() {
                 src={mockupSoftware}
                 alt="MisterVet Pro - Captura del software"
                 className="w-full rounded-lg shadow-2xl"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import SEO, { buildBreadcrumbSchema } from '../components/SEO';
+import SEO from '../components/SEO';
+import { buildBreadcrumbSchema } from '../schemas';
 import { getAllPosts } from '../blog/postsLoader';
 
 const categoryColors = {

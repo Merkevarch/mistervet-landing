@@ -2,7 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import SEO, { buildBreadcrumbSchema } from '../components/SEO';
+import SEO from '../components/SEO';
+import { buildBreadcrumbSchema } from '../schemas';
 import { getPostBySlug } from '../blog/postsLoader';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';

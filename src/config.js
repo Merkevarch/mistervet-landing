@@ -1,0 +1,51 @@
+/**
+ * Configuración centralizada de marca y contacto para MisterVet.
+ *
+ * Todas las constantes que se usan a lo largo de la app (URLs externas,
+ * teléfono, email, enlaces de redes) viven aquí para evitar duplicación
+ * y permitir actualizarlas desde un único lugar.
+ *
+ * Uso:
+ *   import { WHATSAPP_URL, CONTACT_EMAIL } from '../config';
+ */
+
+// ─── Contacto ────────────────────────────────────────────────────────────
+export const WHATSAPP_URL = 'https://wa.me/573017653440';
+export const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
+export const PHONE_DISPLAY = '+57 301 765 3440';
+export const PHONE_INTERNATIONAL = '+573017653440';
+
+// ─── App MisterVet Pro (SaaS) ────────────────────────────────────────────
+export const APP_URL = 'https://app.mistervet.co';
+export const SETUP_URL = 'https://app.mistervet.co/setup';
+
+// ─── Web principal ──────────────────────────────────────────────────────
+export const SITE_URL = 'https://www.mistervet.co';
+export const SITE_NAME = 'MisterVet';
+export const SITE_LOCALE = 'es_CO';
+
+// ─── Google Business Profile ─────────────────────────────────────────────
+export const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
+
+// ─── Cobertura ──────────────────────────────────────────────────────────
+export const PETS_COVERAGE = {
+  cities: ['Sincelejo', 'Montería'],
+  departments: ['Sucre', 'Córdoba'],
+  // Municipios cercanos atendidos
+  surroundings: {
+    Sucre: ['Corozal', 'Sampués', 'San Marcos', 'San Juan de Betulia', 'San Pedro'],
+    Córdoba: ['Cereté', 'San Pelayo', 'Lorica', 'Ciénaga de Oro', 'Planeta Rica'],
+  },
+};
+
+export const LIVESTOCK_COVERAGE = {
+  region: 'Costa Caribe',
+  departments: ['Sucre', 'Córdoba', 'Bolívar', 'Magdalena', 'Cesar', 'Atlántico', 'La Guajira'],
+};
+
+// ─── Horario ─────────────────────────────────────────────────────────────
+export const BUSINESS_HOURS = {
+  days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  opens: '08:00',
+  closes: '18:00',
+};

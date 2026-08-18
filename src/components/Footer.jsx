@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
-import logoDibujo from '../assets/logo-dibujo.png';
-
-const WHATSAPP_URL = 'https://wa.me/573017653440';
-const APP_URL = 'https://app.mistervet.co';
-const SETUP_URL = 'https://app.mistervet.co/setup';
-const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
-const PHONE_DISPLAY = '+57 301 765 3440';
-const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
+import logoDibujo from '../assets/logo-dibujo.webp';
+import {
+  WHATSAPP_URL,
+  APP_URL,
+  SETUP_URL,
+  CONTACT_EMAIL,
+  PHONE_DISPLAY,
+  GBP_REVIEW_URL,
+  SITE_NAME,
+} from '../config';
 
 export default function Footer() {
   return (
@@ -82,7 +84,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">© {new Date().getFullYear()} MisterVet. Todos los derechos reservados.</p>
+          <p className="text-xs text-slate-500">© {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.</p>
           <div className="flex gap-4 text-xs">
             <a href={APP_URL + '/terminos'} className="hover:text-white transition-colors">Términos de Servicio</a>
             <a href={APP_URL + '/privacidad'} className="hover:text-white transition-colors">Política de Privacidad</a>

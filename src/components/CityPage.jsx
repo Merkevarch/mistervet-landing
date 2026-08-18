@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import SEO, { buildBreadcrumbSchema } from '../components/SEO';
+import SEO from '../components/SEO';
+import { buildBreadcrumbSchema } from '../schemas';
 
 const WHATSAPP_URL = 'https://wa.me/573017653440';
 const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
@@ -38,7 +39,6 @@ export default function CityPage({
   keywords,
 }) {
   const isVeterinaria = type === 'veterinaria';
-  const accentColor = isVeterinaria ? 'mv-orange' : 'mv-amber';
   const accentText = isVeterinaria ? 'text-mv-orange' : 'text-mv-amber';
   const badgeBg = isVeterinaria ? 'bg-mv-orange/10' : 'bg-mv-amber/10';
   const ctaLabel = isVeterinaria ? 'Agendar Cita Veterinaria' : 'Solicitar Visita Técnica';
