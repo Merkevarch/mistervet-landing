@@ -1,24 +1,28 @@
 # ============================================================
-# Decap CMS Configuration
+# Decap CMS Configuration — Flujo PKCE (moderno, sin Worker)
 # ============================================================
-# Este archivo define cómo Decap CMS se conecta a GitHub y qué
-# colecciones (artículos) puede gestionar desde /admin.
+# Autenticación directa con GitHub usando el flujo OAuth PKCE
+# (Proof Key for Code Exchange). Es el estándar moderno y no requiere
+# el Cloudflare Worker OAuth proxy.
 #
-# Antes de que funcione en producción necesitas:
-# 1. Desplegar el Cloudflare Worker OAuth (ver docs/ADMIN_SETUP.md)
-# 2. Crear una GitHub OAuth App con callback URL al Worker
-# 3. Reemplazar <OAUTH_WORKER_URL> abajo con la URL del Worker
+# Configuración:
+#   1. Crear GitHub OAuth App con callback URL:
+#      https://www.mistervet.co/callback.html
+#   2. Reemplazar GITHUB_OAUTH_CLIENT_ID abajo con el Client ID de la app
 # ============================================================
 
 backend:
   name: github
   repo: Merkevarch/mistervet-landing
   branch: master
-  auth_type: implicit
-  # Cloudflare Worker que actúa como OAuth proxy a GitHub.
-  # Debe terminar sin slash final. El Worker expone /auth (inicia flujo)
-  # y /callback (GitHub redirige aquí con ?code=xxx).
-  auth_endpoint: https://mistervet-cms-oauth.rubenfchavez.workers.dev/auth
+  # Flujo PKCE: estándar moderno, no requiere client_secret ni Worker proxy.
+  # Decap CMS genera un code_verifier aleatorio y lo usa para intercambiar
+  # el code por un access_token directamente con GitHub.
+  auth_type: pkce
+  # Client ID de la GitHub OAuth App (público, va en el navegador).
+  # ⚠️ REEMPLAZAR con tu Client ID real (lo encuentras en
+  # https://github.com/settings/developers → tu OAuth App)
+  app_id: GITHUB_OAUTH_CLIENT_ID
 
 # Carpeta pública donde se sirven los assets estáticos.
 # Las imágenes que subas desde el editor se guardarán en /public/blog/
