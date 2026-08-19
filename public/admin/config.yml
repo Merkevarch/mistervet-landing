@@ -1,28 +1,31 @@
 # ============================================================
-# Decap CMS Configuration — Flujo implicit con Worker OAuth
+# Decap CMS Configuration — Flujo PKCE (moderno, sin Worker)
 # ============================================================
-# Decap CMS con auth_type: implicit requiere:
-#   - base_url: URL base del OAuth proxy (sin path)
-#   - auth_endpoint: path del endpoint que inicia el flujo OAuth
+# Autenticación directa con GitHub usando el flujo OAuth PKCE
+# (Proof Key for Code Exchange). Es el estándar moderno y no requiere
+# el Cloudflare Worker OAuth proxy.
 #
-# Decap CMS construye la URL así:
-#   ${base_url}${auth_endpoint}?provider=github&scope=repo&site_id=...
+# RAZÓN DE LA MIGRACIÓN (desde flujo `implicit`):
+# Decap CMS con auth_type: implicit tiene un bug conocido donde ignora
+# `auth_endpoint` y cae al fallback de Netlify Identity (api.netlify.com/auth),
+# lo que deja el spinner de login colgado indefinidamente.
+# El flujo PKCE funciona nativamente sin ese bug.
 #
-# El Worker (en base_url) recibe la petición y responde con 302
-# redirect a https://github.com/login/oauth/authorize?client_id=...
+# Configuración:
+#   1. GitHub OAuth App creada con callback URL:
+#      https://www.mistervet.co/callback.html
+#   2. Client ID de la OAuth App en `app_id` abajo
 # ============================================================
 
 backend:
   name: github
   repo: Merkevarch/mistervet-landing
   branch: master
-  auth_type: implicit
-  # URL del Cloudflare Worker OAuth proxy (sin slash final).
-  # Decap CMS hará peticiones a ${base_url}${auth_endpoint}
-  base_url: https://mistervet-cms-oauth.rubenfchavez.workers.dev
-  # Path del endpoint que inicia el flujo OAuth en el Worker.
-  # El Worker responde con 302 redirect a GitHub OAuth.
-  auth_endpoint: /auth
+  auth_type: pkce
+  # Client ID de la GitHub OAuth App (público, va en el navegador).
+  # Lo encuentras en https://github.com/settings/developers → tu OAuth App.
+  # Flujo PKCE NO requiere Client Secret.
+  app_id: Ov23liiyJzmHVadIq5bb
 
 # Carpeta pública donde se sirven los assets estáticos.
 # Las imágenes que subas desde el editor se guardarán en /public/blog/

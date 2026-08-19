@@ -31,7 +31,13 @@ es vía OAuth PKCE (moderno, sin secret en el servidor).
    - **Application name:** `MisterVet CMS`
    - **Homepage URL:** `https://www.mistervet.co`
    - **Authorization callback URL:** `https://www.mistervet.co/callback.html`
-     - ⚠️ **Importante:** debe ser EXACTAMENTE esa URL, incluyendo `.html` y sin slash final
+     - ⚠️ **Importante:** debe ser EXACTAMENTE esa URL (raíz, no `/admin/callback.html`)
+     - ⚠️ Si tu OAuth App tenía antes el callback del Worker
+       (`https://mistervet-cms-oauth.rubenfchavez.workers.dev/callback`),
+       elimínalo o reemplázalo por `https://www.mistervet.co/callback.html`.
+       GitHub solo redirige a una de las callback URLs registradas;
+       Decap CMS con PKCE envía `redirect_uri=https://www.mistervet.co/callback.html`,
+       así que debe estar registrada exactamente con ese valor.
 4. Click en **"Register application"**
 5. Anota el **Client ID** (visible en la página de la app, justo debajo del nombre)
    - ✅ **NO necesitas el Client Secret** — el flujo PKCE no lo requiere
