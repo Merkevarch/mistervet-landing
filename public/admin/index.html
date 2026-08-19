@@ -6,38 +6,787 @@
     <meta name="robots" content="noindex, nofollow" />
     <title>Admin · MisterVet Blog</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#163E8D" />
     <style>
-      /* Loader mientras carga Decap CMS */
-      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; margin: 0; }
-      .cms-loader {
-        position: fixed; inset: 0; display: flex; flex-direction: column;
-        align-items: center; justify-content: center; gap: 16px; color: #475569;
+      * { box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8fafc;
+        margin: 0;
+        color: #1e293b;
       }
-      .cms-loader svg { width: 48px; height: 48px; animation: spin 1s linear infinite; }
+      .header {
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .header h1 {
+        font-size: 18px;
+        margin: 0;
+        font-weight: 600;
+        color: #163E8D;
+      }
+      .header .actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .user-info {
+        font-size: 14px;
+        color: #64748b;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 24px;
+      }
+      .login-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+        text-align: center;
+      }
+      .login-card {
+        background: white;
+        border-radius: 16px;
+        padding: 48px 40px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        max-width: 420px;
+        width: 100%;
+      }
+      .login-card h1 {
+        color: #163E8D;
+        font-size: 24px;
+        margin: 0 0 8px;
+      }
+      .login-card p {
+        color: #64748b;
+        margin: 0 0 32px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: inherit;
+        transition: background 0.15s, transform 0.05s;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn-primary {
+        background: #163E8D;
+        color: white;
+      }
+      .btn-primary:hover { background: #1e4a8f; }
+      .btn-github {
+        background: #24292f;
+        color: white;
+        padding: 12px 24px;
+        font-size: 15px;
+        width: 100%;
+        justify-content: center;
+      }
+      .btn-github:hover { background: #2f363d; }
+      .btn-secondary {
+        background: #e2e8f0;
+        color: #1e293b;
+      }
+      .btn-secondary:hover { background: #cbd5e1; }
+      .btn-danger {
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+      }
+      .btn-danger:hover { background: #fee2e2; }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      .toolbar h2 {
+        font-size: 20px;
+        margin: 0;
+        color: #1e293b;
+      }
+      .posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .post-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .post-card:hover {
+        border-color: #cbd5e1;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      }
+      .post-info { flex: 1; min-width: 0; }
+      .post-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 4px;
+        color: #1e293b;
+        word-wrap: break-word;
+      }
+      .post-meta {
+        font-size: 13px;
+        color: #64748b;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .post-meta .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .badge-Mascotas { background: #dbeafe; color: #1e40af; }
+      .badge-Ganaderia { background: #dcfce7; color: #166534; }
+      .badge-General { background: #f3f4f6; color: #4b5563; }
+      .post-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .empty-state {
+        text-align: center;
+        padding: 64px 24px;
+        color: #64748b;
+      }
+      .empty-state p { margin: 8px 0; }
+      .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #cbd5e1;
+        border-top-color: #163E8D;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
       @keyframes spin { to { transform: rotate(360deg); } }
+      .editor {
+        background: white;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      }
+      .editor h2 {
+        margin: 0 0 24px;
+        font-size: 22px;
+        color: #163E8D;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 6px;
+      }
+      .form-group .hint {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 4px;
+      }
+      .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+        background: white;
+        color: #1e293b;
+        transition: border-color 0.15s;
+      }
+      .form-control:focus {
+        outline: none;
+        border-color: #163E8D;
+        box-shadow: 0 0 0 3px rgba(22, 62, 141, 0.1);
+      }
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+        font-family: 'SF Mono', Menlo, Consolas, monospace;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      textarea.form-control.markdown {
+        min-height: 400px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .editor-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid #e2e8f0;
+      }
+      .error-banner {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #991b1b;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+      .success-banner {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #166534;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+      .hidden { display: none !important; }
+      @media (max-width: 640px) {
+        .form-row { grid-template-columns: 1fr; }
+        .post-card { flex-direction: column; }
+        .post-actions { width: 100%; justify-content: flex-end; }
+      }
     </style>
   </head>
   <body>
-    <div class="cms-loader" id="loader">
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="20" stroke="#2E86DE" stroke-opacity="0.2" stroke-width="4"/>
-        <path d="M24 4 a20 20 0 0 1 20 20" stroke="#2E86DE" stroke-width="4" stroke-linecap="round"/>
-      </svg>
-      <p>Cargando panel de administración…</p>
+    <div id="app">
+      <div class="login-screen">
+        <div class="login-card">
+          <h1>MisterVet · Admin</h1>
+          <p>Panel de gestión del blog. Inicia sesión con tu cuenta de GitHub para crear, editar y eliminar artículos.</p>
+          <button class="btn btn-github" id="login-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            Iniciar sesión con GitHub
+          </button>
+          <div id="login-error" class="error-banner hidden" style="margin-top:16px;"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Decap CMS (última estable con bugs de PKCE corregidos) -->
-    <script src="https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js"></script>
     <script>
-      // Ocultar el loader una vez que Decap CMS terminó de cargar
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const loader = document.getElementById('loader');
-          if (loader) loader.style.display = 'none';
-        }, 1500);
-      });
+      // ============================================================
+      // MisterVet Admin — Panel de gestión del blog con GitHub API
+      // ============================================================
+      // Dependencias: ninguna. Solo vanilla JS.
+      // Usa el Worker OAuth para intercambiar code por token (server-side,
+      // sin exponer Client Secret) y luego la API de GitHub directamente
+      // con el token para CRUD de archivos .md en src/posts/.
+      // ============================================================
+
+      const CONFIG = {
+        owner: 'Merkevarch',
+        repo: 'mistervet-landing',
+        branch: 'master',
+        postsPath: 'src/posts',
+        oauthWorkerUrl: 'https://mistervet-cms-oauth.rubenfchavez.workers.dev',
+      };
+
+      const TOKEN_KEY = 'mistervet_admin_token';
+      const USER_KEY = 'mistervet_admin_user';
+
+      // ─── Utilidades ─────────────────────────────────────────────
+      function getToken() {
+        return sessionStorage.getItem(TOKEN_KEY) || localStorage.getItem(TOKEN_KEY) || null;
+      }
+      function setToken(token, persist) {
+        if (persist) localStorage.setItem(TOKEN_KEY, token);
+        else sessionStorage.setItem(TOKEN_KEY, token);
+      }
+      function clearToken() {
+        sessionStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(TOKEN_KEY);
+        sessionStorage.removeItem(USER_KEY);
+        localStorage.removeItem(USER_KEY);
+      }
+      function getUser() {
+        try { return JSON.parse(sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY) || 'null'); }
+        catch { return null; }
+      }
+      function setUser(user, persist) {
+        const s = JSON.stringify(user);
+        if (persist) localStorage.setItem(USER_KEY, s);
+        else sessionStorage.setItem(USER_KEY, s);
+      }
+
+      async function githubFetch(path, options = {}) {
+        const token = getToken();
+        if (!token) throw new Error('No hay token. Inicia sesión de nuevo.');
+        const url = path.startsWith('http') ? path : `https://api.github.com${path}`;
+        const res = await fetch(url, {
+          ...options,
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+            ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+            ...(options.headers || {}),
+          },
+        });
+        if (res.status === 401) {
+          clearToken();
+          throw new Error('Token inválido o expirado. Inicia sesión de nuevo.');
+        }
+        if (!res.ok) {
+          let msg = `GitHub API ${res.status}`;
+          try {
+            const data = await res.json();
+            msg = data.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
+        if (res.status === 204) return null;
+        return res.json();
+      }
+
+      // ─── Parse frontmatter + markdown ────────────────────────────
+      function parsePost(content, filename) {
+        const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+        if (!match) {
+          return { frontmatter: {}, body: content, slug: filename.replace(/\.md$/, '') };
+        }
+        const fmRaw = match[1];
+        const body = match[2];
+        const frontmatter = {};
+        let currentKey = null;
+        fmRaw.split('\n').forEach(line => {
+          const m = line.match(/^(\w+):\s*(.*)$/);
+          if (m) {
+            currentKey = m[1];
+            const val = m[2].trim();
+            if (val) {
+              frontmatter[currentKey] = val.replace(/^["']|["']$/g, '');
+            }
+          }
+        });
+        return { frontmatter, body, slug: filename.replace(/\.md$/, '') };
+      }
+
+      function buildPostContent(post) {
+        const fm = [];
+        fm.push(`title: "${(post.title || '').replace(/"/g, '\\"')}"`);
+        fm.push(`date: ${post.date}`);
+        fm.push(`category: ${post.category}`);
+        fm.push(`author: "${(post.author || 'MisterVet').replace(/"/g, '\\"')}"`);
+        fm.push(`excerpt: "${(post.excerpt || '').replace(/"/g, '\\"').replace(/\n/g, ' ')}"`);
+        return `---\n${fm.join('\n')}\n---\n\n${post.body || ''}\n`;
+      }
+
+      function slugify(text) {
+        return text
+          .toString().toLowerCase().trim()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      function formatDate(date) {
+        const d = new Date(date);
+        if (isNaN(d)) return date;
+        return d.toISOString().substring(0, 19);
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = String(text);
+        return div.innerHTML;
+      }
+
+      // ─── Vista: Login ────────────────────────────────────────────
+      function renderLogin(errorMsg) {
+        const app = document.getElementById('app');
+        app.innerHTML = `
+          <div class="login-screen">
+            <div class="login-card">
+              <h1>MisterVet · Admin</h1>
+              <p>Panel de gestión del blog. Inicia sesión con tu cuenta de GitHub para crear, editar y eliminar artículos.</p>
+              <button class="btn btn-github" id="login-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Iniciar sesión con GitHub
+              </button>
+              <div id="login-error" class="error-banner ${errorMsg ? '' : 'hidden'}" style="margin-top:16px;">${escapeHtml(errorMsg || '')}</div>
+            </div>
+          </div>
+        `;
+        document.getElementById('login-btn').addEventListener('click', startLogin);
+      }
+
+      function startLogin() {
+        const popup = window.open(
+          `${CONFIG.oauthWorkerUrl}/auth`,
+          'mistervet-auth',
+          'width=960,height=600'
+        );
+
+        // Escuchar mensaje del callback.html (mismo origen)
+        window.addEventListener('message', function handler(event) {
+          if (event.origin !== window.location.origin) return;
+          if (event.data && event.data.type === 'mistervet-auth-success') {
+            window.removeEventListener('message', handler);
+            const token = event.data.token;
+            setToken(token, true);
+            // Cerrar popup si sigue abierto
+            if (popup && !popup.closed) popup.close();
+            // Verificar token y cargar
+            verifyAndLoad();
+          } else if (event.data && event.data.type === 'mistervet-auth-error') {
+            window.removeEventListener('message', handler);
+            if (popup && !popup.closed) popup.close();
+            renderLogin(event.data.error || 'Error de autenticación');
+          }
+        });
+
+        // Verificar si el popup fue bloqueado
+        if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+          renderLogin('El popup fue bloqueado por el navegador. Permite popups para este sitio e intenta de nuevo.');
+        }
+      }
+
+      async function verifyAndLoad() {
+        try {
+          const user = await githubFetch('/user');
+          setUser(user, true);
+          renderPostsList();
+        } catch (e) {
+          clearToken();
+          renderLogin(e.message);
+        }
+      }
+
+      // ─── Vista: Lista de artículos ────────────────────────────────
+      async function renderPostsList() {
+        const user = getUser();
+        const app = document.getElementById('app');
+        app.innerHTML = `
+          <div class="header">
+            <h1>MisterVet · Admin del Blog</h1>
+            <div class="actions">
+              <span class="user-info">${escapeHtml(user?.login || 'usuario')}</span>
+              <button class="btn btn-secondary" id="logout-btn">Cerrar sesión</button>
+            </div>
+          </div>
+          <div class="container">
+            <div id="banner"></div>
+            <div class="toolbar">
+              <h2>Artículos del Blog</h2>
+              <button class="btn btn-primary" id="new-post-btn">+ Nuevo artículo</button>
+            </div>
+            <div id="posts-container">
+              <div style="text-align:center; padding:48px;">
+                <div class="spinner" style="width:32px; height:32px;"></div>
+                <p style="color:#64748b; margin-top:12px;">Cargando artículos…</p>
+              </div>
+            </div>
+          </div>
+        `;
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          clearToken();
+          renderLogin();
+        });
+        document.getElementById('new-post-btn').addEventListener('click', () => renderEditor());
+
+        try {
+          const files = await githubFetch(`/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.postsPath}?ref=${CONFIG.branch}`);
+          const mdFiles = (files || []).filter(f => f.name.endsWith('.md'));
+          if (mdFiles.length === 0) {
+            document.getElementById('posts-container').innerHTML = `
+              <div class="empty-state">
+                <p style="font-size:16px;">No hay artículos todavía.</p>
+                <p>Crea el primer artículo haciendo click en "Nuevo artículo".</p>
+              </div>
+            `;
+            return;
+          }
+          // Cargar contenido de cada archivo
+          const posts = await Promise.all(mdFiles.map(async f => {
+            const data = await githubFetch(f.url);
+            const content = atob(data.content.replace(/\n/g, ''));
+            return { ...parsePost(content, f.name), sha: f.sha, path: f.path, name: f.name };
+          }));
+          // Ordenar por fecha descendente
+          posts.sort((a, b) => (b.frontmatter.date || '').localeCompare(a.frontmatter.date || ''));
+          document.getElementById('posts-container').innerHTML = `
+            <div class="posts-list">
+              ${posts.map(p => `
+                <div class="post-card">
+                  <div class="post-info">
+                    <h3 class="post-title">${escapeHtml(p.frontmatter.title || p.slug)}</h3>
+                    <div class="post-meta">
+                      ${p.frontmatter.category ? `<span class="badge badge-${p.frontmatter.category}">${escapeHtml(p.frontmatter.category)}</span>` : ''}
+                      <span>${escapeHtml(p.frontmatter.date ? new Date(p.frontmatter.date).toLocaleDateString('es-CO', { year:'numeric', month:'short', day:'numeric'}) : '—')}</span>
+                      <span>${escapeHtml(p.frontmatter.author || 'MisterVet')}</span>
+                    </div>
+                  </div>
+                  <div class="post-actions">
+                    <button class="btn btn-secondary" data-action="edit" data-path="${escapeHtml(p.path)}">Editar</button>
+                    <button class="btn btn-danger" data-action="delete" data-path="${escapeHtml(p.path)}" data-sha="${escapeHtml(p.sha)}" data-title="${escapeHtml(p.frontmatter.title || p.slug)}">Eliminar</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+          // Bind action buttons
+          document.querySelectorAll('[data-action="edit"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const path = btn.getAttribute('data-path');
+              const post = posts.find(p => p.path === path);
+              if (post) renderEditor(post);
+            });
+          });
+          document.querySelectorAll('[data-action="delete"]').forEach(btn => {
+            btn.addEventListener('click', async () => {
+              const path = btn.getAttribute('data-path');
+              const sha = btn.getAttribute('data-sha');
+              const title = btn.getAttribute('data-title');
+              if (!confirm(`¿Eliminar "${title}"?\n\nEsta acción hará commit a master eliminando el archivo. No se puede deshacer.`)) return;
+              btn.disabled = true;
+              btn.textContent = 'Eliminando…';
+              try {
+                await githubFetch(`/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`, {
+                  method: 'DELETE',
+                  body: JSON.stringify({
+                    message: `Eliminar artículo: ${title}`,
+                    sha: sha,
+                    branch: CONFIG.branch,
+                  }),
+                });
+                showBanner('Artículo eliminado correctamente. El deploy tomará ~2-3 min.', 'success');
+                renderPostsList();
+              } catch (e) {
+                showBanner('Error al eliminar: ' + e.message, 'error');
+                btn.disabled = false;
+                btn.textContent = 'Eliminar';
+              }
+            });
+          });
+        } catch (e) {
+          document.getElementById('posts-container').innerHTML = `
+            <div class="error-banner">Error al cargar artículos: ${escapeHtml(e.message)}</div>
+          `;
+        }
+      }
+
+      function showBanner(msg, type) {
+        const banner = document.getElementById('banner');
+        if (!banner) { alert(msg); return; }
+        banner.innerHTML = `<div class="${type === 'success' ? 'success-banner' : 'error-banner'}">${escapeHtml(msg)}</div>`;
+        if (type === 'success') {
+          setTimeout(() => { if (banner) banner.innerHTML = ''; }, 5000);
+        }
+      }
+
+      // ─── Vista: Editor ───────────────────────────────────────────
+      function renderEditor(post) {
+        const isNew = !post;
+        const now = new Date().toISOString().substring(0, 19);
+        const data = post ? {
+          title: post.frontmatter.title || '',
+          date: post.frontmatter.date || now,
+          category: post.frontmatter.category || 'Mascotas',
+          author: post.frontmatter.author || 'MisterVet',
+          excerpt: post.frontmatter.excerpt || '',
+          body: post.body || '',
+          slug: post.slug,
+          originalPath: post.path,
+          sha: post.sha,
+        } : {
+          title: '', date: now, category: 'Mascotas', author: 'MisterVet',
+          excerpt: '', body: '', slug: '', originalPath: null, sha: null,
+        };
+
+        const app = document.getElementById('app');
+        app.innerHTML = `
+          <div class="header">
+            <h1>${isNew ? 'Nuevo artículo' : 'Editar artículo'}</h1>
+            <div class="actions">
+              <button class="btn btn-secondary" id="cancel-btn">Cancelar</button>
+            </div>
+          </div>
+          <div class="container">
+            <div id="banner"></div>
+            <div class="editor">
+              <h2>${isNew ? 'Crear artículo' : 'Editar artículo'}</h2>
+              <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" value="${escapeHtml(data.title)}" />
+                <div class="hint">Se usará como H1 en la página y como slug del archivo. NO escribas "##" al inicio del contenido.</div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="date">Fecha de publicación</label>
+                  <input type="datetime-local" class="form-control" id="date" value="${data.date.replace('Z','').substring(0,16)}" />
+                </div>
+                <div class="form-group">
+                  <label for="category">Categoría</label>
+                  <select class="form-control" id="category">
+                    <option value="Mascotas" ${data.category==='Mascotas'?'selected':''}>Mascotas</option>
+                    <option value="Ganaderia" ${data.category==='Ganaderia'?'selected':''}>Ganadería</option>
+                    <option value="General" ${data.category==='General'?'selected':''}>General</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="author">Autor</label>
+                  <input type="text" class="form-control" id="author" value="${escapeHtml(data.author)}" />
+                </div>
+                <div class="form-group">
+                  <label for="excerpt">Resumen (excerpt)</label>
+                  <textarea class="form-control" id="excerpt" rows="2">${escapeHtml(data.excerpt)}</textarea>
+                  <div class="hint">1-3 frases. Se usa en el listado y como meta description SEO.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="body">Contenido (Markdown)</label>
+                <textarea class="form-control markdown" id="body">${escapeHtml(data.body)}</textarea>
+                <div class="hint">Usa ## para subtítulos, ### para sub-subtítulos. NO escribas # H1 al inicio (se añade automáticamente).</div>
+              </div>
+              <div class="editor-actions">
+                ${!isNew ? `<button class="btn btn-danger" id="delete-btn">Eliminar</button>` : ''}
+                <button class="btn btn-primary" id="save-btn">${isNew ? 'Publicar' : 'Guardar'}</button>
+              </div>
+            </div>
+          </div>
+        `;
+        document.getElementById('cancel-btn').addEventListener('click', () => {
+          if (confirm('¿Descartar cambios?')) renderPostsList();
+        });
+        document.getElementById('save-btn').addEventListener('click', async () => {
+          await savePost(data, isNew);
+        });
+        if (!isNew) {
+          document.getElementById('delete-btn').addEventListener('click', async () => {
+            if (!confirm('¿Eliminar este artículo permanentemente?')) return;
+            try {
+              await githubFetch(`/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${data.originalPath}`, {
+                method: 'DELETE',
+                body: JSON.stringify({
+                  message: `Eliminar artículo: ${data.title}`,
+                  sha: data.sha,
+                  branch: CONFIG.branch,
+                }),
+              });
+              showBanner('Artículo eliminado. Deploy en ~2-3 min.', 'success');
+              setTimeout(() => renderPostsList(), 1500);
+            } catch (e) {
+              showBanner('Error al eliminar: ' + e.message, 'error');
+            }
+          });
+        }
+      }
+
+      async function savePost(originalData, isNew) {
+        const saveBtn = document.getElementById('save-btn');
+        const title = document.getElementById('title').value.trim();
+        const dateInput = document.getElementById('date').value;
+        const category = document.getElementById('category').value;
+        const author = document.getElementById('author').value.trim() || 'MisterVet';
+        const excerpt = document.getElementById('excerpt').value.trim();
+        const body = document.getElementById('body').value;
+
+        if (!title) { showBanner('El título es obligatorio.', 'error'); return; }
+        if (!body.trim()) { showBanner('El contenido no puede estar vacío.', 'error'); return; }
+
+        const date = dateInput ? new Date(dateInput).toISOString().substring(0, 19) : new Date().toISOString().substring(0, 19);
+
+        const slug = isNew ? slugify(title) : originalData.slug;
+        const path = `${CONFIG.postsPath}/${slug}.md`;
+        const content = buildPostContent({ title, date, category, author, excerpt, body });
+        const encodedContent = btoa(unescape(encodeURIComponent(content)));
+
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Guardando…';
+
+        try {
+          // Si es edición y cambió el slug, eliminar el archivo viejo y crear el nuevo
+          if (!isNew && originalData.originalPath && originalData.originalPath !== path) {
+            // Eliminar archivo viejo
+            await githubFetch(`/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${originalData.originalPath}`, {
+              method: 'DELETE',
+              body: JSON.stringify({
+                message: `Eliminar artículo (renombrado): ${title}`,
+                sha: originalData.sha,
+                branch: CONFIG.branch,
+              }),
+            });
+            // Crear archivo nuevo (sin sha)
+            await githubFetch(`/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                message: `Publicar artículo (renombrado): ${title}`,
+                content: encodedContent,
+                branch: CONFIG.branch,
+              }),
+            });
+          } else {
+            // Crear o actualizar
+            await githubFetch(`/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                message: isNew ? `Publicar artículo: ${title}` : `Actualizar artículo: ${title}`,
+                content: encodedContent,
+                sha: isNew ? undefined : originalData.sha,
+                branch: CONFIG.branch,
+              }),
+            });
+          }
+          showBanner(`${isNew ? 'Artículo publicado' : 'Artículo actualizado'}. El deploy tomará ~2-3 min.`, 'success');
+          setTimeout(() => renderPostsList(), 1500);
+        } catch (e) {
+          showBanner('Error al guardar: ' + e.message, 'error');
+          saveBtn.disabled = false;
+          saveBtn.textContent = isNew ? 'Publicar' : 'Guardar';
+        }
+      }
+
+      // ─── Init ────────────────────────────────────────────────────
+      (function init() {
+        const token = getToken();
+        if (token) {
+          verifyAndLoad();
+        } else {
+          renderLogin();
+        }
+      })();
     </script>
   </body>
 </html>
