@@ -11,10 +11,27 @@
 # lo que deja el spinner de login colgado indefinidamente.
 # El flujo PKCE funciona nativamente sin ese bug.
 #
-# Configuración:
-#   1. GitHub OAuth App creada con callback URL:
-#      https://www.mistervet.co/callback.html
-#   2. Client ID de la OAuth App en `app_id` abajo
+# CONFIGURACIÓN PKCE EN DECAP CMS:
+#   - auth_type: pkce
+#   - app_id: Client ID de la GitHub OAuth App (público)
+#   - No requiere Client Secret (es de conocimiento del navegador solo)
+#
+# FLUJO:
+#   1. Decap CMS genera code_verifier + code_challenge (cripto, en sessionStorage)
+#   2. Decap CMS abre popup a https://github.com/login/oauth/authorize
+#      con client_id, redirect_uri=https://www.mistervet.co/admin/,
+#      code_challenge, state
+#   3. Usuario autoriza en GitHub
+#   4. GitHub redirige el popup a https://www.mistervet.co/admin/?code=xxx&state=yyy
+#   5. Decap CMS (que está cargado en /admin/) intercepta el code, lo intercambia
+#      por un access_token usando code_verifier
+#   6. Decap CMS usa el access_token para llamar a la API de GitHub
+#   7. El popup se cierra solo y el panel carga
+#
+# IMPORTANTE:
+#   - La callback URL registrada en la GitHub OAuth App debe ser:
+#     https://www.mistervet.co/admin/
+#   - No se necesita /callback.html ni Worker OAuth proxy.
 # ============================================================
 
 backend:

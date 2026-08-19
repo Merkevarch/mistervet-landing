@@ -30,19 +30,18 @@ es vía OAuth PKCE (moderno, sin secret en el servidor).
 3. Completa:
    - **Application name:** `MisterVet CMS`
    - **Homepage URL:** `https://www.mistervet.co`
-   - **Authorization callback URL:** `https://www.mistervet.co/callback`
-     - ⚠️ **Importante:** debe ser EXACTAMENTE esa URL (sin `.html`,
-       porque Cloudflare Pages aplica "pretty URLs" y redirige
-       `/callback.html` → `/callback` con un 308 que rompe el popup OAuth).
-       GitHub OAuth Apps permiten hasta 20 callback URLs; si quieres
-       registrar tanto `/callback` como `/callback.html` por seguridad,
-       adelante, pero la principal debe ser `/callback`.
+   - **Authorization callback URL:** `https://www.mistervet.co/admin/`
+     - ⚠️ **Importante:** debe ser EXACTAMENTE esa URL, con slash final.
+       Decap CMS con PKCE construye `redirect_uri` automáticamente como
+       `document.location.origin + document.location.pathname`, que es
+       la URL donde está cargado Decap CMS, o sea `https://www.mistervet.co/admin/`.
+       GitHub redirige el popup de vuelta a esa URL con `?code=xxx&state=yyy`,
+       y Decap CMS intercepta esos parámetros para completar el intercambio PKCE.
      - ⚠️ Si tu OAuth App tenía antes el callback del Worker
-       (`https://mistervet-cms-oauth.rubenfchavez.workers.dev/callback`),
-       elimínalo o reemplázalo por `https://www.mistervet.co/callback`.
-       Decap CMS con PKCE envía `redirect_uri` a la URL configurada en
-       `public/admin/config.yml` → `site_url`, y el handler vive en
-       `public/callback/index.html` (servido en `/callback`).
+       (`https://mistervet-cms-oauth.rubenfchavez.workers.dev/callback`)
+       o `https://www.mistervet.co/callback.html`, reemplázalo por
+       `https://www.mistervet.co/admin/`. Si no coincide exactamente,
+       GitHub devolverá "redirect_uri mismatch" en el login.
 4. Click en **"Register application"**
 5. Anota el **Client ID** (visible en la página de la app, justo debajo del nombre)
    - ✅ **NO necesitas el Client Secret** — el flujo PKCE no lo requiere
