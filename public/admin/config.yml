@@ -1,48 +1,37 @@
 # ============================================================
-# Decap CMS Configuration — Flujo PKCE (moderno, sin Worker)
+# Decap CMS Configuration — Flujo implicit con Worker OAuth proxy
 # ============================================================
-# Autenticación directa con GitHub usando el flujo OAuth PKCE
-# (Proof Key for Code Exchange). Es el estándar moderno y no requiere
-# el Cloudflare Worker OAuth proxy.
+# El backend de GitHub en Decap CMS NO soporta auth_type: pkce.
+# El GitHubAuthenticationPage siempre usa NetlifyAuthenticator sin
+# importar el valor de auth_type. Para que funcione fuera de Netlify
+# se debe usar auth_type: implicit con base_url + auth_endpoint
+# apuntando a un OAuth proxy (el Cloudflare Worker en /oauth-worker/).
 #
-# RAZÓN DE LA MIGRACIÓN (desde flujo `implicit`):
-# Decap CMS con auth_type: implicit tiene un bug conocido donde ignora
-# `auth_endpoint` y cae al fallback de Netlify Identity (api.netlify.com/auth),
-# lo que deja el spinner de login colgado indefinidamente.
-# El flujo PKCE funciona nativamente sin ese bug.
+# El Worker imita el comportamiento de Netlify Identity:
+#   1. Decap CMS abre popup a ${base_url}${auth_endpoint}?provider=github&...
+#   2. Worker /auth responde con 302 redirect a GitHub OAuth
+#   3. GitHub redirige el popup a ${base_url}/callback?code=xxx
+#   4. Worker intercambia code por token server-side (sin exponer Client Secret)
+#   5. Worker devuelve HTML con handshake postMessage al opener
+#   6. Decap CMS recibe el token y carga el panel
 #
-# CONFIGURACIÓN PKCE EN DECAP CMS:
-#   - auth_type: pkce
-#   - app_id: Client ID de la GitHub OAuth App (público)
-#   - No requiere Client Secret (es de conocimiento del navegador solo)
-#
-# FLUJO:
-#   1. Decap CMS genera code_verifier + code_challenge (cripto, en sessionStorage)
-#   2. Decap CMS abre popup a https://github.com/login/oauth/authorize
-#      con client_id, redirect_uri=https://www.mistervet.co/admin/,
-#      code_challenge, state
-#   3. Usuario autoriza en GitHub
-#   4. GitHub redirige el popup a https://www.mistervet.co/admin/?code=xxx&state=yyy
-#   5. Decap CMS (que está cargado en /admin/) intercepta el code, lo intercambia
-#      por un access_token usando code_verifier
-#   6. Decap CMS usa el access_token para llamar a la API de GitHub
-#   7. El popup se cierra solo y el panel carga
-#
-# IMPORTANTE:
-#   - La callback URL registrada en la GitHub OAuth App debe ser:
-#     https://www.mistervet.co/admin/
-#   - No se necesita /callback.html ni Worker OAuth proxy.
+# IMPORTANTE — OAuth App en GitHub:
+#   La 'Authorization callback URL' debe ser:
+#     https://mistervet-cms-oauth.rubenfchavez.workers.dev/callback
+#   (la callback del Worker, NO la del sitio www.mistervet.co)
 # ============================================================
 
 backend:
   name: github
   repo: Merkevarch/mistervet-landing
   branch: master
-  auth_type: pkce
-  # Client ID de la GitHub OAuth App (público, va en el navegador).
-  # Lo encuentras en https://github.com/settings/developers → tu OAuth App.
-  # Flujo PKCE NO requiere Client Secret.
-  app_id: Ov23liiyJzmHVadIq5bb
+  auth_type: implicit
+  # URL del Cloudflare Worker OAuth proxy (sin slash final).
+  # Decap CMS hará peticiones a ${base_url}${auth_endpoint}
+  base_url: https://mistervet-cms-oauth.rubenfchavez.workers.dev
+  # Path del endpoint que inicia el flujo OAuth en el Worker.
+  # El Worker responde con 302 redirect a GitHub OAuth.
+  auth_endpoint: /auth
 
 # Carpeta pública donde se sirven los assets estáticos.
 # Las imágenes que subas desde el editor se guardarán en /public/blog/
