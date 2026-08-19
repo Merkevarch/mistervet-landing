@@ -30,14 +30,19 @@ es vía OAuth PKCE (moderno, sin secret en el servidor).
 3. Completa:
    - **Application name:** `MisterVet CMS`
    - **Homepage URL:** `https://www.mistervet.co`
-   - **Authorization callback URL:** `https://www.mistervet.co/callback.html`
-     - ⚠️ **Importante:** debe ser EXACTAMENTE esa URL (raíz, no `/admin/callback.html`)
+   - **Authorization callback URL:** `https://www.mistervet.co/callback`
+     - ⚠️ **Importante:** debe ser EXACTAMENTE esa URL (sin `.html`,
+       porque Cloudflare Pages aplica "pretty URLs" y redirige
+       `/callback.html` → `/callback` con un 308 que rompe el popup OAuth).
+       GitHub OAuth Apps permiten hasta 20 callback URLs; si quieres
+       registrar tanto `/callback` como `/callback.html` por seguridad,
+       adelante, pero la principal debe ser `/callback`.
      - ⚠️ Si tu OAuth App tenía antes el callback del Worker
        (`https://mistervet-cms-oauth.rubenfchavez.workers.dev/callback`),
-       elimínalo o reemplázalo por `https://www.mistervet.co/callback.html`.
-       GitHub solo redirige a una de las callback URLs registradas;
-       Decap CMS con PKCE envía `redirect_uri=https://www.mistervet.co/callback.html`,
-       así que debe estar registrada exactamente con ese valor.
+       elimínalo o reemplázalo por `https://www.mistervet.co/callback`.
+       Decap CMS con PKCE envía `redirect_uri` a la URL configurada en
+       `public/admin/config.yml` → `site_url`, y el handler vive en
+       `public/callback/index.html` (servido en `/callback`).
 4. Click en **"Register application"**
 5. Anota el **Client ID** (visible en la página de la app, justo debajo del nombre)
    - ✅ **NO necesitas el Client Secret** — el flujo PKCE no lo requiere
