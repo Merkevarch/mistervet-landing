@@ -1,15 +1,20 @@
 /**
  * Cloudflare Worker — OAuth proxy para el panel admin de MisterVet.
  *
- * Flujos:
- *   1. /auth     — el panel (/admin/) abre popup a esta URL
+ * Flujo (basado en redirect, sin popup):
+ *   1. /auth     — el panel (/admin/) redirige la ventana principal aquí
  *                  → Worker responde con 302 a GitHub OAuth
  *   2. /callback — GitHub redirige aquí con ?code=xxx
  *                  → Worker intercambia code por token server-side
  *                  → Worker responde con 302 a
- *                    https://www.mistervet.co/admin/callback.html#token=xxx
- *   3. callback.html (en el sitio, mismo origen con /admin/) guarda el
- *      token en sessionStorage y hace postMessage al opener.
+ *                    https://www.mistervet.co/admin/#status=success&token=xxx
+ *   3. /admin/ (al recargar) lee el hash, guarda el token en localStorage,
+ *      limpia el hash y carga el panel vía GitHub API.
+ *
+ * Por qué redirect (no popup): navegadores como Brave bloquean
+ * window.opener cuando el popup navega cross-origin (Worker→GitHub→Worker→sitio),
+ * lo que rompe el postMessage al opener y deja el spinner infinito.
+ * El redirect evita popup/opener/postMessage — todo pasa en la misma ventana.
  *
  * Variables de entorno (definir con `wrangler secret put`):
  *   - GITHUB_CLIENT_ID     — Client ID de la OAuth App en GitHub
@@ -20,7 +25,7 @@
  *     https://mistervet-cms-oauth.rubenfchavez.workers.dev/callback
  */
 
-const SITE_CALLBACK_URL = 'https://www.mistervet.co/admin/callback.html';
+const SITE_ADMIN_URL = 'https://www.mistervet.co/admin/';
 
 export default {
   async fetch(request, env) {
@@ -38,7 +43,7 @@ export default {
           provider: 'github',
         });
         return Response.redirect(
-          `${SITE_CALLBACK_URL}#${params.toString()}`,
+          `${SITE_ADMIN_URL}#${params.toString()}`,
           302
         );
       }
@@ -50,7 +55,7 @@ export default {
           provider: 'github',
         });
         return Response.redirect(
-          `${SITE_CALLBACK_URL}#${params.toString()}`,
+          `${SITE_ADMIN_URL}#${params.toString()}`,
           302
         );
       }
@@ -81,7 +86,7 @@ export default {
           provider: 'github',
         });
         return Response.redirect(
-          `${SITE_CALLBACK_URL}#${params.toString()}`,
+          `${SITE_ADMIN_URL}#${params.toString()}`,
           302
         );
       }
@@ -93,12 +98,12 @@ export default {
           provider: 'github',
         });
         return Response.redirect(
-          `${SITE_CALLBACK_URL}#${params.toString()}`,
+          `${SITE_ADMIN_URL}#${params.toString()}`,
           302
         );
       }
 
-      // Éxito: redirigir al callback.html con el token en el hash
+      // Éxito: redirigir al /admin/ con el token en el hash
       // (no en el query string, así no llega a logs del servidor)
       const params = new URLSearchParams({
         status: 'success',
@@ -106,7 +111,7 @@ export default {
         provider: 'github',
       });
       return Response.redirect(
-        `${SITE_CALLBACK_URL}#${params.toString()}`,
+        `${SITE_ADMIN_URL}#${params.toString()}`,
         302
       );
     }

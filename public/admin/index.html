@@ -451,34 +451,18 @@
       }
 
       function startLogin() {
-        const popup = window.open(
-          `${CONFIG.oauthWorkerUrl}/auth`,
-          'mistervet-auth',
-          'width=960,height=600'
-        );
-
-        // Escuchar mensaje del callback.html (mismo origen)
-        window.addEventListener('message', function handler(event) {
-          if (event.origin !== window.location.origin) return;
-          if (event.data && event.data.type === 'mistervet-auth-success') {
-            window.removeEventListener('message', handler);
-            const token = event.data.token;
-            setToken(token, true);
-            // Cerrar popup si sigue abierto
-            if (popup && !popup.closed) popup.close();
-            // Verificar token y cargar
-            verifyAndLoad();
-          } else if (event.data && event.data.type === 'mistervet-auth-error') {
-            window.removeEventListener('message', handler);
-            if (popup && !popup.closed) popup.close();
-            renderLogin(event.data.error || 'Error de autenticación');
-          }
-        });
-
-        // Verificar si el popup fue bloqueado
-        if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-          renderLogin('El popup fue bloqueado por el navegador. Permite popups para este sitio e intenta de nuevo.');
+        // Mostrar spinner mientras se redirige
+        const btn = document.getElementById('login-btn');
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span> Redirigiendo a GitHub…';
         }
+        // Redirigir la ventana principal al Worker OAuth.
+        // Esto evita el problema de Brave con window.opener cross-origin
+        // (el popup navegaba Worker→GitHub→Worker→sitio, y Brave bloquea
+        // postMessage al opener en esa situación).
+        // Con redirect, no hay popup ni opener — todo pasa en la misma ventana.
+        window.location.href = `${CONFIG.oauthWorkerUrl}/auth`;
       }
 
       async function verifyAndLoad() {
@@ -780,6 +764,38 @@
 
       // ─── Init ────────────────────────────────────────────────────
       (function init() {
+        // Detectar token en el hash (vuelta del redirect OAuth)
+        // Worker redirige a /admin/#status=success&token=xxx o /admin/#status=failure&error=...
+        if (window.location.hash) {
+          const raw = window.location.hash.substring(1);
+          const params = {};
+          raw.split('&').forEach(pair => {
+            if (!pair) return;
+            const idx = pair.indexOf('=');
+            const key = idx === -1 ? pair : pair.substring(0, idx);
+            const value = idx === -1 ? '' : pair.substring(idx + 1);
+            params[decodeURIComponent(key)] = decodeURIComponent(value);
+          });
+          // Limpiar el hash sin disparar scroll
+          history.replaceState(null, '', window.location.pathname);
+          if (params.status === 'success' && params.token) {
+            setToken(params.token, true);
+            // Mostrar spinner mientras carga
+            document.getElementById('app').innerHTML = `
+              <div class="login-screen">
+                <div class="login-card">
+                  <div class="spinner" style="margin:0 auto 16px;"></div>
+                  <p style="color:#64748b; margin:0;">Verificando acceso…</p>
+                </div>
+              </div>`;
+            verifyAndLoad();
+            return;
+          } else if (params.status === 'failure' && params.error) {
+            renderLogin(decodeURIComponent(params.error));
+            return;
+          }
+        }
+
         const token = getToken();
         if (token) {
           verifyAndLoad();
