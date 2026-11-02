@@ -4,8 +4,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 
-const WHATSAPP_URL = 'https://wa.me/573017653440';
-const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
+import { WHATSAPP_GANADERIA_URL, CONTACT_EMAIL } from '../config';
 
 const services = [
   {
@@ -138,7 +137,7 @@ export default function ProduccionPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href={WHATSAPP_URL}
+                href={WHATSAPP_GANADERIA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
@@ -253,7 +252,7 @@ export default function ProduccionPage() {
           <p className="text-slate-300 mb-6">Coordinemos una visita técnica de diagnóstico sin compromiso</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_GANADERIA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"

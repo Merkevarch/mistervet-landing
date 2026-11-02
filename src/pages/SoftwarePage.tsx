@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 import mockupSoftware from '../assets/mockup-software.webp';
-import { APP_URL, SETUP_URL, WHATSAPP_URL } from '../config';
+import { APP_URL, SETUP_URL, WHATSAPP_PRO_URL } from '../config';
 
 interface Feature {
   title: string;
@@ -327,7 +327,7 @@ export default function SoftwarePage() {
                   ))}
                 </ul>
                 <a
-                  href={plan.name === 'Enterprise' ? WHATSAPP_URL : SETUP_URL}
+                  href={plan.name === 'Enterprise' ? WHATSAPP_PRO_URL : SETUP_URL}
                   target={plan.name === 'Enterprise' ? '_blank' : undefined}
                   rel={plan.name === 'Enterprise' ? 'noopener noreferrer' : undefined}
                   className={`block text-center px-4 py-2.5 rounded-xl font-semibold text-sm transition-all ${

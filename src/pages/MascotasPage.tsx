@@ -3,11 +3,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
-import perroImg from '../assets/perro.jpg';
-
-const WHATSAPP_URL = 'https://wa.me/573017653440';
-const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
-const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
+import perroImg from '../assets/perro.webp';
+import { WHATSAPP_CITA_URL, CONTACT_EMAIL, GBP_REVIEW_URL } from '../config';
 
 const services = [
   {
@@ -164,7 +161,7 @@ export default function MascotasPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href={WHATSAPP_URL}
+                  href={WHATSAPP_CITA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
@@ -180,7 +177,16 @@ export default function MascotasPage() {
               </div>
             </div>
             <div className="flex justify-center">
-              <img src={perroImg} alt="Mascota" className="max-h-[400px] lg:max-h-[500px] object-contain object-bottom" loading="eager" fetchPriority="high" />
+              <img
+                src={perroImg}
+                alt="Perro de pelaje blanco y negro con correa verde, sentado sobre rocas frente al mar"
+                width="600"
+                height="800"
+                className="max-h-[400px] lg:max-h-[500px] w-auto object-contain object-bottom"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -313,7 +319,7 @@ export default function MascotasPage() {
           <p className="text-slate-300 mb-6">Agenda una cita y recibe atención profesional personalizada</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_CITA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"

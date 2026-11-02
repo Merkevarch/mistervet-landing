@@ -4,10 +4,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 
-const WHATSAPP_URL = 'https://wa.me/573017653440';
-const CONTACT_EMAIL = 'mailto:contacto@mistervet.co';
-const PHONE_DISPLAY = '+57 301 765 3440';
-const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
+import { WHATSAPP_CITA_URL, CONTACT_EMAIL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
 
 const services = [
   {
@@ -158,7 +155,7 @@ export default function VeterinariaEnSincelejoMonteriaPage() {
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_CITA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
@@ -278,7 +275,7 @@ export default function VeterinariaEnSincelejoMonteriaPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_CITA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"

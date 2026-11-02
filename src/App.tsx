@@ -4,9 +4,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
 import { organizationSchema, websiteSchema } from './schemas';
-import perroImg from './assets/perro.jpg';
+import perroImg from './assets/perro.webp';
 import mockupSoftware from './assets/mockup-software.webp';
-import { WHATSAPP_URL, SETUP_URL, CONTACT_EMAIL } from './config';
+import { WHATSAPP_CITA_URL, SETUP_URL, CONTACT_EMAIL } from './config';
 
 // Iconos SVG correctos (Heroicons)
 const Icon = {
@@ -79,7 +79,7 @@ export default function App(): ReactNode {
               {/* CTAs */}
               <div className="flex flex-wrap gap-4 mb-2">
                 <a
-                  href={WHATSAPP_URL}
+                  href={WHATSAPP_CITA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
@@ -95,7 +95,16 @@ export default function App(): ReactNode {
               </div>
             </div>
             <div className="flex justify-center">
-              <img src={perroImg} alt="Mascota" className="max-h-[400px] lg:max-h-[500px] object-contain object-bottom" loading="eager" fetchPriority="high" />
+              <img
+                src={perroImg}
+                alt="Perro de pelaje blanco y negro con correa verde, sentado sobre rocas frente al mar"
+                width="600"
+                height="800"
+                className="max-h-[400px] lg:max-h-[500px] w-auto object-contain object-bottom"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
           </div>
         </div>

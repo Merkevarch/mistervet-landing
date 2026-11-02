@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
-import { WHATSAPP_URL, CONTACT_EMAIL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
+import { WHATSAPP_CITA_URL, CONTACT_EMAIL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
 
 type CityPageType = 'veterinaria' | 'ganaderia';
 
@@ -139,7 +139,7 @@ export default function CityPage({
           <p className="text-base text-slate-600 mb-4 leading-relaxed">{intro}</p>
           <div className="flex flex-wrap gap-4">
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_CITA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"
@@ -235,7 +235,7 @@ export default function CityPage({
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_CITA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl shadow-lg shadow-mv-orange/30 hover:bg-mv-orange/90 transition-all hover:scale-105"

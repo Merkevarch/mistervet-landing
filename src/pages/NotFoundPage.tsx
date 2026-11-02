@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
-import { WHATSAPP_URL } from '../config';
+import { WHATSAPP_CITA_URL } from '../config';
 
 export default function NotFoundPage() {
   return (
@@ -53,7 +53,7 @@ export default function NotFoundPage() {
           <div className="bg-slate-100 rounded-2xl p-5 text-sm text-slate-600">
             <p className="mb-2">¿Necesitas ayuda para encontrar lo que buscas?</p>
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_CITA_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-mv-blue hover:underline font-medium"

@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 import { getPostBySlug } from '../blog/postsLoader';
 
-const WHATSAPP_URL = 'https://wa.me/573017653440';
+import { WHATSAPP_CITA_URL } from '../config';
 const SITE_URL = 'https://www.mistervet.co';
 
 const categoryColors: Record<string, string> = {
@@ -127,7 +127,7 @@ export default function BlogPost() {
           <h3 className="text-white font-bold text-lg mb-2">¿Necesitas ayuda con tu mascota o tu finca?</h3>
           <p className="text-slate-300 text-sm mb-4">Contáctanos y recibe atención profesional</p>
           <a
-            href={WHATSAPP_URL}
+            href={WHATSAPP_CITA_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 py-3 bg-mv-orange text-white font-semibold rounded-xl hover:bg-mv-orange/90 transition-colors"

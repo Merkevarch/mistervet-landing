@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.tsx'
+import WhatsAppFloat from './components/WhatsAppFloat.tsx'
 
 // Code-splitting: todas las rutas excepto home (App) se cargan bajo demanda.
 // Cada página se convierte en un chunk separado que se descarga solo cuando
@@ -32,6 +33,8 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
+        {/* Botón flotante de WhatsApp (solo móvil) presente en todas las rutas */}
+        <WhatsAppFloat />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<App />} />

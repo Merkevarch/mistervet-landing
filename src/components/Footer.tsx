@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import logoDibujo from '../assets/logo-dibujo.webp';
 import {
-  WHATSAPP_URL,
+  WHATSAPP_CITA_URL,
+  PHONE_TEL_URL,
   APP_URL,
   SETUP_URL,
   CONTACT_EMAIL,
@@ -27,8 +28,14 @@ export default function Footer() {
             <ul className="space-y-1 text-sm">
               <li className="flex items-center gap-2">
                 <span className="text-mv-amber">📞</span>
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <a href={PHONE_TEL_URL} className="hover:text-white transition-colors">
                   {PHONE_DISPLAY}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-mv-amber">💬</span>
+                <a href={WHATSAPP_CITA_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  WhatsApp directo
                 </a>
               </li>
               <li className="flex items-center gap-2">

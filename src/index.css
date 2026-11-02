@@ -8,7 +8,7 @@
   --color-mv-amber: #FBB03B;     /* Amarillo cálido de acento */
 
   /* Registro de Fuentes */
-  --font-brand: "Bacallisties", sans-serif;
+  --font-brand: "Bacalisties", sans-serif;
   --font-display: "Roboto-Thin", sans-serif;
 }
 
@@ -27,9 +27,14 @@
   }
 }
 
+/* Fuentes autoalojadas en WOFF2 (≈80% más ligeras que TTF).
+   El TTF queda como fallback para navegadores muy antiguos.
+   IMPORTANTE: el nombre en font-family debe coincidir con el token
+   --font-brand de @theme ("Bacalisties", con una sola L). */
 @font-face {
-  font-family: 'Bacallisties';
-  src: url('./assets/fonts/Bacalisties.txt.ttf') format('truetype');
+  font-family: 'Bacalisties';
+  src: url('./assets/fonts/Bacalisties.woff2') format('woff2'),
+       url('./assets/fonts/Bacalisties.txt.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -37,7 +42,8 @@
 
 @font-face {
   font-family: 'Roboto-Thin';
-  src: url('./assets/fonts/Roboto-Thin.ttf') format('truetype');
+  src: url('./assets/fonts/Roboto-Thin.woff2') format('woff2'),
+       url('./assets/fonts/Roboto-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;

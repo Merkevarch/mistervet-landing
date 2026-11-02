@@ -59,6 +59,8 @@ export default function Navbar() {
             className="md:hidden text-slate-600"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Menú"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -74,7 +76,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-slate-200 space-y-3">
+          <div id="mobile-menu" className="md:hidden py-4 border-t border-slate-200 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.to}

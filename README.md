@@ -11,7 +11,7 @@ un SaaS de gestión veterinaria multi-tenant (web app separada en `app.mistervet
 
 | Capa            | Tecnología                                   |
 | --------------- | -------------------------------------------- |
-| Framework UI    | React 19                                     |
+| Framework UI    | React 19 + TypeScript                     |
 | Build tool      | Vite 8                                       |
 | Routing         | react-router-dom 7                           |
 | SEO meta tags   | react-helmet-async 3                         |
@@ -22,7 +22,7 @@ un SaaS de gestión veterinaria multi-tenant (web app separada en `app.mistervet
 | CI/CD           | GitHub Actions (`.github/workflows/deploy.yml`) |
 | Prerender SEO   | Playwright (Chromium) — genera HTML estático por ruta |
 
-Sin TypeScript. Sin tests automatizados (pendiente).
+TypeScript estricto (`tsc -b` en el build). Sin tests automatizados (pendiente).
 
 ## 📁 Estructura del proyecto
 
@@ -30,46 +30,47 @@ Sin TypeScript. Sin tests automatizados (pendiente).
 mistervet-landing/
 ├── .github/workflows/deploy.yml      # CI: build + prerender + deploy a Cloudflare
 ├── index.html                         # HTML raíz (SPA mount point)
-├── vite.config.js                     # Config mínima de Vite
+├── vite.config.ts                     # Config mínima de Vite
 ├── wrangler.toml                      # Config Cloudflare Pages
 ├── package.json
 ├── scripts/
 │   └── prerender.cjs                  # ⭐ Prerenderiza 12 rutas con Playwright
 ├── public/
-│   ├── _headers                       # MIME types para .js/.jsx/.mjs
+│   ├── _headers                       # Caché de assets, seguridad y MIME types
 │   ├── _redirects                     # 301s de URLs antiguas + SPA fallback
 │   ├── robots.txt
 │   ├── sitemap.xml
 │   ├── favicon.svg
 │   ├── og-image.png
-│   └── blog/infografia-que-registrar.png
+│   └── blog/infografia-que-registrar.webp
 └── src/
-    ├── main.jsx                       # Router con 12 rutas
-    ├── App.jsx                        # Home page
-    ├── config.js                      # ⭐ Constantes de marca centralizadas
-    ├── schemas.js                     # ⭐ Schemas JSON-LD (Organization, Breadcrumb, etc.)
-    ├── index.css                      # Tailwind + tema de marca + @font-face
+    ├── main.tsx                       # Router con 12 rutas
+    ├── App.tsx                        # Home page
+    ├── config.ts                      # ⭐ Constantes de marca centralizadas
+    ├── schemas.ts                     # ⭐ Schemas JSON-LD (Organization, Breadcrumb, etc.)
+    ├── index.css                      # Tailwind + tema de marca + @font-face (WOFF2)
     ├── assets/
-    │   ├── fonts/                     # Bacalisties (display) + Roboto-Thin
+    │   ├── fonts/                     # Bacalisties (display) + Roboto-Thin (WOFF2 + fallback TTF)
     │   ├── logo-dibujo.webp           # Logo optimizado (20 KB)
-    │   ├── perro.jpg                  # Imagen hero (80 KB)
+    │   ├── perro.webp                 # Imagen hero (56 KB, WebP)
     │   └── mockup-software.webp       # Captura SaaS (24 KB)
-    ├── blog/postsLoader.js            # Parser frontmatter propio (sin gray-matter)
+    ├── blog/postsLoader.ts            # Parser frontmatter propio (sin gray-matter)
     ├── components/
-    │   ├── Navbar.jsx
-    │   ├── Footer.jsx
-    │   ├── SEO.jsx                    # Helmet + meta tags
-    │   └── CityPage.jsx               # Plantilla landing local reutilizable
+    │   ├── Navbar.tsx
+    │   ├── Footer.tsx
+    │   ├── WhatsAppFloat.tsx          # Botón flotante de WhatsApp (solo móvil)
+    │   ├── SEO.tsx                    # Helmet + meta tags
+    │   └── CityPage.tsx               # Plantilla landing local reutilizable
     ├── pages/
-    │   ├── MascotasPage.jsx
-    │   ├── ProduccionPage.jsx
-    │   ├── SoftwarePage.jsx
-    │   ├── BlogPage.jsx
-    │   ├── BlogPost.jsx
-    │   ├── CoberturaPage.jsx
-    │   ├── VeterinariaEnSincelejoMonteriaPage.jsx
-    │   ├── GanaderiaEnCostaCaribePage.jsx
-    │   └── NotFoundPage.jsx           # ⭐ 404 dedicada con SEO noindex
+    │   ├── MascotasPage.tsx
+    │   ├── ProduccionPage.tsx
+    │   ├── SoftwarePage.tsx
+    │   ├── BlogPage.tsx
+    │   ├── BlogPost.tsx
+    │   ├── CoberturaPage.tsx
+    │   ├── VeterinariaEnSincelejoMonteriaPage.tsx
+    │   ├── GanaderiaEnCostaCaribePage.tsx
+    │   └── NotFoundPage.tsx           # ⭐ 404 dedicada con SEO noindex
     └── posts/                          # 3 artículos markdown
         ├── vacunacion-en-perros-guia-completa.md
         ├── desparasitacion-en-gatos.md
@@ -102,19 +103,22 @@ Definido en `src/index.css` mediante `@theme` de Tailwind:
 | `mv-orange`      | `#F15A24` | Naranja, CTAs principales, mascotas        |
 | `mv-amber`       | `#FBB03B` | Amarillo, acentos ganadería/software       |
 
-Tipografías autoalojadas (sin Google Fonts):
+Tipografías autoalojadas (sin Google Fonts), servidas en WOFF2 con fallback TTF:
 - `Bacalisties` — display de marca
 - `Roboto-Thin` — headings
 
+⚠️ La familia se llama `Bacalisties` (una sola L) tanto en `@font-face` como en
+el token `--font-brand`; si no coinciden, la fuente no se aplica.
+
 ## ⚙️ Configuración de marca
 
-Todas las constantes (URLs externas, teléfono, email, cobertura) están centralizadas en `src/config.js`.
-Los schemas JSON-LD viven en `src/schemas.js` (separados del componente `SEO.jsx`
+Todas las constantes (URLs externas, teléfono, email, cobertura) están centralizadas en `src/config.ts`.
+Los schemas JSON-LD viven en `src/schemas.ts` (separados del componente `SEO.tsx`
 para respetar `react-refresh/only-export-components`).
 
 ## 🔍 SEO
 
-- **`SEO.jsx`**: componente centralizado que inyecta title, description, keywords, canonical,
+- **`SEO.tsx`**: componente centralizado que inyecta title, description, keywords, canonical,
   Open Graph, Twitter Card, robots.
 - **Schemas JSON-LD** en cada página (`Organization`, `Service`, `FAQPage`, `BreadcrumbList`,
   `Article`, `Blog`, `SoftwareApplication`, `VeterinaryBusiness`).
@@ -181,12 +185,12 @@ El despliegue es automático vía GitHub Actions al hacer push a `master`:
 
 ## 🐛 Añadir una nueva página SEO local (estilo CityPage)
 
-`CityPage.jsx` es un componente plantilla que recibe `city`, `region`, `type`,
+`CityPage.tsx` es un componente plantilla que recibe `city`, `region`, `type`,
 `services`, `areas`, `faqs`, `keywords` como props y genera una landing local
 completa con schemas `VeterinaryBusiness`, `FAQPage` y `BreadcrumbList`.
 
 ```jsx
-// Ejemplo: src/pages/VeterinariaEnCartagenaPage.jsx
+// Ejemplo: src/pages/VeterinariaEnCartagenaPage.tsx
 import CityPage from '../components/CityPage';
 
 export default function VeterinariaEnCartagenaPage() {
@@ -208,7 +212,7 @@ export default function VeterinariaEnCartagenaPage() {
 }
 ```
 
-Luego registrar la ruta en `src/main.jsx`, `public/sitemap.xml` y `scripts/prerender.cjs`.
+Luego registrar la ruta en `src/main.tsx`, `public/sitemap.xml` y `scripts/prerender.cjs`.
 
 ## ⚠️ Notas
 

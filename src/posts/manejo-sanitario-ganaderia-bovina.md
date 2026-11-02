@@ -68,7 +68,7 @@ La regla práctica es registrar todo evento sanitario el mismo día en que ocurr
 
 Para que la información sea útil y consultable, conviene organizar los registros en cinco bloques temáticos. Cada bloque agrupa datos relacionados entre sí, con su frecuencia de actualización y su nivel de prioridad para el seguimiento sanitario del hato. El siguiente resumen visual muestra los cinco bloques con los datos esenciales que no pueden faltar en tu libreta sanitaria.
 
-![Infografía ¿Qué registrar? — Cinco bloques temáticos para el registro sanitario del hato bovino: 1) Identificación del animal, 2) Eventos sanitarios, 3) Eventos críticos, 4) Manejo reproductivo, 5) Producción y movimientos. Cada bloque incluye dato, frecuencia e importancia.](/blog/infografia-que-registrar.png)
+![Infografía ¿Qué registrar? — Cinco bloques temáticos para el registro sanitario del hato bovino: 1) Identificación del animal, 2) Eventos sanitarios, 3) Eventos críticos, 4) Manejo reproductivo, 5) Producción y movimientos. Cada bloque incluye dato, frecuencia e importancia.](/blog/infografia-que-registrar.webp)
 
 *Infografía: los cinco bloques de registros sanitarios en ganadería bovina, con frecuencia y nivel de importancia de cada dato.*
 
