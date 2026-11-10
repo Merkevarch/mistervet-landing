@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { organizationSchema, buildBreadcrumbSchema } from '../schemas';
 
-import { WHATSAPP_CITA_URL, CONTACT_EMAIL, GBP_REVIEW_URL } from '../config';
+import { WHATSAPP_CITA_URL, PHONE_TEL_URL, GBP_REVIEW_URL } from '../config';
 
 const livestockDepartments = [
   { name: 'Sucre', cities: 'Sincelejo, Corozal, San Marcos, Sampués' },
@@ -56,10 +56,10 @@ export default function CoberturaPage() {
               Agendar por WhatsApp
             </a>
             <a
-              href={CONTACT_EMAIL}
+              href={PHONE_TEL_URL}
               className="px-6 py-3 border-2 border-mv-darkblue text-mv-darkblue font-semibold rounded-xl hover:bg-mv-darkblue hover:text-white transition-all"
             >
-              Contactar por Correo
+              📞 Llamar ahora
             </a>
           </div>
         </div>

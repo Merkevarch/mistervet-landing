@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import Faq from '../components/Faq';
+import Reveal from '../components/Reveal';
 import { buildBreadcrumbSchema } from '../schemas';
 import perroImg from '../assets/perro.webp';
-import { WHATSAPP_CITA_URL, CONTACT_EMAIL, GBP_REVIEW_URL } from '../config';
+import { WHATSAPP_CITA_URL, PHONE_TEL_URL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
 
 const services = [
   {
@@ -169,12 +171,13 @@ export default function MascotasPage() {
                   Agendar Cita
                 </a>
                 <a
-                  href={CONTACT_EMAIL}
+                  href={PHONE_TEL_URL}
                   className="px-6 py-3 border-2 border-mv-darkblue text-mv-darkblue font-semibold rounded-xl hover:bg-mv-darkblue hover:text-white transition-all"
                 >
-                  Contactar por Correo
+                  📞 Llamar ahora
                 </a>
               </div>
+              <p className="text-xs text-slate-400 mt-3">{PHONE_DISPLAY} · Atención personalizada para tu mascota</p>
             </div>
             <div className="flex justify-center">
               <img
@@ -201,16 +204,15 @@ export default function MascotasPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((s, i) => (
-              <div
-                key={i}
-                className="bg-slate-50 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  {s.icon}
-                  <h3 className="text-base font-bold text-slate-800">{s.title}</h3>
+              <Reveal key={i} delay={i * 80}>
+                <div className="bg-slate-50 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+                  <div className="flex items-center gap-3 mb-3">
+                    {s.icon}
+                    <h3 className="text-base font-bold text-slate-800">{s.title}</h3>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-relaxed">{s.desc}</p>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">{s.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -301,13 +303,8 @@ export default function MascotasPage() {
             <h2 className="text-3xl font-display text-mv-darkblue mb-2">Preguntas Frecuentes</h2>
             <p className="text-slate-500">Resolvemos las dudas más comunes sobre atención a mascotas</p>
           </div>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <div key={i} className="bg-slate-50 rounded-2xl p-6">
-                <h3 className="font-bold text-slate-800 mb-2">{faq.q}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
+          <div className="space-y-3">
+            <Faq items={faqs} />
           </div>
         </div>
       </section>

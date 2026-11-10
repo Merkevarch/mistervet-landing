@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildBreadcrumbSchema } from '../schemas';
 
-import { WHATSAPP_GANADERIA_URL, CONTACT_EMAIL } from '../config';
+import { WHATSAPP_GANADERIA_URL, PHONE_TEL_URL } from '../config';
 
 const services = [
   {
@@ -145,10 +145,10 @@ export default function ProduccionPage() {
                 Solicitar Visita Técnica
               </a>
               <a
-                href={CONTACT_EMAIL}
+                href={PHONE_TEL_URL}
                 className="px-6 py-3 border-2 border-mv-darkblue text-mv-darkblue font-semibold rounded-xl hover:bg-mv-darkblue hover:text-white transition-all"
               >
-                Contactar por Correo
+                📞 Llamar ahora
               </a>
             </div>
           </div>

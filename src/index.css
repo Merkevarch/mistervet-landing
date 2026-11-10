@@ -27,6 +27,34 @@
   }
 }
 
+/* ===== Aparición sutil al hacer scroll (componente Reveal) =====
+   Mejora progresiva: solo se oculta el contenido si main.tsx pudo
+   añadir la clase "js-reveal" al <html>. Sin JavaScript (o en el HTML
+   prerenderizado sin ejecutar), todo permanece visible — seguro para
+   SEO y lectores de pantalla. */
+.reveal {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+html.js-reveal .reveal:not(.reveal-visible) {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* Usuarios con sensibilidad al movimiento: sin animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .faq-panel {
+    transition: none !important;
+  }
+}
+
 /* Fuentes autoalojadas en WOFF2 (≈80% más ligeras que TTF).
    El TTF queda como fallback para navegadores muy antiguos.
    IMPORTANTE: el nombre en font-family debe coincidir con el token

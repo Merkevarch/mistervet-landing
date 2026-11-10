@@ -3,8 +3,9 @@ import { ReactNode } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import Faq from './Faq';
 import { buildBreadcrumbSchema } from '../schemas';
-import { WHATSAPP_CITA_URL, CONTACT_EMAIL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
+import { WHATSAPP_CITA_URL, PHONE_TEL_URL, PHONE_DISPLAY, GBP_REVIEW_URL } from '../config';
 
 type CityPageType = 'veterinaria' | 'ganaderia';
 
@@ -147,10 +148,10 @@ export default function CityPage({
               {ctaLabel}
             </a>
             <a
-              href={CONTACT_EMAIL}
+              href={PHONE_TEL_URL}
               className="px-6 py-3 border-2 border-mv-darkblue text-mv-darkblue font-semibold rounded-xl hover:bg-mv-darkblue hover:text-white transition-all"
             >
-              Contactar por Correo
+              📞 Llamar ahora
             </a>
           </div>
           <p className="text-sm text-slate-500 mt-4">
@@ -212,13 +213,8 @@ export default function CityPage({
               <h2 className="text-3xl font-display text-mv-darkblue mb-2">Preguntas frecuentes</h2>
               <p className="text-slate-500">Resolvemos las dudas más comunes sobre nuestro servicio en {city}</p>
             </div>
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <div key={i} className="bg-slate-50 rounded-2xl p-6">
-                  <h3 className="font-bold text-slate-800 mb-2">{faq.q}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
+            <div className="space-y-3">
+              {faqs && faqs.length > 0 && <Faq items={faqs} />}
             </div>
           </div>
         </section>

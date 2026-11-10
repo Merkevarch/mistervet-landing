@@ -41,6 +41,8 @@ export const SITE_NAME = 'MisterVet';
 export const SITE_LOCALE = 'es_CO';
 
 // ─── Google Business Profile ────────────────────────────────────────────
+// Perfil público de Google Business (ver reseñas). El de reseña añade /review.
+export const GBP_PROFILE_URL = 'https://g.page/r/CdNFFd3TuBNREBM';
 export const GBP_REVIEW_URL = 'https://g.page/r/CdNFFd3TuBNREBM/review';
 
 // ─── Cobertura ──────────────────────────────────────────────────────────

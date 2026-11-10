@@ -5,6 +5,11 @@ import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.tsx'
 import WhatsAppFloat from './components/WhatsAppFloat.tsx'
+import BackToTop from './components/BackToTop.tsx'
+
+// Marca que JS está activo: habilita las animaciones de aparición (Reveal).
+// Sin esta clase el contenido queda siempre visible (seguro para SEO).
+document.documentElement.classList.add('js-reveal')
 
 // Code-splitting: todas las rutas excepto home (App) se cargan bajo demanda.
 // Cada página se convierte en un chunk separado que se descarga solo cuando
@@ -35,6 +40,8 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         {/* Botón flotante de WhatsApp (solo móvil) presente en todas las rutas */}
         <WhatsAppFloat />
+        {/* Volver arriba (solo escritorio, no choca con el flotante de móvil) */}
+        <BackToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<App />} />
