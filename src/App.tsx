@@ -6,8 +6,6 @@ import SEO from './components/SEO';
 import Reveal from './components/Reveal';
 import HowItWorks from './components/HowItWorks';
 import StatsBar from './components/StatsBar';
-import VetProfile from './components/VetProfile';
-import Testimonials from './components/Testimonials';
 import { organizationSchema, websiteSchema } from './schemas';
 import perroImg from './assets/perro.webp';
 import mockupSoftware from './assets/mockup-software.webp';
@@ -53,7 +51,7 @@ const services: Service[] = [
 // Beneficios rápidos del hero (leídos de un vistazo, sin párrafos densos)
 const heroBenefits = [
   { icon: '🏠', text: 'Atención a domicilio — tu mascota más tranquila en casa' },
-  { icon: '👨‍⚕️', text: 'Médico veterinario titulado en cada visita' },
+  { icon: '👨‍⚕️', text: 'Equipo de médicos veterinarios titulados' },
   { icon: '💬', text: 'Agenda por WhatsApp en minutos' },
 ];
 
@@ -134,6 +132,9 @@ export default function App(): ReactNode {
         </div>
       </section>
 
+      {/* ===== CIFRAS (confianza, datos reales) ===== */}
+      <StatsBar />
+
       {/* ===== SERVICIOS ===== */}
       <section className="bg-white py-10 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,15 +212,6 @@ export default function App(): ReactNode {
         </div>
       </section>
 
-      {/* ===== CIFRAS ===== */}
-      <StatsBar />
-
-      {/* ===== CONOCE A TU VETERINARIO ===== */}
-      <VetProfile />
-
-      {/* ===== TESTIMONIOS ===== */}
-      <Testimonials />
-
       {/* ===== MISTERVET PRO (SaaS) ===== */}
       <section id="software" className="bg-mv-darkblue text-white py-10 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -275,7 +267,8 @@ export default function App(): ReactNode {
             ¿Tu mascota necesita atención?
           </h2>
           <p className="text-slate-600 mb-6">
-            Escríbenos hoy mismo y agendamos tu visita a domicilio.
+            Escríbenos hoy mismo y agenda tu visita a domicilio con nuestro
+            equipo de médicos veterinarios.
           </p>
           <div className="flex flex-wrap gap-4 justify-center items-center">
             <a

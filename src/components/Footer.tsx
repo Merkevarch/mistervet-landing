@@ -13,7 +13,9 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-12">
+    <footer className="bg-slate-900 text-slate-400 pt-12 pb-24">
+      {/* pb-24: despeja el botón flotante de WhatsApp (móvil) y el de
+          "volver arriba" (escritorio) para que no solapen los enlaces legales */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-6">
           {/* NAP */}

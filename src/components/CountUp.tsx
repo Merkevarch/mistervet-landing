@@ -17,7 +17,11 @@ export default function CountUp({ value, suffix = '' }: CountUpProps) {
     const el = ref.current;
     if (!el) return;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Prerender (scripts/prerender.cjs navega con el UA "MisterVetPrerender"):
+    // se muestra el valor final directamente para que el HTML estático que
+    // ven los rastreadores contenga las cifras completas.
+    const isPrerender = navigator.userAgent.includes('MisterVetPrerender');
+    if (isPrerender || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setDisplay(value);
       return;
     }
