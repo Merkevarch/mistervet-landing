@@ -18,17 +18,15 @@ interface RevealProps {
  */
 export default function Reveal({ children, delay = 0, className = '' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
-    // Usuarios con movimiento reducido: mostrar directamente.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setVisible(true);
-      return;
-    }
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const io = new IntersectionObserver(
       (entries) => {

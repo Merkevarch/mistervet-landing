@@ -228,7 +228,7 @@ export default function App(): ReactNode {
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Gestión completa de pacientes y propietarios</li>
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Punto de venta (POS) con facturación</li>
                 <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Historia clínica digital y recetas</li>
-                <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Planes desde gratis hasta $90.000/mes</li>
+                <li className="flex items-center gap-2"><span className="text-mv-amber">✓</span> Planes desde gratis hasta $80.000/mes</li>
               </ul>
               <div className="flex flex-wrap gap-4">
                 <a

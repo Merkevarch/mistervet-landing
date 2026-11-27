@@ -9,22 +9,18 @@ interface CountUpProps {
  * Contador que anima de 0 al valor final cuando entra en pantalla.
  * Con prefers-reduced-motion muestra el valor final directamente.
  */
+const shouldSkipAnimation = () =>
+  typeof window !== 'undefined' &&
+  (navigator.userAgent.includes('MisterVetPrerender') ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
 export default function CountUp({ value, suffix = '' }: CountUpProps) {
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(() => (shouldSkipAnimation() ? value : 0));
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
-    // Prerender (scripts/prerender.cjs navega con el UA "MisterVetPrerender"):
-    // se muestra el valor final directamente para que el HTML estático que
-    // ven los rastreadores contenga las cifras completas.
-    const isPrerender = navigator.userAgent.includes('MisterVetPrerender');
-    if (isPrerender || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setDisplay(value);
-      return;
-    }
+    if (!el || shouldSkipAnimation()) return;
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -47,9 +43,11 @@ export default function CountUp({ value, suffix = '' }: CountUpProps) {
     return () => io.disconnect();
   }, [value]);
 
+  const shown = shouldSkipAnimation() ? value : display;
+
   return (
     <span ref={ref}>
-      {display.toLocaleString('es-CO')}
+      {shown.toLocaleString('es-CO')}
       {suffix}
     </span>
   );

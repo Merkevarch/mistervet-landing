@@ -63,12 +63,12 @@ const features: Feature[] = [
 
 const plans = [
   {
-    name: 'Trial',
+    name: 'Free',
     price: '$0',
     period: '/ mes',
     desc: 'Para veterinarias que están iniciando y quieren digitalizar su operación sin costo.',
     features: [
-      '30 mascotas',
+      '40 mascotas',
       '2 usuarios',
       'Ventas ilimitadas',
       'Sin expiración',
@@ -77,24 +77,10 @@ const plans = [
     highlight: false,
   },
   {
-    name: 'Pro',
-    price: '$50.000',
-    period: '/ mes',
-    desc: 'Para veterinarias en crecimiento que necesitan usuarios ilimitados y soporte prioritario.',
-    features: [
-      '200 mascotas',
-      'Usuarios ilimitados',
-      'Ventas ilimitadas',
-      'Soporte prioritario',
-    ],
-    cta: 'Elegir Plan Pro',
-    highlight: true,
-  },
-  {
     name: 'Enterprise',
-    price: '$90.000',
+    price: '$80.000',
     period: '/ mes',
-    desc: 'Para clínicas con altos volúmenes o equipos grandes que requieren atención dedicada.',
+    desc: 'Para clínicas con altos volúmenes o equipos grandes que requieren operación ilimitada y atención dedicada.',
     features: [
       'Mascotas ilimitadas',
       'Usuarios ilimitados',
@@ -102,7 +88,7 @@ const plans = [
       'Soporte 24/7',
     ],
     cta: 'Contactar Ventas',
-    highlight: false,
+    highlight: true,
   },
 ];
 
@@ -171,22 +157,15 @@ export default function SoftwarePage() {
     offers: [
       {
         '@type': 'Offer',
-        name: 'Trial',
+        name: 'Free',
         price: '0',
         priceCurrency: 'COP',
-        description: 'Plan gratuito: 30 mascotas, 2 usuarios, ventas ilimitadas, sin expiración.',
-      },
-      {
-        '@type': 'Offer',
-        name: 'Pro',
-        price: '50000',
-        priceCurrency: 'COP',
-        description: '200 mascotas, usuarios ilimitados, ventas ilimitadas, soporte prioritario.',
+        description: 'Plan gratuito: 40 mascotas, 2 usuarios, ventas ilimitadas, sin expiración.',
       },
       {
         '@type': 'Offer',
         name: 'Enterprise',
-        price: '90000',
+        price: '80000',
         priceCurrency: 'COP',
         description: 'Mascotas ilimitadas, usuarios ilimitados, ventas ilimitadas, soporte 24/7.',
       },
@@ -207,7 +186,7 @@ export default function SoftwarePage() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
         title="MisterVet Pro | Software de Gestión Veterinaria SaaS"
-        description="Software de gestión veterinaria multi-tenant para clínicas en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario, recetas, citas y reportes. Planes Trial $0, Pro $50.000/mes y Enterprise $90.000/mes."
+        description="Software de gestión veterinaria multi-tenant para clínicas en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario, recetas, citas y reportes. Planes Free $0 (40 mascotas y 2 usuarios) y Enterprise $80.000/mes ilimitado."
         path="/software"
         type="website"
         keywords={['software veterinaria', 'sistema gestión veterinaria', 'software veterinario Colombia', 'historia clínica digital veterinaria', 'POS veterinario', 'SaaS veterinaria', 'programa para veterinaria', 'software multi-tenant veterinaria']}
@@ -286,18 +265,18 @@ export default function SoftwarePage() {
 
       {/* ===== PLANS ===== */}
       <section className="bg-slate-50 py-12 lg:py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-display text-mv-darkblue mb-2">Planes y Precios</h2>
             <p className="text-slate-500">Elige el plan ideal para tu veterinaria</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`rounded-2xl p-6 flex flex-col ${
+                className={`rounded-2xl p-6 sm:p-8 flex flex-col ${
                   plan.highlight
-                    ? 'bg-mv-darkblue text-white shadow-2xl scale-105 border-2 border-mv-amber'
+                    ? 'bg-mv-darkblue text-white shadow-2xl border-2 border-mv-amber'
                     : 'bg-white border border-slate-200'
                 }`}
               >
@@ -308,7 +287,7 @@ export default function SoftwarePage() {
                   {plan.desc}
                 </p>
                 <div className="mb-4">
-                  <span className={`text-3xl font-bold ${plan.highlight ? 'text-white' : 'text-slate-800'}`}>
+                  <span className={`text-3xl font-bold tabular-nums ${plan.highlight ? 'text-white' : 'text-slate-800'}`}>
                     {plan.price}
                   </span>
                   <span className={`text-sm ml-1 ${plan.highlight ? 'text-slate-300' : 'text-slate-500'}`}>
