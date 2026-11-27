@@ -9,19 +9,20 @@
 
   /* Registro de Fuentes */
   --font-brand: "Bacalisties", sans-serif;
-  --font-display: "Roboto-Thin", sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
   html {
-    font-size: 18px;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
   }
 
   .logo-container img {
-    height: 3rem;
+    height: 2.5rem;
     width: auto;
     object-fit: contain;
   }
@@ -33,11 +34,12 @@
    prerenderizado sin ejecutar), todo permanece visible — seguro para
    SEO y lectores de pantalla. */
 .reveal {
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 html.js-reveal .reveal:not(.reveal-visible) {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(14px);
 }
 
 /* Usuarios con sensibilidad al movimiento: sin animaciones */
@@ -55,7 +57,7 @@ html.js-reveal .reveal:not(.reveal-visible) {
   }
 }
 
-/* Fuentes autoalojadas en WOFF2 (≈80% más ligeras que TTF).
+/* Fuente de marca autoalojada en WOFF2 (≈80% más ligera que TTF).
    El TTF queda como fallback para navegadores muy antiguos.
    IMPORTANTE: el nombre en font-family debe coincidir con el token
    --font-brand de @theme ("Bacalisties", con una sola L). */
@@ -64,15 +66,6 @@ html.js-reveal .reveal:not(.reveal-visible) {
   src: url('./assets/fonts/Bacalisties.woff2') format('woff2'),
        url('./assets/fonts/Bacalisties.txt.ttf') format('truetype');
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto-Thin';
-  src: url('./assets/fonts/Roboto-Thin.woff2') format('woff2'),
-       url('./assets/fonts/Roboto-Thin.ttf') format('truetype');
-  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }

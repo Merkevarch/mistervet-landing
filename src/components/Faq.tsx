@@ -25,8 +25,8 @@ export default function Faq({ items }: { items: FaqItem[] }) {
         return (
           <div
             key={i}
-            className={`bg-slate-50 rounded-2xl overflow-hidden transition-shadow duration-300 ${
-              isOpen ? 'shadow-md' : 'hover:shadow-sm'
+            className={`bg-slate-50/80 border border-slate-200/80 rounded-2xl overflow-hidden transition-all duration-200 ${
+              isOpen ? 'bg-white shadow-sm border-slate-300/80' : 'hover:border-slate-300'
             }`}
           >
             <button
