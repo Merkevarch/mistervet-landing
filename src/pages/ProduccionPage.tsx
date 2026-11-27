@@ -96,7 +96,7 @@ export default function ProduccionPage() {
       areaServed: 'Colombia',
     },
     areaServed: 'Colombia',
-    description: 'Asesoría técnica veterinaria para fincas y sistemas de producción pecuaria: manejo sanitario en bovinos y porcinos, consultoría reproductiva, planes de vacunación y desparasitación, visitas técnicas programadas y análisis de registros productivos.',
+    description: 'Asesoría técnica veterinaria para fincas y sistemas de producción pecuaria: manejo sanitario en bovinos y porcinos, consultoría reproductiva, planes de vacunación, sistematización del hato y visitas técnicas.',
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
@@ -112,11 +112,11 @@ export default function ProduccionPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Producción y Ganadería | Consultoría Veterinaria Pecuaria"
-        description="Asesoría técnica veterinaria para fincas y sistemas de producción pecuaria en Colombia: manejo sanitario en bovinos y porcinos, consultoría reproductiva, planes de vacunación, visitas técnicas y análisis de registros productivos."
+        title="Ganadería y Sistematización del Hato"
+        description="Consultoría veterinaria para fincas en Costa Caribe: manejo sanitario bovino, reproducción, planes de vacunación y sistematización del hato."
         path="/produccion"
         type="website"
-        keywords={['consultoría veterinaria', 'ganadería Colombia', 'producción bovina', 'manejo sanitario bovinos', 'consultoría pecuaria', 'veterinario fincas', 'reproducción bovina', 'planes de vacunación ganadería', 'porcicultura']}
+        keywords={['consultoría veterinaria', 'ganadería Colombia', 'sistematización del hato', 'producción bovina', 'manejo sanitario bovinos', 'consultoría pecuaria', 'veterinario fincas', 'reproducción bovina', 'planes de vacunación ganadería']}
         jsonLd={[serviceSchema, breadcrumb]}
       />
       <Navbar />

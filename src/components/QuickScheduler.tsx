@@ -68,8 +68,8 @@ export default function QuickScheduler() {
   const whatsappHref = `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-sm">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-5 border-b border-slate-100">
+    <div className="bg-white border border-mv-blue/25 rounded-2xl p-4 sm:p-6 shadow-md shadow-mv-darkblue/5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 pb-4 sm:pb-5 border-b border-slate-100">
         <div>
           <p className="text-xs font-medium text-mv-blue tracking-wide">
             Pre-agendador rápido
@@ -83,14 +83,14 @@ export default function QuickScheduler() {
         <div
           role="tablist"
           aria-label="Tipo de atención"
-          className="inline-flex p-1 bg-slate-100 rounded-xl self-start sm:self-auto"
+          className="w-full sm:w-auto grid grid-cols-2 sm:inline-flex p-1 bg-slate-100 rounded-xl"
         >
           <button
             type="button"
             role="tab"
             aria-selected={mode === 'mascotas'}
             onClick={() => handleModeChange('mascotas')}
-            className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`px-3 sm:px-3.5 py-2 sm:py-1.5 text-xs font-medium rounded-lg transition-all duration-150 text-center whitespace-nowrap shrink-0 cursor-pointer ${
               mode === 'mascotas'
                 ? 'bg-white text-mv-darkblue shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
@@ -103,7 +103,7 @@ export default function QuickScheduler() {
             role="tab"
             aria-selected={mode === 'ganaderia'}
             onClick={() => handleModeChange('ganaderia')}
-            className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`px-3 sm:px-3.5 py-2 sm:py-1.5 text-xs font-medium rounded-lg transition-all duration-150 text-center whitespace-nowrap shrink-0 cursor-pointer ${
               mode === 'ganaderia'
                 ? 'bg-white text-mv-darkblue shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'

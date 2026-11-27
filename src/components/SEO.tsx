@@ -21,15 +21,13 @@ export interface SEOProps {
  * Props:
  *  - title: título de la página (sin sufijo, se añade automáticamente " | MisterVet")
  *  - titleTemplate: si es false, no se añade sufijo
- *  - description: meta description (150-160 caracteres ideal)
+ *  - description: meta description (120-160 caracteres ideal)
  *  - path: ruta de la página (ej: "/mascotas") para construir canonical y og:url
  *  - image: URL absoluta o relativa de la imagen OG
  *  - type: og:type ("website", "article", etc.)
  *  - keywords: array de palabras clave
  *  - noindex: si es true, agrega noindex
  *  - jsonLd: objeto o array de objetos JSON-LD para structured data
- *
- * Para schemas JSON-LD (Organization, Breadcrumb, etc.) importarlos desde '../schemas'.
  */
 export default function SEO({
   title,
@@ -57,12 +55,14 @@ export default function SEO({
 
   return (
     <Helmet>
-      {/* Title */}
+      {/* Title & Core Meta */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonical} />
+      {!noindex && <link rel="alternate" hrefLang="es-CO" href={canonical} />}
+      {!noindex && <link rel="alternate" hrefLang="x-default" href={canonical} />}
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
@@ -70,6 +70,7 @@ export default function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={fullTitle} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content={SITE_LOCALE} />
 
@@ -79,6 +80,7 @@ export default function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={fullTitle} />
 
       {/* JSON-LD Structured Data */}
       {jsonLdArray.map((schema, idx) => (

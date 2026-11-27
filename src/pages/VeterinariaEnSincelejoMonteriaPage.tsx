@@ -133,8 +133,8 @@ export default function VeterinariaEnSincelejoMonteriaPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Veterinaria a Domicilio en Sincelejo y Montería"
-        description="Servicio veterinario a domicilio en Sincelejo (Sucre) y Montería (Córdoba) con alrededores. Consultas, vacunación, cirugías, urgencias y desparasitación tropical. Médico veterinario titulado."
+        title="Veterinaria en Sincelejo y Montería"
+        description="Médico veterinario a domicilio en Sincelejo y Montería: consulta general, vacunación, laboratorio clínico, desparasitación y certificados de viaje."
         path="/veterinaria-en-sincelejo-y-monteria"
         type="website"
         keywords={['veterinaria Sincelejo', 'veterinaria Montería', 'veterinario a domicilio Sincelejo', 'veterinario a domicilio Montería', 'veterinaria Sucre', 'veterinaria Córdoba', 'consulta veterinaria Sincelejo', 'vacunación perros Montería', 'urgencias veterinarias Sincelejo']}

@@ -137,8 +137,8 @@ export default function MascotasPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="Servicios Veterinarios para Mascotas"
-        description="Atención médica veterinaria completa para perros, gatos y otras mascotas en Sincelejo y Montería con alrededores: consulta general, vacunación, desparasitación, cirugías, hospitalización, laboratorio clínico, odontología y certificados de viaje. Servicio a domicilio."
+        title="Veterinaria para Mascotas a Domicilio"
+        description="Atención veterinaria a domicilio en Sincelejo y Montería: consulta médica, vacunación, desparasitación, laboratorio clínico y certificados de viaje."
         path="/mascotas"
         type="website"
         keywords={['veterinaria para mascotas', 'veterinario mascotas Colombia', 'veterinaria Sincelejo', 'veterinaria Montería', 'consulta veterinaria', 'vacunación perros gatos', 'cirugía veterinaria', 'odontología veterinaria', 'certificados de viaje mascotas', 'laboratorio veterinario']}

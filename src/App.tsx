@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -8,7 +9,8 @@ import StatsBar from './components/StatsBar';
 import QuickScheduler from './components/QuickScheduler';
 import CareFocusSection from './components/CareFocusSection';
 import ProShowcase from './components/ProShowcase';
-import { organizationSchema, websiteSchema } from './schemas';
+import Faq, { FaqItem } from './components/Faq';
+import { organizationSchema, websiteSchema, buildFaqSchema } from './schemas';
 import perroImg from './assets/perro.webp';
 import { WHATSAPP_CITA_URL, PHONE_TEL_URL, PHONE_DISPLAY, GBP_REVIEW_URL } from './config';
 
@@ -96,25 +98,58 @@ const heroBenefits: { icon: ReactNode; text: string }[] = [
   },
 ];
 
+const homeFaqs: FaqItem[] = [
+  {
+    q: '¿En qué ciudades ofrecen servicio veterinario a domicilio?',
+    a: 'Atendemos mascotas a domicilio principalmente en Sincelejo (Sucre) y Montería (Córdoba), además de municipios cercanos bajo confirmación previa. Si estás en otra ciudad, puedes escribirla en nuestro pre-agendador para validar disponibilidad por WhatsApp.',
+  },
+  {
+    q: '¿Qué servicios veterinarios realizan directamente en casa?',
+    a: 'Realizamos consulta médica general, vacunación, desparasitación, toma de muestras para laboratorio clínico y expedición de certificados sanitarios de viaje nacional e internacional, reduciendo el estrés del traslado para tu mascota.',
+  },
+  {
+    q: '¿Qué incluye la consultoría ganadera y sistematización del hato?',
+    a: 'Acompañamos fincas en toda la Costa Caribe en manejo sanitario bovino y porcino, planes de vacunación, consultoría reproductiva, visitas técnicas programadas y sistematización del hato para controlar indicadores productivos y trazabilidad.',
+  },
+  {
+    q: '¿Qué ofrece MisterVet Pro para clínicas veterinarias?',
+    a: 'MisterVet Pro es nuestro software veterinario en la nube para Colombia con historia clínica digital, agenda, inventario y punto de venta (POS). Cuenta con un plan Free sin expiración (hasta 40 mascotas y 2 usuarios) y un plan Enterprise ilimitado por $80.000/mes.',
+  },
+  {
+    q: '¿Cómo agendar una consulta o visita técnica?',
+    a: 'Puedes usar el pre-agendador superior para elegir el servicio y tu ciudad o departamento, o escribirnos directamente por WhatsApp y llamarnos al +57 301 765 3440 en horario de atención.',
+  },
+];
+
+const homeFaqSchema = buildFaqSchema(homeFaqs);
+
 export default function App(): ReactNode {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="MisterVet | Medicina Veterinaria Integral para Mascotas y Producción Animal"
+        title="MisterVet | Veterinaria en Sincelejo, Montería y Software"
         titleTemplate={false}
-        description="Medicina veterinaria integral en Colombia: atención a mascotas (consulta, vacunación, cirugías, laboratorio) y consultoría pecuaria para fincas y ganadería. Servicio a domicilio con médico veterinario titulado."
+        description="Veterinaria a domicilio en Sincelejo y Montería, consultoría y sistematización del hato en Costa Caribe, y software veterinario MisterVet Pro."
         path="/"
-        keywords={['veterinaria', 'veterinario', 'medicina veterinaria', 'consulta veterinaria', 'cirugía veterinaria', 'mascotas', 'ganadería', 'producción animal', 'MisterVet', 'Colombia', 'veterinaria a domicilio']}
-        jsonLd={[organizationSchema, websiteSchema]}
+        keywords={[
+          'veterinaria a domicilio Sincelejo',
+          'veterinario en Montería',
+          'medicina veterinaria Colombia',
+          'sistematización del hato',
+          'ganadería Costa Caribe',
+          'software veterinario Colombia',
+          'MisterVet Pro',
+        ]}
+        jsonLd={[organizationSchema, websiteSchema, homeFaqSchema]}
       />
       <Navbar />
 
       {/* ===== HERO EDITORIAL ===== */}
-      <section className="bg-gradient-to-b from-white to-slate-50 pt-10 pb-14 lg:pt-16 lg:pb-20">
+      <section className="bg-gradient-to-b from-white to-slate-50 pt-8 pb-12 lg:pt-12 lg:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-6">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500 mb-4">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div className="order-1 lg:col-span-6 lg:order-1">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500 mb-3">
                 <span className="text-mv-blue">Atención a domicilio</span>
                 <span aria-hidden="true">·</span>
                 <span>Sincelejo</span>
@@ -124,16 +159,16 @@ export default function App(): ReactNode {
                 <span>Costa Caribe</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl font-display font-semibold tracking-tight text-mv-darkblue leading-[1.12] mb-5 text-balance">
+              <h1 className="text-4xl sm:text-5xl font-display font-semibold tracking-tight text-mv-darkblue leading-[1.12] mb-4 text-balance">
                 Cuidado médico y <span className="text-mv-blue">bienestar</span> para tu mascota
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed max-w-xl">
                 El médico veterinario llega hasta tu casa: consulta, vacunación y procedimientos sin el estrés del traslado. Y si tienes finca, asesoramos tu producción animal en toda la Costa Caribe.
               </p>
 
               {/* Beneficios limpios sin emojis */}
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-2.5 mb-7">
                 {heroBenefits.map((b, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-slate-700">
                     <span className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200/70 flex items-center justify-center shrink-0">
@@ -166,8 +201,13 @@ export default function App(): ReactNode {
               </div>
             </div>
 
-            <div className="lg:col-span-6 flex justify-center lg:justify-end">
-              <div className="w-full max-w-md lg:max-w-lg aspect-[4/5] max-h-[480px] rounded-3xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-lg">
+            {/* Pre-agendador interactivo rápido: en móvil va después del texto y antes de la foto */}
+            <div className="order-2 lg:col-span-12 lg:order-3">
+              <QuickScheduler />
+            </div>
+
+            <div className="order-3 lg:col-span-6 lg:order-2 flex justify-center lg:justify-end">
+              <div className="w-full max-w-md lg:max-w-lg aspect-[4/5] max-h-[420px] rounded-3xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-lg">
                 <img
                   src={perroImg}
                   alt="Perro de pelaje blanco y negro con correa verde, sentado sobre rocas frente al mar"
@@ -180,11 +220,6 @@ export default function App(): ReactNode {
                 />
               </div>
             </div>
-          </div>
-
-          {/* Pre-agendador interactivo rápido */}
-          <div className="mt-12 lg:mt-14">
-            <QuickScheduler />
           </div>
         </div>
       </section>
@@ -240,6 +275,63 @@ export default function App(): ReactNode {
 
       {/* ===== MISTERVET PRO (showcase interactivo por módulo) ===== */}
       <ProShowcase />
+
+      {/* ===== PREGUNTAS FRECUENTES + ENLAZADO INTERNO ===== */}
+      <section className="bg-white py-16 lg:py-24 border-b border-slate-200/70">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            <div className="lg:col-span-5">
+              <p className="text-xs font-medium text-mv-blue tracking-wide mb-2">
+                Dudas frecuentes
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-display font-semibold tracking-tight text-mv-darkblue mb-4 text-balance">
+                Preguntas sobre atención a domicilio, fincas y MisterVet Pro
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                Resolvemos las consultas más habituales antes de agendar tu visita o iniciar tu cuenta gratuita en nuestro software veterinario.
+              </p>
+
+              <nav aria-label="Guías y secciones relacionadas" className="pt-5 border-t border-slate-200/80 space-y-2.5 text-sm">
+                <p className="text-xs font-medium text-slate-400 mb-3">
+                  Explorar por especialidad
+                </p>
+                <Link
+                  to="/veterinaria-en-sincelejo-y-monteria"
+                  className="flex items-center justify-between text-mv-darkblue hover:text-mv-blue transition-colors"
+                >
+                  <span>Veterinaria a domicilio en Sincelejo y Montería</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  to="/ganaderia-en-costa-caribe"
+                  className="flex items-center justify-between text-mv-darkblue hover:text-mv-blue transition-colors"
+                >
+                  <span>Consultoría y sistematización ganadera en Costa Caribe</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  to="/software"
+                  className="flex items-center justify-between text-mv-darkblue hover:text-mv-blue transition-colors"
+                >
+                  <span>Planes Free y Enterprise de MisterVet Pro</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  to="/blog"
+                  className="flex items-center justify-between text-mv-darkblue hover:text-mv-blue transition-colors"
+                >
+                  <span>Guías clínicas y de sanidad animal en el Blog</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </nav>
+            </div>
+
+            <div className="lg:col-span-7">
+              <Faq items={homeFaqs} />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ===== CTA FINAL + RESEÑA ===== */}
       <section className="bg-slate-50 py-16 lg:py-20">

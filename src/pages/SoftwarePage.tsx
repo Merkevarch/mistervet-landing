@@ -152,7 +152,14 @@ export default function SoftwarePage() {
     name: 'MisterVet Pro',
     applicationCategory: 'VeterinaryManagementApplication',
     operatingSystem: 'Web',
-    description: 'Software de gestión veterinaria SaaS multi-tenant para clínicas veterinarias en Colombia. Administra pacientes, consultas, cirugías, hospitalización, laboratorio, POS, inventario y reportes en un solo lugar.',
+    description: 'Software de gestión veterinaria SaaS multi-tenant para clínicas veterinarias en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario y reportes en un solo lugar.',
+    featureList: [
+      'Historia clínica digital veterinaria',
+      'Punto de venta (POS) y facturación',
+      'Inventario con alertas de stock mínimo y vencimientos',
+      'Agenda de citas con recordatorios',
+      'Cirugías, hospitalización y laboratorio clínico',
+    ],
     url: 'https://www.mistervet.co/software',
     offers: [
       {
@@ -185,8 +192,9 @@ export default function SoftwarePage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
       <SEO
-        title="MisterVet Pro | Software de Gestión Veterinaria SaaS"
-        description="Software de gestión veterinaria multi-tenant para clínicas en Colombia. Administra pacientes, historia clínica digital, cirugías, hospitalización, laboratorio, POS, inventario, recetas, citas y reportes. Planes Free $0 (40 mascotas y 2 usuarios) y Enterprise $80.000/mes ilimitado."
+        title="MisterVet Pro | Software Veterinario Colombia"
+        titleTemplate={false}
+        description="Software veterinario en la nube en Colombia: historia clínica, POS, inventario y citas. Plan Free (40 mascotas) y plan Enterprise ilimitado $80.000/mes."
         path="/software"
         type="website"
         keywords={['software veterinaria', 'sistema gestión veterinaria', 'software veterinario Colombia', 'historia clínica digital veterinaria', 'POS veterinario', 'SaaS veterinaria', 'programa para veterinaria', 'software multi-tenant veterinaria']}
